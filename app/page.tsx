@@ -40,6 +40,14 @@ export default function HomePage() {
             >
               Explore plants →
             </Link>
+
+            <Link
+              href="/kebunku"
+              className="inline-flex items-center gap-2 mt-4 rounded-full border-2 border-white px-6 py-2.5 
+                        hover:bg-white hover:text-emerald-800 transition text-lg font-semibold"
+            >
+              🌱 KebunKu
+            </Link>
           </div>
         </div>
       </section>

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Plant, UserFilter } from "@/lib/types";
 import { fetchPlants } from "@/lib/loadData";
 import { recommend } from "@/lib/recommend";
@@ -26,6 +26,7 @@ export default function RekomendasiPage() {
   const [scrolled, setScrolled] = useState(false);
 
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true); // tambahkan indikator loading
 
@@ -108,6 +109,11 @@ export default function RekomendasiPage() {
   // Jika belum login (tapi sudah dicek), redirect ke login
   if (!user) return null;
 
+  // Style aktif untuk tab
+  const activeClass = "bg-emerald-600 text-white border-emerald-600";
+  const inactiveClass =
+    "border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition";
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[340px_1fr]">
@@ -153,6 +159,28 @@ export default function RekomendasiPage() {
         {/* KONTEN UTAMA */}
         <section className="relative p-6 md:p-8">
           <div className="sticky top-4 z-50 bg-white/90 rounded-2xl px-5 py-4 mb-6 ring-1 ring-emerald-100 shadow-sm backdrop-blur-md">
+            
+            {/* 🔹 NAVIGATION TABS (All Plants / My Garden) */}
+            <div className="flex justify-center gap-4 mb-4">
+              <Link
+                href="/rekomendasi"
+                className={`px-4 py-2 rounded-full border-2 font-semibold ${
+                  pathname === "/rekomendasi" ? activeClass : inactiveClass
+                }`}
+              >
+                All Plants
+              </Link>
+              <Link
+                href="/kebunku"
+                className={`px-4 py-2 rounded-full border-2 font-semibold ${
+                  pathname === "/kebunku" ? activeClass : inactiveClass
+                }`}
+              >
+                My Garden
+              </Link>
+            </div>
+
+            {/* SEARCH BAR */}
             <div className="flex items-center gap-2">
               <input
                 value={query}
