@@ -36,14 +36,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 1,
@@ -82,14 +86,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 2,
@@ -128,14 +136,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 3,
@@ -174,14 +186,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 4,
@@ -220,14 +236,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 5,
@@ -266,14 +286,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 6,
@@ -312,14 +336,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 7,
@@ -358,14 +386,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 8,
@@ -404,14 +436,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 9,
@@ -450,14 +486,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 10,
@@ -496,14 +536,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 11,
@@ -542,14 +586,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 12,
@@ -588,14 +636,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 13,
@@ -634,14 +686,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 14,
@@ -679,14 +735,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Hidup penuh warna, ekspresif, dan menyukai perhatian."
+    }
   },
   {
     "id": 15,
@@ -725,14 +785,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 16,
@@ -771,14 +835,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 17,
@@ -817,14 +885,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 18,
@@ -863,14 +935,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 19,
@@ -909,14 +985,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 20,
@@ -955,14 +1035,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram setiap 3–4 hari sekali atau saat tanah bagian atas mulai kering."
     },
     "care_tips": [
-      "Gunakan media tanam gembur dengan campuran sekam bakar dan humus.",
-      "Letakkan di tempat bercahaya redup hingga sedang, hindari sinar langsung.",
-      "Bersihkan daun secara berkala agar tetap mengilap dan sehat."
-    ]
+      "Tumbuh baik di cahaya redup atau sedang.",
+      "Gunakan tanah lembap tapi tidak becek.",
+      "Lap daun secara berkala agar tetap bersih dan berkilau."
+    ],
+    "mbti": {
+      "type": "ISFJ",
+      "notes": "Hangat, setia, dan mudah beradaptasi."
+    }
   },
   {
     "id": 21,
@@ -997,14 +1081,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram 1–2 kali per minggu, biarkan bagian atas tanah mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media porous seperti campuran cocopeat dan perlite.",
-      "Pertahankan kelembapan udara tinggi agar daun tidak kering.",
-      "Hindari genangan air di dasar pot."
-    ]
+      "Jangan biarkan akar terendam air.",
+      "Sukai kelembapan tinggi, bisa disemprot kabut air secara berkala.",
+      "Tempatkan di tempat terang tapi tidak terkena sinar matahari langsung."
+    ],
+    "mbti": {
+      "type": "ENFJ",
+      "notes": "Elegan, suka harmoni, dan membawa keindahan ke sekitarnya."
+    }
   },
   {
     "id": 22,
@@ -1038,14 +1126,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Mencolok, penuh energi, dan menyukai perhatian estetika."
+    }
   },
   {
     "id": 23,
@@ -1079,15 +1171,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 24,
@@ -1125,14 +1221,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 25,
@@ -1167,14 +1267,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan yang tenang."
+    }
   },
   {
     "id": 26,
@@ -1210,14 +1314,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan yang tenang."
+    }
   },
   {
     "id": 27,
@@ -1252,15 +1360,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka menarik perhatian."
+    }
   },
   {
     "id": 28,
@@ -1295,14 +1407,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 29,
@@ -1340,14 +1456,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Hidup penuh warna, ekspresif, dan menyukai perhatian."
+    }
   },
   {
     "id": 30,
@@ -1387,14 +1507,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram 1–2 kali per minggu, biarkan bagian atas tanah mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media porous seperti campuran cocopeat dan perlite.",
-      "Pertahankan kelembapan udara tinggi agar daun tidak kering.",
-      "Hindari genangan air di dasar pot."
-    ]
+      "Jangan biarkan akar terendam air.",
+      "Sukai kelembapan tinggi, bisa disemprot kabut air secara berkala.",
+      "Tempatkan di tempat terang tapi tidak terkena sinar matahari langsung."
+    ],
+    "mbti": {
+      "type": "ENFJ",
+      "notes": "Elegan, suka harmoni, dan membawa keindahan ke sekitarnya."
+    }
   },
   {
     "id": 31,
@@ -1433,14 +1557,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram 1–2 kali per minggu, biarkan bagian atas tanah mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media porous seperti campuran cocopeat dan perlite.",
-      "Pertahankan kelembapan udara tinggi agar daun tidak kering.",
-      "Hindari genangan air di dasar pot."
-    ]
+      "Jangan biarkan akar terendam air.",
+      "Sukai kelembapan tinggi, bisa disemprot kabut air secara berkala.",
+      "Tempatkan di tempat terang tapi tidak terkena sinar matahari langsung."
+    ],
+    "mbti": {
+      "type": "ENFJ",
+      "notes": "Elegan, suka harmoni, dan membawa keindahan ke sekitarnya."
+    }
   },
   {
     "id": 32,
@@ -1474,15 +1602,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 33,
@@ -1516,14 +1648,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 34,
@@ -1558,14 +1694,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan yang tenang."
+    }
   },
   {
     "id": 35,
@@ -1599,14 +1739,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Mencolok, penuh energi, dan menyukai perhatian estetika."
+    }
   },
   {
     "id": 36,
@@ -1641,14 +1785,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan yang tenang."
+    }
   },
   {
     "id": 37,
@@ -1686,14 +1834,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Hidup penuh warna, ekspresif, dan menyukai perhatian."
+    }
   },
   {
     "id": 38,
@@ -1723,15 +1875,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Mandiri, tangguh, dan hemat perawatan."
+    }
   },
   {
     "id": 39,
@@ -1769,14 +1925,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Hidup penuh warna, ekspresif, dan menyukai perhatian."
+    }
   },
   {
     "id": 40,
@@ -1809,15 +1969,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 41,
@@ -1854,14 +2018,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram 1–2 kali per minggu, biarkan bagian atas tanah mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media porous seperti campuran cocopeat dan perlite.",
-      "Pertahankan kelembapan udara tinggi agar daun tidak kering.",
-      "Hindari genangan air di dasar pot."
-    ]
+      "Jangan biarkan akar terendam air.",
+      "Sukai kelembapan tinggi, bisa disemprot kabut air secara berkala.",
+      "Tempatkan di tempat terang tapi tidak terkena sinar matahari langsung."
+    ],
+    "mbti": {
+      "type": "ENFJ",
+      "notes": "Elegan, suka harmoni, dan membawa keindahan ke sekitarnya."
+    }
   },
   {
     "id": 42,
@@ -1893,14 +2061,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 43,
@@ -1936,14 +2108,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Tahan banting, sederhana, dan praktis."
+    }
   },
   {
     "id": 44,
@@ -1979,14 +2155,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan yang tenang."
+    }
   },
   {
     "id": 45,
@@ -2016,15 +2196,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 46,
@@ -2063,14 +2247,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram 1–2 kali per minggu, biarkan bagian atas tanah mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media porous seperti campuran cocopeat dan perlite.",
-      "Pertahankan kelembapan udara tinggi agar daun tidak kering.",
-      "Hindari genangan air di dasar pot."
-    ]
+      "Jangan biarkan akar terendam air.",
+      "Sukai kelembapan tinggi, bisa disemprot kabut air secara berkala.",
+      "Tempatkan di tempat terang tapi tidak terkena sinar matahari langsung."
+    ],
+    "mbti": {
+      "type": "ENFJ",
+      "notes": "Elegan, suka harmoni, dan membawa keindahan ke sekitarnya."
+    }
   },
   {
     "id": 47,
@@ -2100,15 +2288,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 48,
@@ -2146,14 +2338,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu, jaga agar tanah tetap lembap tetapi tidak tergenang."
     },
     "care_tips": [
-      "Hindari cahaya matahari langsung karena bisa membakar daun.",
-      "Siram secara rutin namun pastikan drainase baik.",
-      "Gunakan sarung tangan saat memangkas karena getahnya bisa menyebabkan iritasi."
-    ]
+      "Hindari sinar matahari langsung agar daun tidak gosong.",
+      "Gunakan sarung tangan saat memangkas karena getahnya beracun.",
+      "Bersihkan daun dari debu agar pertumbuhan optimal."
+    ],
+    "mbti": {
+      "type": "INFJ",
+      "notes": "Dalam, lembut, dan sensitif terhadap lingkungan."
+    }
   },
   {
     "id": 49,
@@ -2191,14 +2387,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu, jaga agar tanah tetap lembap tetapi tidak tergenang."
     },
     "care_tips": [
-      "Hindari cahaya matahari langsung karena bisa membakar daun.",
-      "Siram secara rutin namun pastikan drainase baik.",
-      "Gunakan sarung tangan saat memangkas karena getahnya bisa menyebabkan iritasi."
-    ]
+      "Hindari sinar matahari langsung agar daun tidak gosong.",
+      "Gunakan sarung tangan saat memangkas karena getahnya beracun.",
+      "Bersihkan daun dari debu agar pertumbuhan optimal."
+    ],
+    "mbti": {
+      "type": "INFJ",
+      "notes": "Dalam, lembut, dan sensitif terhadap lingkungan."
+    }
   },
   {
     "id": 50,
@@ -2233,15 +2433,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Siram sekali seminggu atau saat tanah kering hingga kedalaman 2 cm."
     },
     "care_tips": [
-      "Letakkan di tempat terang tidak langsung.",
-      "Gunakan air tanpa klorin untuk penyiraman.",
-      "Siram setelah lapisan atas tanah mulai kering."
-    ]
+      "Letakkan di cahaya sedang hingga terang tidak langsung.",
+      "Hindari genangan air pada akar.",
+      "Bersihkan daun dari debu secara teratur."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, praktis, dan menjaga keseimbangan."
+    }
   },
   {
     "id": 51,
@@ -2274,15 +2478,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Siram sekali seminggu atau saat tanah kering hingga kedalaman 2 cm."
     },
     "care_tips": [
-      "Letakkan di tempat terang tidak langsung.",
-      "Gunakan air tanpa klorin untuk penyiraman.",
-      "Siram setelah lapisan atas tanah mulai kering."
-    ]
+      "Letakkan di cahaya sedang hingga terang tidak langsung.",
+      "Hindari genangan air pada akar.",
+      "Bersihkan daun dari debu secara teratur."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, praktis, dan menjaga keseimbangan."
+    }
   },
   {
     "id": 52,
@@ -2315,15 +2523,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Siram sekali seminggu atau saat tanah kering hingga kedalaman 2 cm."
     },
     "care_tips": [
-      "Letakkan di tempat terang tidak langsung.",
-      "Gunakan air tanpa klorin untuk penyiraman.",
-      "Siram setelah lapisan atas tanah mulai kering."
-    ]
+      "Letakkan di cahaya sedang hingga terang tidak langsung.",
+      "Hindari genangan air pada akar.",
+      "Bersihkan daun dari debu secara teratur."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, praktis, dan menjaga keseimbangan."
+    }
   },
   {
     "id": 53,
@@ -2354,15 +2566,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Siram sekali seminggu atau saat tanah kering hingga kedalaman 2 cm. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Letakkan di tempat terang tidak langsung.",
-      "Gunakan air tanpa klorin untuk penyiraman.",
-      "Siram setelah lapisan atas tanah mulai kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, praktis, dan menjaga keseimbangan."
+    }
   },
   {
     "id": 54,
@@ -2400,14 +2616,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu, jaga agar tanah tetap lembap tetapi tidak tergenang."
     },
     "care_tips": [
-      "Hindari cahaya matahari langsung karena bisa membakar daun.",
-      "Siram secara rutin namun pastikan drainase baik.",
-      "Gunakan sarung tangan saat memangkas karena getahnya bisa menyebabkan iritasi."
-    ]
+      "Hindari sinar matahari langsung agar daun tidak gosong.",
+      "Gunakan sarung tangan saat memangkas karena getahnya beracun.",
+      "Bersihkan daun dari debu agar pertumbuhan optimal."
+    ],
+    "mbti": {
+      "type": "INFJ",
+      "notes": "Dalam, lembut, dan sensitif terhadap lingkungan."
+    }
   },
   {
     "id": 55,
@@ -2438,15 +2658,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Siram sekali seminggu atau saat tanah kering hingga kedalaman 2 cm."
     },
     "care_tips": [
-      "Letakkan di tempat terang tidak langsung.",
-      "Gunakan air tanpa klorin untuk penyiraman.",
-      "Siram setelah lapisan atas tanah mulai kering."
-    ]
+      "Letakkan di cahaya sedang hingga terang tidak langsung.",
+      "Hindari genangan air pada akar.",
+      "Bersihkan daun dari debu secara teratur."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, praktis, dan menjaga keseimbangan."
+    }
   },
   {
     "id": 56,
@@ -2481,14 +2705,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Stabil, tahan lama, dan konservatif."
+    }
   },
   {
     "id": 57,
@@ -2518,15 +2746,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Mandiri, tangguh, dan hemat perawatan."
+    }
   },
   {
     "id": 58,
@@ -2561,15 +2793,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 59,
@@ -2605,15 +2841,19 @@
       "Table top"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 60,
@@ -2644,15 +2884,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 61,
@@ -2687,15 +2931,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tahan panas, mandiri, dan praktis."
+    }
   },
   {
     "id": 62,
@@ -2726,15 +2974,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 63,
@@ -2765,15 +3017,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 64,
@@ -2808,15 +3064,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tahan panas, mandiri, dan praktis."
+    }
   },
   {
     "id": 65,
@@ -2852,15 +3112,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 66,
@@ -2895,15 +3159,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tahan panas, mandiri, dan praktis."
+    }
   },
   {
     "id": 67,
@@ -2938,15 +3206,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tahan panas, mandiri, dan praktis."
+    }
   },
   {
     "id": 68,
@@ -2982,15 +3254,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tahan panas, mandiri, dan praktis."
+    }
   },
   {
     "id": 69,
@@ -3023,15 +3299,19 @@
       "Flower"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 70,
@@ -3066,14 +3346,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "ISTJ",
+      "notes": "Tahan banting, sederhana, dan praktis."
+    }
   },
   {
     "id": 71,
@@ -3107,14 +3391,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 72,
@@ -3147,15 +3435,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Mandiri, tahan panas, dan praktis."
+    }
   },
   {
     "id": 73,
@@ -3188,15 +3480,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Mandiri, tahan panas, dan praktis."
+    }
   },
   {
     "id": 74,
@@ -3229,15 +3525,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 75,
@@ -3265,15 +3565,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 76,
@@ -3307,14 +3611,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Menyukai keindahan dan suasana hidup yang hangat."
+    }
   },
   {
     "id": 77,
@@ -3347,15 +3655,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 78,
@@ -3389,15 +3701,19 @@
       "Potted plant"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 79,
@@ -3435,14 +3751,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu, jaga agar tanah tetap lembap tetapi tidak tergenang."
     },
     "care_tips": [
-      "Hindari cahaya matahari langsung karena bisa membakar daun.",
-      "Siram secara rutin namun pastikan drainase baik.",
-      "Gunakan sarung tangan saat memangkas karena getahnya bisa menyebabkan iritasi."
-    ]
+      "Hindari sinar matahari langsung agar daun tidak gosong.",
+      "Gunakan sarung tangan saat memangkas karena getahnya beracun.",
+      "Bersihkan daun dari debu agar pertumbuhan optimal."
+    ],
+    "mbti": {
+      "type": "INFJ",
+      "notes": "Dalam, lembut, dan sensitif terhadap lingkungan."
+    }
   },
   {
     "id": 80,
@@ -3477,14 +3797,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 81,
@@ -3520,14 +3844,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 82,
@@ -3557,15 +3885,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 83,
@@ -3599,15 +3931,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 84,
@@ -3644,15 +3980,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 85,
@@ -3685,15 +4025,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 86,
@@ -3724,15 +4068,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 87,
@@ -3768,14 +4116,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 88,
@@ -3806,15 +4158,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 89,
@@ -3849,14 +4205,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 90,
@@ -3891,14 +4251,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 91,
@@ -3931,15 +4295,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 92,
@@ -3975,14 +4343,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 93,
@@ -4013,15 +4385,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 94,
@@ -4056,14 +4432,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 95,
@@ -4098,15 +4478,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 96,
@@ -4138,15 +4522,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 97,
@@ -4181,14 +4569,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 98,
@@ -4218,15 +4610,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 99,
@@ -4262,14 +4658,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 100,
@@ -4300,15 +4700,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 101,
@@ -4343,14 +4747,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 102,
@@ -4381,15 +4789,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 103,
@@ -4425,14 +4837,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 104,
@@ -4463,15 +4879,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 105,
@@ -4506,14 +4926,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 106,
@@ -4541,15 +4965,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 107,
@@ -4583,15 +5011,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 108,
@@ -4622,15 +5054,19 @@
       "Table top"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 109,
@@ -4665,14 +5101,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 110,
@@ -4704,14 +5144,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Penuh semangat, kreatif, dan tumbuh ekspansif."
+    }
   },
   {
     "id": 111,
@@ -4743,15 +5187,19 @@
       "Potted plant"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 112,
@@ -4784,14 +5232,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "INTP",
+      "notes": "Penuh variasi dan eksploratif dalam cara bertumbuh."
+    }
   },
   {
     "id": 113,
@@ -4825,14 +5277,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 114,
@@ -4863,15 +5319,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 115,
@@ -4905,15 +5365,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 116,
@@ -4942,15 +5406,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 117,
@@ -4984,15 +5452,19 @@
       "Ground cover"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 118,
@@ -5025,15 +5497,19 @@
       "Table top"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 119,
@@ -5068,15 +5544,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 120,
@@ -5106,15 +5586,19 @@
       "Primary"
     ],
     "watering_frequency": {
-      "value": 2,
+      "value": 1,
       "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "notes": "Siram hanya saat tanah benar-benar kering, biasanya sekali sebulan. Kurangi penyiraman saat musim hujan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media berpasir atau tanah khusus kaktus yang cepat kering.",
-      "Letakkan di tempat dengan cahaya matahari langsung minimal 6 jam.",
-      "Siram hanya ketika tanah benar-benar kering."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 121,
@@ -5148,14 +5632,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 122,
@@ -5187,14 +5675,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 123,
@@ -5222,15 +5714,19 @@
       "Colors / Forms"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 124,
@@ -5264,14 +5760,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Menyukai keindahan dan suasana hidup yang hangat."
+    }
   },
   {
     "id": 125,
@@ -5302,14 +5802,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 126,
@@ -5340,15 +5844,19 @@
       "Table top"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu tergantung kelembapan udara."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Pastikan air tidak menetes ke lantai setelah penyiraman.",
+      "Gunakan tanah ringan yang cepat kering.",
+      "Pangkas daun panjang untuk menjaga bentuk rapi."
+    ],
+    "mbti": {
+      "type": "ISFP",
+      "notes": "Fleksibel, artistik, dan mudah beradaptasi."
+    }
   },
   {
     "id": 127,
@@ -5376,15 +5884,19 @@
       "Colors / Forms"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 128,
@@ -5419,14 +5931,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Menyukai keindahan dan suasana hidup yang hangat."
+    }
   },
   {
     "id": 129,
@@ -5458,14 +5974,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 130,
@@ -5496,15 +6016,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pupuk khusus tanaman berbunga setiap 2 minggu.",
+      "Pastikan mendapat cahaya cukup agar bunga bermekaran sempurna.",
+      "Buang bunga layu untuk mendorong pertumbuhan baru."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 131,
@@ -5538,14 +6062,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 132,
@@ -5579,14 +6107,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 133,
@@ -5621,14 +6153,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Menyukai keindahan dan suasana hidup yang hangat."
+    }
   },
   {
     "id": 134,
@@ -5658,15 +6194,19 @@
       "Flower"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 135,
@@ -5700,15 +6240,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 136,
@@ -5742,15 +6286,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 137,
@@ -5782,14 +6330,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Gunakan campuran tanah yang gembur dan berdrainase baik.",
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Bersihkan daun secara berkala dari debu untuk fotosintesis optimal."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 138,
@@ -5820,14 +6372,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 139,
@@ -5858,14 +6414,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Cocok untuk ruangan dengan cahaya terang tidak langsung.",
+      "Pangkas daun tua secara berkala untuk merangsang pertumbuhan baru.",
+      "Gunakan pupuk cair ringan setiap 2 minggu."
+    ],
+    "mbti": {
+      "type": "ESFP",
+      "notes": "Menyukai keindahan dan suasana hidup yang hangat."
+    }
   },
   {
     "id": 140,
@@ -5897,14 +6457,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "INTP",
+      "notes": "Penuh variasi dan eksploratif dalam cara bertumbuh."
+    }
   },
   {
     "id": 141,
@@ -5935,15 +6499,19 @@
       "Secondary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram 2–3 kali seminggu, terutama saat berbunga aktif. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ENTP",
+      "notes": "Kreatif, ekspresif, dan suka tampil."
+    }
   },
   {
     "id": 142,
@@ -5971,15 +6539,19 @@
       "Colors / Forms"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 1,
+      "period": "week",
+      "notes": "Isi air di bagian tengah roset setiap minggu dan ganti secara berkala."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Gunakan pot dengan drainase baik.",
+      "Letakkan di tempat terang dengan cahaya tidak langsung.",
+      "Bersihkan wadah tengah (roset) untuk mencegah jamur."
+    ],
+    "mbti": {
+      "type": "ENFP",
+      "notes": "Ceria, spontan, dan berwarna."
+    }
   },
   {
     "id": 143,
@@ -6010,14 +6582,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "INTP",
+      "notes": "Penuh variasi dan eksploratif dalam cara bertumbuh."
+    }
   },
   {
     "id": 144,
@@ -6047,15 +6623,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 145,
@@ -6086,15 +6666,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 146,
@@ -6124,15 +6708,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 147,
@@ -6166,14 +6754,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali seminggu, pastikan air tidak menggenang di pot. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Siram ketika setengah bagian atas tanah mulai mengering.",
-      "Letakkan di tempat dengan sirkulasi udara baik dan cahaya terang tersebar.",
-      "Bersihkan daun dari debu secara berkala."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESFJ",
+      "notes": "Ramah, suka kebersamaan, dan menyejukkan lingkungan."
+    }
   },
   {
     "id": 148,
@@ -6209,14 +6801,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 149,
@@ -6246,15 +6842,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 150,
@@ -6284,15 +6884,19 @@
       "Tertiary"
     ],
     "watering_frequency": {
-      "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "value": 3,
+      "period": "week",
+      "notes": "Siram secara rutin 2–3 kali per minggu agar tanah tetap lembap."
     },
     "care_tips": [
-      "Pertahankan media tetap lembap setiap saat.",
-      "Hindari sinar matahari langsung yang bisa mengeringkan daun.",
-      "Sediakan kelembapan tinggi, bisa dengan penyemprotan kabut air."
-    ]
+      "Tempatkan di area teduh dengan cahaya tidak langsung.",
+      "Gunakan tanah lembap dan kaya bahan organik.",
+      "Semprot daun dengan air untuk menjaga kelembapan udara."
+    ],
+    "mbti": {
+      "type": "INFP",
+      "notes": "Sensitif, lembut, dan menyukai lingkungan damai."
+    }
   },
   {
     "id": 151,
@@ -6321,14 +6925,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 152,
@@ -6365,14 +6973,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 153,
@@ -6401,14 +7013,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 154,
@@ -6439,14 +7055,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, mudah dirawat, dan mandiri."
+    }
   },
   {
     "id": 155,
@@ -6477,14 +7097,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, independen, dan tidak butuh banyak perhatian."
+    }
   },
   {
     "id": 156,
@@ -6519,14 +7143,18 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram dua kali per minggu atau saat tanah mulai mengering di permukaan. Lebih sering jika ditanam di luar ruangan pada cuaca panas."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Tumbuh optimal di sinar matahari langsung penuh atau sebagian (pagi/sore).",
+      "Cocok ditanam di luar ruangan atau dekat jendela yang cerah jika ditanam indoor.",
+      "Gunakan tanah yang gembur dan berdrainase baik untuk mencegah busuk akar."
+    ],
+    "mbti": {
+      "type": "ESTJ",
+      "notes": "Tegas, teratur, dan suka keteraturan."
+    }
   },
   {
     "id": 157,
@@ -6558,13 +7186,17 @@
     ],
     "watering_frequency": {
       "value": 2,
-      "period": "month",
-      "notes": "Siram hanya saat tanah benar-benar kering. Hindari genangan air."
+      "period": "week",
+      "notes": "Siram secara moderat, biarkan tanah bagian atas mengering di antara penyiraman."
     },
     "care_tips": [
-      "Gunakan media tanam dengan drainase baik.",
-      "Hindari penyiraman berlebihan.",
-      "Letakkan di tempat bercahaya sedang hingga terang tidak langsung."
-    ]
+      "Letakkan di tempat dengan cahaya terang tidak langsung.",
+      "Gunakan media tanam porus dan gembur.",
+      "Hindari suhu ekstrem dan hembusan angin langsung."
+    ],
+    "mbti": {
+      "type": "ISTP",
+      "notes": "Tangguh, mudah dirawat, dan mandiri."
+    }
   }
 ]
