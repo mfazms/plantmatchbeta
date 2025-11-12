@@ -3,16 +3,13 @@ import { fetchPlants } from "@/lib/loadData";
 import { displayName } from "@/lib/types";
 import PlantImage from "@/components/PlantImage";
 import ExportPDFButton from "@/components/ExportPDFButton";
+import MulaiMenanamButton from "@/components/MulaiMenanamButton"; // tombol client
 
 const toList = (v: unknown) =>
   Array.isArray(v) ? v.map(String) : v == null ? [] : [String(v)];
 
-export default async function PlantDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default async function PlantDetailPage(props: { params: Promise<{ id: string }> }) {
+  const { id } = await props.params; // ✅ harus di-await
   const plants = await fetchPlants();
   const plant = plants.find((p) => p.id === Number(id));
 
@@ -23,7 +20,6 @@ export default async function PlantDetailPage({
       </main>
     );
 
-  // Untuk PDF kita sertakan src gambar yang otomatis pilih ekstensi melalui /api/plant-image
   const plantForPdf = { ...plant, image: `/api/plant-image?id=${plant.id}` };
 
   return (
@@ -46,8 +42,8 @@ export default async function PlantDetailPage({
           />
         </div>
 
+        {/* Konten */}
         <div className="mt-6 grid md:grid-cols-2 gap-8">
-          {/* Gambar: container rasio 4:3 */}
           <div className="w-full">
             <div className="relative w-full rounded-xl border border-gray-200 shadow-sm overflow-hidden bg-white">
               <div className="pt-[75%]" />
@@ -59,11 +55,19 @@ export default async function PlantDetailPage({
                 />
               </div>
             </div>
+
+            {/* ✅ Tombol client */}
+            {plant ? (
+              <MulaiMenanamButton plant={plant} />
+            ) : (
+              <p className="text-red-600 font-semibold mt-4">
+                Tanaman tidak ditemukan.
+              </p>
+            )}
           </div>
 
           {/* Detail tanaman */}
           <div>
-            {/* Brand/logo aplikasi */}
             <div className="mb-3 flex items-center gap-3">
               <Image
                 src="/hero1.png"
@@ -105,8 +109,7 @@ export default async function PlantDetailPage({
               <div>
                 <dt className="font-semibold text-emerald-900 inline">Suhu ideal:</dt>{" "}
                 <dd className="inline text-gray-800">
-                  {plant.tempmin?.celsius ?? "-"}°C — {plant.tempmax?.celsius ?? "-"}°C (
-                  {plant.tempmin?.fahrenheit ?? "-"}–{plant.tempmax?.fahrenheit ?? "-"}°F )
+                  {plant.tempmin?.celsius ?? "-"}°C — {plant.tempmax?.celsius ?? "-"}°C
                 </dd>
               </div>
               <div>
@@ -143,7 +146,6 @@ export default async function PlantDetailPage({
           </div>
         </div>
 
-        {/* Branding aplikasi */}
         <div className="mt-12 text-center text-gray-500 text-sm">
           © 2025 <span className="text-emerald-700 font-semibold">PlantMatch</span> — Find the Plant That Fits You
         </div>

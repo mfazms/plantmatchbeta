@@ -119,7 +119,7 @@ export default function RekomendasiPage() {
               className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5
                          bg-white/10 hover:bg-white/20 transition text-sm font-medium"
             >
-              ← Kembali
+              ← Logout
             </Link>
 
             <Image

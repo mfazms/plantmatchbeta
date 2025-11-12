@@ -35,7 +35,7 @@ export default function RegisterPage() {
       });
 
       alert("Registrasi berhasil! Silakan login.");
-      router.push("/auth/login");
+      router.push("/login");
     } catch (err: any) {
       alert(err.message);
     } finally {
