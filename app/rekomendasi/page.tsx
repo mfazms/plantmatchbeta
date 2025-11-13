@@ -1,4 +1,3 @@
-// app/rekomendasi/page.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -10,7 +9,7 @@ import { Plant, UserFilter } from "@/lib/types";
 import { fetchPlants } from "@/lib/loadData";
 import { recommend } from "@/lib/recommend";
 import FiltersPanel from "@/components/FiltersPanel";
-import PlantList from "@/components/PlantList";
+import PlantCard from "@/components/PlantCard";
 import ExportPDFButton from "@/components/ExportPDFButton";
 
 // Firebase
@@ -19,7 +18,7 @@ import { auth } from "@/lib/firebaseConfig";
 
 export default function RekomendasiPage() {
   const [all, setAll] = useState<Plant[]>([]);
-  const [shown, setShown] = useState<Plant[]>([]);
+  const [shown, setShown] = useState<(Plant & { normalizedScore?: number })[]>([]);
   const [filter, setFilter] = useState<UserFilter>({});
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<number[]>([]);
@@ -28,22 +27,22 @@ export default function RekomendasiPage() {
   const router = useRouter();
   const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true); // tambahkan indikator loading
+  const [loading, setLoading] = useState(true);
 
-  // Cek status login Firebase
+  // 🔹 Cek status login Firebase
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
-        router.push("/login"); // kalau belum login, arahkan ke login
+        router.push("/login");
       } else {
         setUser(currentUser);
       }
-      setLoading(false); // berhenti loading setelah pengecekan
+      setLoading(false);
     });
     return () => unsub();
   }, [router]);
 
-  // Ambil data tanaman
+  // 🔹 Ambil data tanaman
   useEffect(() => {
     fetchPlants().then((data) => {
       setAll(data);
@@ -51,13 +50,14 @@ export default function RekomendasiPage() {
     });
   }, []);
 
-  // Scroll blur effect
+  // 🔹 Scroll blur effect
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // 🔹 Search engine (Fuse.js)
   const fuse = useMemo(
     () =>
       new Fuse(all, {
@@ -68,28 +68,24 @@ export default function RekomendasiPage() {
     [all]
   );
 
+  // 🔹 Generate rekomendasi tanaman
   const onGenerate = () => {
-    const scored = recommend(all, filter).map((s) => s.plant);
-    const afterSearch =
-      query.trim().length === 0
-        ? scored
-        : fuse
-            .search(query)
-            .map((r) => r.item)
-            .filter((p) => scored.some((x) => x.id === p.id));
-    setShown(afterSearch);
+    const scored = recommend(all, filter);
+    setShown(scored);
   };
 
+  // 🔹 Pencarian manual
   const onSearchChange = (val: string) => {
     setQuery(val);
     if (val.trim().length === 0) {
-      const scored = recommend(all, filter).map((s) => s.plant);
+      const scored = recommend(all, filter);
       setShown(scored.length ? scored : all);
       return;
     }
     setShown(fuse.search(val).map((r) => r.item));
   };
 
+  // 🔹 Pilih tanaman (checkbox)
   const toggleSelect = (id: number) =>
     setSelected((cur) =>
       cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]
@@ -97,7 +93,16 @@ export default function RekomendasiPage() {
 
   const selectedPlants = shown.filter((p) => selected.includes(p.id));
 
-  // Jika masih loading, tampilkan tampilan sementara
+  // 🔹 Tentukan Top 10 untuk badge & kesesuaian
+  const top10Ids = shown
+    .filter((p) => typeof p.normalizedScore === "number")
+    .sort((a, b) => (b.normalizedScore ?? 0) - (a.normalizedScore ?? 0))
+    .slice(0, 10)
+    .map((p) => p.id);
+
+  const getRank = (id: number) => top10Ids.indexOf(id);
+
+  // 🔹 Loading state
   if (loading) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-white text-gray-800">
@@ -106,7 +111,6 @@ export default function RekomendasiPage() {
     );
   }
 
-  // Jika belum login (tapi sudah dicek), redirect ke login
   if (!user) return null;
 
   // Style aktif untuk tab
@@ -159,8 +163,7 @@ export default function RekomendasiPage() {
         {/* KONTEN UTAMA */}
         <section className="relative p-6 md:p-8">
           <div className="sticky top-4 z-50 bg-white/90 rounded-2xl px-5 py-4 mb-6 ring-1 ring-emerald-100 shadow-sm backdrop-blur-md">
-            
-            {/* 🔹 NAVIGATION TABS (All Plants / My Garden) */}
+            {/* 🔹 NAVIGATION TABS */}
             <div className="flex justify-center gap-4 mb-4">
               <Link
                 href="/rekomendasi"
@@ -180,7 +183,7 @@ export default function RekomendasiPage() {
               </Link>
             </div>
 
-            {/* SEARCH BAR */}
+            {/* 🔍 SEARCH BAR */}
             <div className="flex items-center gap-2">
               <input
                 value={query}
@@ -191,11 +194,30 @@ export default function RekomendasiPage() {
             </div>
           </div>
 
-          <PlantList
-            plants={shown}
-            selectedIds={selected}
-            onToggleSelect={toggleSelect}
-          />
+          {/* 🔹 HASIL REKOMENDASI */}
+          {shown.length === 0 ? (
+            <p className="text-gray-500 text-center mt-10">
+              Tidak ada hasil rekomendasi.
+            </p>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {shown.map((plant) => {
+                const rank = getRank(plant.id);
+                const isTop10 = rank !== -1;
+
+                return (
+                  <PlantCard
+                    key={plant.id}
+                    plant={plant}
+                    selected={selected.includes(plant.id)}
+                    onToggleSelect={toggleSelect}
+                    rank={isTop10 ? rank : undefined}
+                    showScore={isTop10}
+                  />
+                );
+              })}
+            </div>
+          )}
         </section>
       </div>
     </main>
