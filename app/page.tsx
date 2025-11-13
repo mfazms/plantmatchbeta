@@ -34,19 +34,11 @@ export default function HomePage() {
 
             {/* BUTTON KE REGISTER */}
             <Link
-              href="/register"
+              href="/login"
               className="inline-flex items-center gap-2 mt-8 rounded-full bg-white text-emerald-800 px-6 py-2.5 
                          hover:bg-emerald-50 transition shadow-sm text-lg font-semibold"
             >
               Explore plants →
-            </Link>
-
-            <Link
-              href="/kebunku"
-              className="inline-flex items-center gap-2 mt-4 rounded-full border-2 border-white px-6 py-2.5 
-                        hover:bg-white hover:text-emerald-800 transition text-lg font-semibold"
-            >
-              🌱 KebunKu
             </Link>
           </div>
         </div>

@@ -9,16 +9,44 @@ type Props = {
   allPlants?: Plant[];
 };
 
-const LIGHT_OPTIONS = [
-  "-",
-  "6 or more hours of direct sunlight per day.",
+/** Fallback kalau data belum kebaca */
+const LIGHT_FALLBACK = [
   "Bright light",
   "Diffused",
   "Direct sunlight.",
   "Prefers bright, indirect sunlight.",
 ];
-const CLIMATE_OPTIONS = ["-", "Tropical", "Subtropical", "Temperate", "Arid"];
-const AESTHETIC_OPTIONS = ["-", "Table top", "Hanging", "Colors / forms"];
+
+const CLIMATE_FALLBACK = [
+  "Tropical",
+  "Subtropical",
+  "Temperate",
+  "Arid",
+  "Tropical humid",
+  "Arid Tropical",
+  "Subtropical arid",
+];
+
+const AESTHETIC_FALLBACK = [
+  "Table top",
+  "Hanging",
+  "Colors / Forms",
+  "Potted plant",
+  "Ground cover",
+  "Flower",
+];
+
+const MBTI_FALLBACK = [
+  "ISFJ",
+  "INFJ",
+  "ENFP",
+  "INTJ",
+  "INFP",
+  "ISFP",
+  "ENTP",
+  "ESFJ",
+];
+
 const WATERING_OPTIONS = ["-", "Light", "Moderate", "Frequent"];
 
 export default function FiltersPanel({
@@ -29,6 +57,7 @@ export default function FiltersPanel({
 }: Props) {
   /* ===== AUTO DENSITY by viewport height ===== */
   const [density, setDensity] = useState<"normal" | "dense" | "ultra">("normal");
+
   useEffect(() => {
     const decide = () => {
       const h = window.innerHeight;
@@ -41,16 +70,73 @@ export default function FiltersPanel({
     return () => window.removeEventListener("resize", decide);
   }, []);
 
-  /* ===== dynamic Category options ===== */
-  const CATEGORY_OPTIONS = useMemo(() => {
-    if (!allPlants?.length) return ["-", "Aglaonema", "Alocasia", "Monstera"];
+  /* ===== Dynamic options dari database terbaru ===== */
+
+  // Light: gabungan ideallight + toleratedlight
+  const LIGHT_OPTIONS = useMemo(() => {
+    if (!allPlants?.length) return ["-", ...LIGHT_FALLBACK];
+
     const set = new Set<string>();
-    allPlants.forEach((p) => p.category && set.add(p.category));
+    allPlants.forEach((p) => {
+      const ideal = (p as any).ideallight;
+      const tol = (p as any).toleratedlight;
+
+      if (ideal) set.add(ideal);
+      if (tol && tol !== "/") set.add(tol);
+    });
+
     return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
   }, [allPlants]);
 
-  const set = (key: keyof UserFilter, v: string) =>
-    onChange({ ...filter, [key]: v === "-" ? undefined : v });
+  // Climate: ambil unik dari field "climate"
+  const CLIMATE_OPTIONS = useMemo(() => {
+    if (!allPlants?.length) return ["-", ...CLIMATE_FALLBACK];
+
+    const set = new Set<string>();
+    allPlants.forEach((p) => {
+      const c = (p as any).climate;
+      if (c) set.add(c);
+    });
+
+    return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+  }, [allPlants]);
+
+  // Aesthetic: ambil dari array "use" (Table top, Potted plant, Flower, dll)
+  const AESTHETIC_OPTIONS = useMemo(() => {
+    if (!allPlants?.length) return ["-", ...AESTHETIC_FALLBACK];
+
+    const set = new Set<string>();
+    allPlants.forEach((p) => {
+      const use = (p as any).use;
+      if (Array.isArray(use)) {
+        use.forEach((u) => u && set.add(u));
+      } else if (typeof use === "string" && use) {
+        set.add(use);
+      }
+    });
+
+    return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+  }, [allPlants]);
+
+  // MBTI: ambil dari mbti.type
+  const MBTI_OPTIONS = useMemo(() => {
+    if (!allPlants?.length) return ["-", ...MBTI_FALLBACK];
+
+    const set = new Set<string>();
+    allPlants.forEach((p) => {
+      const mbti = (p as any).mbti?.type;
+      if (mbti) set.add(mbti);
+    });
+
+    return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+  }, [allPlants]);
+
+  /* ===== Helper untuk update filter ===== */
+  const setFilter = (key: keyof UserFilter, v: string) =>
+    onChange({
+      ...filter,
+      [key]: v === "-" ? undefined : v,
+    });
 
   const Field = ({
     label,
@@ -97,15 +183,13 @@ export default function FiltersPanel({
   const YEAR = new Date().getFullYear();
 
   return (
-    <div
-      className={density === "ultra" ? "u" : density === "dense" ? "dens" : ""}
-    >
+    <div className={density === "ultra" ? "u" : density === "dense" ? "dens" : ""}>
       {/* COPYRIGHT di atas */}
       <div className="mb-3 pt-1">
         <p className="text-[11.5px] u:text-[10.5px] leading-relaxed text-white/70 text-center">
           &copy; {YEAR}{" "}
-          <span className="text-emerald-500 font-semibold">PlantMatch</span> — Find the
-          Plant That Fits You
+          <span className="text-emerald-500 font-semibold">PlantMatch</span> — Find
+          the Plant That Fits You
         </p>
       </div>
 
@@ -114,7 +198,7 @@ export default function FiltersPanel({
         <Field label="Light Intensity">
           <Select
             value={filter.light}
-            onChange={(v) => set("light", v)}
+            onChange={(v) => setFilter("light", v)}
             options={LIGHT_OPTIONS}
           />
         </Field>
@@ -122,32 +206,32 @@ export default function FiltersPanel({
         <Field label="Local Climate">
           <Select
             value={filter.climate}
-            onChange={(v) => set("climate", v)}
+            onChange={(v) => setFilter("climate", v)}
             options={CLIMATE_OPTIONS}
           />
         </Field>
 
-        <Field label="Aesthetic Use">
+        <Field label="Aesthetic Use / Placement">
           <Select
             value={filter.aesthetic}
-            onChange={(v) => set("aesthetic", v)}
+            onChange={(v) => setFilter("aesthetic", v)}
             options={AESTHETIC_OPTIONS}
-          />
-        </Field>
-
-        <Field label="Category">
-          <Select
-            value={filter.category}
-            onChange={(v) => set("category", v)}
-            options={CATEGORY_OPTIONS}
           />
         </Field>
 
         <Field label="Watering Frequency">
           <Select
             value={filter.watering as string | undefined}
-            onChange={(v) => set("watering", v)}
+            onChange={(v) => setFilter("watering", v)}
             options={WATERING_OPTIONS}
+          />
+        </Field>
+
+        <Field label="Personality Type (MBTI)">
+          <Select
+            value={filter.mbti as string | undefined}
+            onChange={(v) => setFilter("mbti", v)}
+            options={MBTI_OPTIONS}
           />
         </Field>
 
