@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "firebase": "^12.5.0",
+    "@google/genai": "^1.29.1",
+    "@google/generative-ai": "^0.24.1",
+    "firebase": "^12.6.0",
     "fuse.js": "^7.1.0",
     "html2pdf.js": "^0.12.1",
     "next": "15.5.5",

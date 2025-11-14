@@ -3,13 +3,14 @@ import { fetchPlants } from "@/lib/loadData";
 import { displayName } from "@/lib/types";
 import PlantImage from "@/components/PlantImage";
 import ExportPDFButton from "@/components/ExportPDFButton";
-import MulaiMenanamButton from "@/components/MulaiMenanamButton"; // tombol client
+import MulaiMenanamButton from "@/components/MulaiMenanamButton";
+import ChatButton from "@/components/ChatButton";
 
 const toList = (v: unknown) =>
   Array.isArray(v) ? v.map(String) : v == null ? [] : [String(v)];
 
 export default async function PlantDetailPage(props: { params: Promise<{ id: string }> }) {
-  const { id } = await props.params; // ✅ harus di-await
+  const { id } = await props.params;
   const plants = await fetchPlants();
   const plant = plants.find((p) => p.id === Number(id));
 
@@ -56,7 +57,7 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
               </div>
             </div>
 
-            {/* ✅ Tombol client */}
+            {/* Tombol client */}
             {plant ? (
               <MulaiMenanamButton plant={plant} />
             ) : (
@@ -122,8 +123,24 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
               </div>
               <div>
                 <dt className="font-semibold text-emerald-900 inline">Penyiraman:</dt>{" "}
-                <dd className="inline text-gray-800">{plant.watering ?? "-"}</dd>
+                <dd className="inline text-gray-800">
+                  {plant.watering || 
+                    (plant.watering_frequency 
+                      ? `${plant.watering_frequency.value} kali per ${plant.watering_frequency.period}`
+                      : "-"
+                    )
+                  }
+                </dd>
               </div>
+              
+              {/* Frekuensi & Catatan Penyiraman */}
+              {plant.watering_frequency?.notes && (
+                <div>
+                  <dt className="font-semibold text-emerald-900 inline">Catatan Penyiraman:</dt>{" "}
+                  <dd className="inline text-gray-800">{plant.watering_frequency.notes}</dd>
+                </div>
+              )}
+
               <div>
                 <dt className="font-semibold text-emerald-900 inline">Hama:</dt>{" "}
                 <dd className="inline text-gray-800">
@@ -142,6 +159,31 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
                   {toList(plant.use).join(", ") || "-"}
                 </dd>
               </div>
+
+              {/* Tips Perawatan */}
+              {plant.care_tips && plant.care_tips.length > 0 && (
+                <div>
+                  <dt className="font-semibold text-emerald-900">Tips Perawatan:</dt>
+                  <dd className="mt-2 text-gray-800">
+                    <ul className="list-disc list-inside space-y-1">
+                      {plant.care_tips.map((tip, idx) => (
+                        <li key={idx}>{tip}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              )}
+
+              {/* MBTI Personality */}
+              {plant.mbti && (
+                <div className="mt-4 pt-4 border-t border-emerald-100">
+                  <dt className="font-semibold text-emerald-900 inline">Kepribadian MBTI:</dt>{" "}
+                  <dd className="inline text-gray-800">
+                    <span className="font-bold text-emerald-700">{plant.mbti.type}</span>
+                    {plant.mbti.notes && ` — ${plant.mbti.notes}`}
+                  </dd>
+                </div>
+              )}
             </dl>
           </div>
         </div>
@@ -150,6 +192,10 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
           © 2025 <span className="text-emerald-700 font-semibold">PlantMatch</span> — Find the Plant That Fits You
         </div>
       </div>
+      {/* 🔹 Floating Chat Button (Gemini) */}
+            <ChatButton
+              context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
+            />
     </main>
   );
 }

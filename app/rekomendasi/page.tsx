@@ -11,6 +11,7 @@ import { recommend } from "@/lib/recommend";
 import FiltersPanel from "@/components/FiltersPanel";
 import PlantCard from "@/components/PlantCard";
 import ExportPDFButton from "@/components/ExportPDFButton";
+import ChatButton from "@/components/ChatButton";
 
 // Firebase
 import { onAuthStateChanged } from "firebase/auth";
@@ -18,7 +19,9 @@ import { auth } from "@/lib/firebaseConfig";
 
 export default function RekomendasiPage() {
   const [all, setAll] = useState<Plant[]>([]);
-  const [shown, setShown] = useState<(Plant & { normalizedScore?: number })[]>([]);
+  const [shown, setShown] = useState<
+    (Plant & { normalizedScore?: number })[]
+  >([]);
   const [filter, setFilter] = useState<UserFilter>({});
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<number[]>([]);
@@ -50,7 +53,7 @@ export default function RekomendasiPage() {
     });
   }, []);
 
-  // 🔹 Scroll blur effect
+  // 🔹 Scroll blur / shadow effect utk header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -162,7 +165,11 @@ export default function RekomendasiPage() {
 
         {/* KONTEN UTAMA */}
         <section className="relative p-6 md:p-8">
-          <div className="sticky top-4 z-50 bg-white/90 rounded-2xl px-5 py-4 mb-6 ring-1 ring-emerald-100 shadow-sm backdrop-blur-md">
+          <div
+            className={`sticky top-4 z-50 rounded-2xl px-5 py-4 mb-6 ring-1 ring-emerald-100 backdrop-blur-md bg-white/90 transition-shadow ${
+              scrolled ? "shadow-md" : "shadow-sm"
+            }`}
+          >
             {/* 🔹 NAVIGATION TABS */}
             <div className="flex justify-center gap-4 mb-4">
               <Link
@@ -220,6 +227,11 @@ export default function RekomendasiPage() {
           )}
         </section>
       </div>
+
+      {/* 🔹 Floating Chat Button (Gemini) */}
+      <ChatButton
+        context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
+      />
     </main>
   );
 }

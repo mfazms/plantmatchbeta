@@ -22,7 +22,6 @@ const toList = (v: unknown) =>
 
 function getSrcCandidates(p: Plant) {
   const c: string[] = [];
-  // prioritas: API (auto pilih ekstensi yang ada) → placeholder → inline
   c.push(`/api/plant-image?id=${p.id}`);
   c.push(`/images/placeholder-plant.jpg`);
   c.push(INLINE_PLACEHOLDER);
@@ -53,13 +52,12 @@ function fitImages(root: HTMLElement) {
   );
   imgs.forEach((img) => {
     const parent = img.parentElement as HTMLElement | null;
-    const parentWidth = parent?.getBoundingClientRect()?.width || RENDER_WIDTH_PX - 48; // padding kartu ~24x2
-    const maxH = 420; // tinggi maksimal gambar di A4
+    const parentWidth = parent?.getBoundingClientRect()?.width || RENDER_WIDTH_PX - 48;
+    const maxH = 420;
 
     const nw = img.naturalWidth || 1;
     const nh = img.naturalHeight || 1;
 
-    // skala agar muat di parentWidth & maxH tanpa mengubah rasio
     const scale = Math.min(parentWidth / nw, maxH / nh);
 
     const w = Math.max(1, Math.round(nw * scale));
@@ -107,10 +105,7 @@ export default function ExportPDFButton({
     if (!ref.current) return;
     const html2pdf = (await import("html2pdf.js")).default;
 
-    // 1) Pastikan semua gambar sudah ter-load
     await preloadImages(ref.current);
-
-    // 2) Kunci ukuran proporsional berdasar naturalWidth/Height → anti gepeng
     fitImages(ref.current);
 
     const opt = {
@@ -150,7 +145,7 @@ export default function ExportPDFButton({
         {label} {plants.length ? `(${plants.length})` : ""}
       </button>
 
-      {/* Offscreen render target (bukan display:none) */}
+      {/* Offscreen render target */}
       <div
         style={{
           position: "fixed",
@@ -182,7 +177,7 @@ export default function ExportPDFButton({
                     "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)",
                 }}
               >
-                {/* Header brand: logo + nama aplikasi */}
+                {/* Header brand */}
                 <div
                   style={{
                     display: "flex",
@@ -224,7 +219,7 @@ export default function ExportPDFButton({
                   {p.latin}
                 </p>
 
-                {/* Area gambar: center, anti gepeng (width & height diset di fitImages) */}
+                {/* Area gambar */}
                 <div
                   style={{
                     display: "flex",
@@ -278,7 +273,7 @@ export default function ExportPDFButton({
                     <b>Suhu ideal:</b>{" "}
                     <span style={{ color: "#374151" }}>
                       {p.tempmin?.celsius ?? "-"}°C — {p.tempmax?.celsius ?? "-"}°C (
-                      {p.tempmin?.fahrenheit ?? "-"}–{p.tempmax?.fahrenheit ?? "-"}°F)
+                      {p.tempmin?.fahrenheit ?? "-"}—{p.tempmax?.fahrenheit ?? "-"}°F)
                     </span>
                   </div>
                   <div>
@@ -291,8 +286,26 @@ export default function ExportPDFButton({
                   </div>
                   <div>
                     <b>Penyiraman:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.watering ?? "-"}</span>
+                    <span style={{ color: "#374151" }}>
+                      {p.watering || 
+                        ((p as any).watering_frequency 
+                          ? `${(p as any).watering_frequency.value} kali per ${(p as any).watering_frequency.period}`
+                          : "-"
+                        )
+                      }
+                    </span>
                   </div>
+
+                  {/* Catatan Penyiraman */}
+                  {(p as any).watering_frequency?.notes && (
+                    <div>
+                      <b>Catatan Penyiraman:</b>{" "}
+                      <span style={{ color: "#374151" }}>
+                        {(p as any).watering_frequency.notes}
+                      </span>
+                    </div>
+                  )}
+
                   <div>
                     <b>Hama:</b>{" "}
                     <span style={{ color: "#374151" }}>
@@ -311,9 +324,47 @@ export default function ExportPDFButton({
                       {toList(p.use).join(", ") || "-"}
                     </span>
                   </div>
+
+                  {/* Tips Perawatan */}
+                  {(p as any).care_tips && (p as any).care_tips.length > 0 && (
+                    <div style={{ marginTop: 12 }}>
+                      <b>Tips Perawatan:</b>
+                      <ul style={{ 
+                        margin: "4px 0 0 20px", 
+                        padding: 0,
+                        color: "#374151" 
+                      }}>
+                        {(p as any).care_tips.map((tip: string, i: number) => (
+                          <li key={i} style={{ marginBottom: 3 }}>{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* MBTI Personality */}
+                  {(p as any).mbti && (
+                    <div style={{ 
+                      marginTop: 16, 
+                      paddingTop: 12, 
+                      borderTop: "1px solid #d1fae5" 
+                    }}>
+                      <b>Kepribadian MBTI:</b>{" "}
+                      <span style={{ 
+                        color: "#059669", 
+                        fontWeight: 700 
+                      }}>
+                        {(p as any).mbti.type}
+                      </span>
+                      {(p as any).mbti.notes && (
+                        <span style={{ color: "#374151" }}>
+                          {" "}— {(p as any).mbti.notes}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                {/* Branding footer PDF */}
+                {/* Branding footer */}
                 <div
                   style={{
                     marginTop: 24,
