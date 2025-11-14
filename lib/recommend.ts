@@ -54,9 +54,7 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
   const noActiveFilter = activeMaxScore === 0;
 
   // 3️⃣ Hitung skor untuk setiap tanaman
-  const results: ScoredPlant[] = all.map((p) => {
-    const plant = p; // tipe = Plant
-
+  const results: ScoredPlant[] = all.map((plant) => {
     let score = 0;
     let mbtiMatch = false;
 
@@ -128,16 +126,8 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
 
     // --- MBTI (opsional, prioritas kuat) ---
     if (cleaned.mbti) {
-      const mbtiVal = plant.mbti;
-      let mbtiTypeText = "";
-
-      if (typeof mbtiVal === "string") {
-        mbtiTypeText = mbtiVal;
-      } else if (mbtiVal && typeof mbtiVal.type === "string") {
-        mbtiTypeText = mbtiVal.type;
-      }
-
-      const mbtiType = mbtiTypeText.toLowerCase();
+      // di types.ts: mbti?: string
+      const mbtiType = (plant.mbti ?? "").toLowerCase();
 
       if (mbtiType === cleaned.mbti) {
         score += WEIGHTS.mbti;

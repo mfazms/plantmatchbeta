@@ -29,8 +29,18 @@ export type Plant = {
   // Nama umum (common name)
   common: string[]; // array 1–3 nama
 
+  // Kategori tanaman (indoor, outdoor, succulent, dll)
+  category?: string;
+
   // Habitat / iklim
   climate?: string;
+
+  // Asal / origin
+  origin?: string;
+
+  // Suhu maksimum & minimum yang direkomendasikan
+  tempmax?: Temperature;
+  tempmin?: Temperature;
 
   // Cahaya
   ideallight?: string;
@@ -43,25 +53,19 @@ export type Plant = {
   watering?: string;
   watering_frequency?: WateringFrequency;
 
+  // Hama & penyakit yang umum
+  insects?: string[] | string;
+  diseases?: string[] | string;
+
+  // Tips perawatan
+  care_tips?: string[] | string;
+
   // MBTI cocokannya
-  // Di JSON kamu: "mbti": { "type": "...", "notes": "..." }
-  // tapi bisa juga suatu saat kamu simpan langsung string.
-  mbti?:
-    | string
-    | {
-        type: string;
-        notes?: string;
-      };
+  // (kalau sekarang kamu sudah konversi di loadData.ts & /api ke string, ini aman)
+  mbti?: string;
 
   // Gambar (dipakai di loadData.ts → normalize)
   image?: string;
-
-  // Kalau kamu punya field lain (category, origin, tempmax, dst)
-  // aman ditambahkan sebagai optional di sini:
-  // category?: string;
-  // origin?: string;
-  // tempmax?: Temperature;
-  // tempmin?: Temperature;
 };
 
 // =======================
