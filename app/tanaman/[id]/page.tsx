@@ -9,7 +9,9 @@ import ChatButton from "@/components/ChatButton";
 const toList = (v: unknown) =>
   Array.isArray(v) ? v.map(String) : v == null ? [] : [String(v)];
 
-export default async function PlantDetailPage(props: { params: Promise<{ id: string }> }) {
+export default async function PlantDetailPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await props.params;
   const plants = await fetchPlants();
   const plant = plants.find((p) => p.id === Number(id));
@@ -92,69 +94,100 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
 
             <dl className="mt-6 space-y-3 text-base md:text-lg leading-7">
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Family:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Family:
+                </dt>{" "}
                 <dd className="inline text-gray-800">{plant.family ?? "-"}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Kategori:</dt>{" "}
-                <dd className="inline text-gray-800">{plant.category ?? "-"}</dd>
+                <dt className="font-semibold text-emerald-900 inline">
+                  Kategori:
+                </dt>{" "}
+                <dd className="inline text-gray-800">
+                  {plant.category ?? "-"}
+                </dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Asal/Origin:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Asal/Origin:
+                </dt>{" "}
                 <dd className="inline text-gray-800">{plant.origin ?? "-"}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Iklim:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Iklim:
+                </dt>{" "}
                 <dd className="inline text-gray-800">{plant.climate ?? "-"}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Suhu ideal:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Suhu ideal:
+                </dt>{" "}
                 <dd className="inline text-gray-800">
-                  {plant.tempmin?.celsius ?? "-"}°C — {plant.tempmax?.celsius ?? "-"}°C
+                  {plant.tempmin?.celsius ?? "-"}°C —{" "}
+                  {plant.tempmax?.celsius ?? "-"}°C
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Cahaya ideal:</dt>{" "}
-                <dd className="inline text-gray-800">{plant.ideallight ?? "-"}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-emerald-900 inline">Cahaya toleran:</dt>{" "}
-                <dd className="inline text-gray-800">{plant.toleratedlight ?? "-"}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-emerald-900 inline">Penyiraman:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Cahaya ideal:
+                </dt>{" "}
                 <dd className="inline text-gray-800">
-                  {plant.watering || 
-                    (plant.watering_frequency 
+                  {plant.ideallight ?? "-"}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-emerald-900 inline">
+                  Cahaya toleran:
+                </dt>{" "}
+                <dd className="inline text-gray-800">
+                  {plant.toleratedlight ?? "-"}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-emerald-900 inline">
+                  Penyiraman:
+                </dt>{" "}
+                <dd className="inline text-gray-800">
+                  {plant.watering ||
+                    (plant.watering_frequency
                       ? `${plant.watering_frequency.value} kali per ${plant.watering_frequency.period}`
-                      : "-"
-                    )
-                  }
+                      : "-")}
                 </dd>
               </div>
-              
+
               {/* Frekuensi & Catatan Penyiraman */}
               {plant.watering_frequency?.notes && (
                 <div>
-                  <dt className="font-semibold text-emerald-900 inline">Catatan Penyiraman:</dt>{" "}
-                  <dd className="inline text-gray-800">{plant.watering_frequency.notes}</dd>
+                  <dt className="font-semibold text-emerald-900 inline">
+                    Catatan Penyiraman:
+                  </dt>{" "}
+                  <dd className="inline text-gray-800">
+                    {plant.watering_frequency.notes}
+                  </dd>
                 </div>
               )}
 
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Hama:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Hama:
+                </dt>{" "}
                 <dd className="inline text-gray-800">
                   {toList(plant.insects).join(", ") || "-"}
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Penyakit:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Penyakit:
+                </dt>{" "}
                 <dd className="inline text-gray-800">
                   {toList(plant.diseases).join(", ") || "-"}
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-emerald-900 inline">Penggunaan:</dt>{" "}
+                <dt className="font-semibold text-emerald-900 inline">
+                  Penggunaan:
+                </dt>{" "}
                 <dd className="inline text-gray-800">
                   {toList(plant.use).join(", ") || "-"}
                 </dd>
@@ -163,7 +196,9 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
               {/* Tips Perawatan */}
               {plant.care_tips && plant.care_tips.length > 0 && (
                 <div>
-                  <dt className="font-semibold text-emerald-900">Tips Perawatan:</dt>
+                  <dt className="font-semibold text-emerald-900">
+                    Tips Perawatan:
+                  </dt>
                   <dd className="mt-2 text-gray-800">
                     <ul className="list-disc list-inside space-y-1">
                       {plant.care_tips.map((tip, idx) => (
@@ -177,10 +212,13 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
               {/* MBTI Personality */}
               {plant.mbti && (
                 <div className="mt-4 pt-4 border-t border-emerald-100">
-                  <dt className="font-semibold text-emerald-900 inline">Kepribadian MBTI:</dt>{" "}
+                  <dt className="font-semibold text-emerald-900 inline">
+                    Kepribadian MBTI:
+                  </dt>{" "}
                   <dd className="inline text-gray-800">
-                    <span className="font-bold text-emerald-700">{plant.mbti.type}</span>
-                    {plant.mbti.notes && ` — ${plant.mbti.notes}`}
+                    <span className="font-bold text-emerald-700">
+                      {plant.mbti}
+                    </span>
                   </dd>
                 </div>
               )}
@@ -189,13 +227,16 @@ export default async function PlantDetailPage(props: { params: Promise<{ id: str
         </div>
 
         <div className="mt-12 text-center text-gray-500 text-sm">
-          © 2025 <span className="text-emerald-700 font-semibold">PlantMatch</span> — Find the Plant That Fits You
+          © 2025{" "}
+          <span className="text-emerald-700 font-semibold">PlantMatch</span> —
+          Find the Plant That Fits You
         </div>
       </div>
+
       {/* 🔹 Floating Chat Button (Gemini) */}
-            <ChatButton
-              context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
-            />
+      <ChatButton
+        context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
+      />
     </main>
   );
 }
