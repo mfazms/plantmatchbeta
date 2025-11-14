@@ -54,14 +54,13 @@ export type Plant = {
   watering_frequency?: WateringFrequency;
 
   // Hama & penyakit yang umum
-  insects?: string[] | string;
-  diseases?: string[] | string;
+  insects?: any[];   // dibuat longgar biar cocok dengan komponen
+  diseases?: any[];  // idem
 
   // Tips perawatan
-  care_tips?: string[] | string;
+  care_tips?: any[]; // <— ini yang tadinya string | string[]
 
-  // MBTI cocokannya
-  // (kalau sekarang kamu sudah konversi di loadData.ts & /api ke string, ini aman)
+  // MBTI cocokannya (sudah dikonversi jadi string di loadData.ts / route.ts)
   mbti?: string;
 
   // Gambar (dipakai di loadData.ts → normalize)
