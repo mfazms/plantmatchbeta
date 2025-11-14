@@ -128,8 +128,17 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
 
     // --- MBTI (opsional, prioritas kuat) ---
     if (cleaned.mbti) {
-      // di types.ts: mbti?: string
-      const mbtiType = (plant.mbti ?? "").toLowerCase();
+      const mbtiVal = plant.mbti;
+      let mbtiTypeText = "";
+
+      if (typeof mbtiVal === "string") {
+        mbtiTypeText = mbtiVal;
+      } else if (mbtiVal && typeof mbtiVal.type === "string") {
+        mbtiTypeText = mbtiVal.type;
+      }
+
+      const mbtiType = mbtiTypeText.toLowerCase();
+
       if (mbtiType === cleaned.mbti) {
         score += WEIGHTS.mbti;
         mbtiMatch = true;

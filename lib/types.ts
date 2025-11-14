@@ -43,15 +43,25 @@ export type Plant = {
   watering?: string;
   watering_frequency?: WateringFrequency;
 
-  // MBTI cocokannya (di dataset kamu bentuknya string)
-  mbti?: string;
+  // MBTI cocokannya
+  // Di JSON kamu: "mbti": { "type": "...", "notes": "..." }
+  // tapi bisa juga suatu saat kamu simpan langsung string.
+  mbti?:
+    | string
+    | {
+        type: string;
+        notes?: string;
+      };
 
   // Gambar (dipakai di loadData.ts → normalize)
   image?: string;
 
-  // Kalau kamu sebelumnya punya field lain (category, height, dsb)
-  // boleh ditambahkan lagi di sini sebagai optional:
+  // Kalau kamu punya field lain (category, origin, tempmax, dst)
+  // aman ditambahkan sebagai optional di sini:
   // category?: string;
+  // origin?: string;
+  // tempmax?: Temperature;
+  // tempmin?: Temperature;
 };
 
 // =======================
