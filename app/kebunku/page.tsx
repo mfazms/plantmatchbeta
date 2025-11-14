@@ -22,11 +22,26 @@ interface UserPlant {
   lastCommonName: string;
 }
 
-const formatStartAtDate = (date: any) => {
+/**
+ * Tipe helper untuk tanggal dari Firestore atau JS Date / string.
+ */
+type FirestoreDateLike = Timestamp | Date | string | number | null | undefined;
+
+const formatStartAtDate = (date: FirestoreDateLike) => {
+  if (!date) return "Tanggal tidak tersedia";
+
   let d: Date;
-  if (date && typeof date.toDate === "function") d = date.toDate();
-  else if (date) d = new Date(date);
-  else return "Tanggal tidak tersedia";
+
+  if (date instanceof Timestamp) {
+    d = date.toDate();
+  } else if (date instanceof Date) {
+    d = date;
+  } else if (typeof date === "string" || typeof date === "number") {
+    d = new Date(date);
+  } else {
+    return "Tanggal tidak tersedia";
+  }
+
   if (isNaN(d.getTime())) return "Invalid Date";
 
   return d.toLocaleDateString("id-ID", {
@@ -35,15 +50,26 @@ const formatStartAtDate = (date: any) => {
     year: "numeric",
   });
 };
-// Hitung lama tanaman hidup
-const getTimeAlive = (startedAt: any) => {
-  if (!startedAt) return "Baru ditanam";
-  const startDate =
-    typeof startedAt.toDate === "function"
-      ? startedAt.toDate()
-      : new Date(startedAt);
-  const now = new Date();
 
+// Hitung lama tanaman hidup
+const getTimeAlive = (startedAt: FirestoreDateLike) => {
+  if (!startedAt) return "Baru ditanam";
+
+  let startDate: Date;
+
+  if (startedAt instanceof Timestamp) {
+    startDate = startedAt.toDate();
+  } else if (startedAt instanceof Date) {
+    startDate = startedAt;
+  } else if (typeof startedAt === "string" || typeof startedAt === "number") {
+    startDate = new Date(startedAt);
+  } else {
+    return "Baru ditanam";
+  }
+
+  if (isNaN(startDate.getTime())) return "Baru ditanam";
+
+  const now = new Date();
   const diffMs = now.getTime() - startDate.getTime();
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
   const diffDays = Math.floor(diffHours / 24);
@@ -99,7 +125,7 @@ export default function KebunKuPage() {
           return {
             id: doc.id,
             plantId: plantId,
-            startedAt: data.startedAt,
+            startedAt: data.startedAt as Timestamp,
             latinName: match?.latin || "Nama Latin Tidak Diketahui",
             lastCommonName:
               match?.common?.[match.common.length - 1] ||
@@ -172,19 +198,19 @@ export default function KebunKuPage() {
                 className="bg-white rounded-xl shadow-md overflow-hidden text-gray-900 hover:shadow-xl transition transform hover:-translate-y-0.5 border border-gray-100 group"
               >
                 <div className="relative p-3">
-                {/* Badge Counting Days di kanan atas gambar */}
-                <div className="absolute top-3 right-3 bg-emerald-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
-                {getTimeAlive(plant.startedAt)}
-                </div>
+                  {/* Badge Counting Days di kanan atas gambar */}
+                  <div className="absolute top-3 right-3 bg-emerald-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
+                    {getTimeAlive(plant.startedAt)}
+                  </div>
 
-                <div className="w-full h-56 flex justify-center items-center bg-gray-50 rounded-lg overflow-hidden">
+                  <div className="w-full h-56 flex justify-center items-center bg-gray-50 rounded-lg overflow-hidden">
                     <img
-                    src={`/images/plants/${plant.plantId}.jpg`}
-                    alt={plant.lastCommonName}
-                    className="w-full h-full object-cover p-2"
-                    onError={(e) => {
+                      src={`/images/plants/${plant.plantId}.jpg`}
+                      alt={plant.lastCommonName}
+                      className="w-full h-full object-cover p-2"
+                      onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        
+
                         // urutan fallback ekstensi
                         const extensions = [".png", ".jpeg", ".webp", ".jpg", ".JPG", ".PNG"];
                         const currentSrc = target.src;
@@ -192,17 +218,16 @@ export default function KebunKuPage() {
                         const nextIndex = extensions.indexOf(currentExt) + 1;
 
                         if (nextIndex < extensions.length) {
-                        // coba ekstensi berikutnya
-                        const nextExt = extensions[nextIndex];
-                        target.src = `/images/plants/${plant.plantId}${nextExt}`;
+                          // coba ekstensi berikutnya
+                          const nextExt = extensions[nextIndex];
+                          target.src = `/images/plants/${plant.plantId}${nextExt}`;
                         } else {
-                        // kalau semua gagal, pakai default
-                        target.onerror = null;
-                        target.src = "/images/default_plant.jpg";
+                          // kalau semua gagal, pakai default
+                          target.onerror = null;
+                          target.src = "/images/default_plant.jpg";
                         }
-                    }}
+                      }}
                     />
-
                   </div>
                 </div>
 
@@ -213,12 +238,12 @@ export default function KebunKuPage() {
                   <p className="text-gray-600 text-sm mb-3 italic">
                     {plant.latinName}
                   </p>
-                    <p className="text-gray-500 text-xs border-t border-gray-100 pt-3">
+                  <p className="text-gray-500 text-xs border-t border-gray-100 pt-3">
                     Mulai menanam:{" "}
                     <span className="font-medium text-emerald-600">
-                        {formatStartAtDate(plant.startedAt)}
+                      {formatStartAtDate(plant.startedAt)}
                     </span>
-                    </p>
+                  </p>
                 </div>
               </Link>
             ))}

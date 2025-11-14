@@ -7,12 +7,12 @@ import { auth } from "../../lib/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage() {
-  const router = useRouter(); 
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -21,8 +21,15 @@ export default function LoginPage() {
       const user = userCredential.user;
       alert(`Selamat datang, ${user.email}`);
       router.push('/rekomendasi');
-    } catch (err: any) {
-      alert("Login gagal: " + err.message);
+    } catch (err: unknown) {
+      // aman tanpa "any"
+      let message = "Terjadi kesalahan saat login.";
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === "object" && err !== null && "message" in err) {
+        message = String((err as { message?: unknown }).message ?? message);
+      }
+      alert("Login gagal: " + message);
     } finally {
       setLoading(false);
     }
@@ -49,7 +56,7 @@ export default function LoginPage() {
       </div>
 
       {/* KANAN: Form Login */}
-      <div className="flex items-center justify-center bg-white p-12 md:h-[100dvh]"> 
+      <div className="flex items-center justify-center bg-white p-12 md:h-[100dvh]">
         <div className="w-full max-w-md">
           <h2 className="text-center text-4xl font-extrabold text-emerald-800 mb-2">
             Log In
@@ -59,7 +66,7 @@ export default function LoginPage() {
           </p>
 
           {/* FORM LOGIN */}
-          <form className="space-y-6" onSubmit={handleSubmit}> 
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">
@@ -74,7 +81,7 @@ export default function LoginPage() {
                 autoComplete="email"
                 className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
                            focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all bg-white text-gray-900"
-                placeholder="example@email.com" 
+                placeholder="example@email.com"
               />
             </div>
 
@@ -102,11 +109,10 @@ export default function LoginPage() {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex justify-center py-3.5 px-4 rounded-lg shadow-lg text-lg font-bold 
-                            text-white ${
-                              loading
-                                ? "bg-emerald-400 cursor-not-allowed"
-                                : "bg-emerald-600 hover:bg-emerald-700"
-                            } focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all`}
+                            text-white ${loading
+                    ? "bg-emerald-400 cursor-not-allowed"
+                    : "bg-emerald-600 hover:bg-emerald-700"
+                  } focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all`}
               >
                 {loading ? "Logging in..." : "Login"}
               </button>
@@ -115,9 +121,9 @@ export default function LoginPage() {
 
           {/* Link ke Register */}
           <p className="text-center text-sm pt-6 mt-6 text-gray-600">
-            Don't have an account?{" "}
-            <Link 
-              href="/register" 
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
               className="font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
             >
               Register here

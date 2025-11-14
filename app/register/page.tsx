@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -23,10 +23,8 @@ export default function RegisterPage() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Update nama tampilan
       await updateProfile(user, { displayName });
 
-      // Simpan data user di Firestore
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email: user.email,
@@ -36,8 +34,14 @@ export default function RegisterPage() {
 
       alert("Registrasi berhasil! Silakan login.");
       router.push("/login");
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      let message = "Terjadi kesalahan saat registrasi.";
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === "object" && err !== null && "message" in err) {
+        message = String((err as { message?: unknown }).message ?? message);
+      }
+      alert(message);
     } finally {
       setLoading(false);
     }
@@ -59,7 +63,7 @@ export default function RegisterPage() {
           Welcome!
         </h1>
         <p className="text-lg text-emerald-100 text-center max-w-sm mt-2">
-          You're one step away from finding the perfect plant for you.
+          You&apos;re one step away from finding the perfect plant for you.
         </p>
       </div>
 
@@ -146,11 +150,10 @@ export default function RegisterPage() {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex justify-center py-3.5 px-4 rounded-lg shadow-lg text-lg font-bold 
-                            text-white ${
-                              loading
-                                ? "bg-emerald-400 cursor-not-allowed"
-                                : "bg-emerald-600 hover:bg-emerald-700"
-                            } focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all`}
+                            text-white ${loading
+                    ? "bg-emerald-400 cursor-not-allowed"
+                    : "bg-emerald-600 hover:bg-emerald-700"
+                  } focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all`}
               >
                 {loading ? "Registering..." : "Register"}
               </button>

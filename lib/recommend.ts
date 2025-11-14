@@ -19,6 +19,17 @@ const cleanInput = (input: string | null | undefined): string | undefined => {
   return trimmed.toLowerCase();
 };
 
+// Plant dengan field tambahan yang ada di dataset asli.
+type PlantWithExtras = Plant & {
+  climate?: string;
+  ideallight?: string;
+  toleratedlight?: string;
+  use?: string[] | string;
+  watering?: string;
+  watering_frequency?: { value?: number | null };
+  mbti?: { type?: string };
+};
+
 // Bobot dasar tiap faktor (SUDAH TANPA CATEGORY)
 const WEIGHTS = {
   climate: 3,
@@ -51,105 +62,128 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
   if (cleaned.watering) activeMaxScore += WEIGHTS.watering;
   if (cleaned.mbti) activeMaxScore += WEIGHTS.mbti;
 
-  // Kalau user nggak isi filter apa pun → semua tanaman sama, normalizedScore = 1
   const noActiveFilter = activeMaxScore === 0;
 
   // 3️⃣ Hitung skor untuk setiap tanaman
-  const results: ScoredPlant[] = all.map((p: Plant) => {
-    let s = 0;
+  const results: ScoredPlant[] = all.map((p) => {
+    const plant: PlantWithExtras = p;
+
+    let score = 0;
     let mbtiMatch = false;
 
     // --- Iklim ---
     if (cleaned.climate) {
-      const climate = String((p as any).climate ?? "").toLowerCase();
-      if (climate.includes(cleaned.climate)) s += WEIGHTS.climate;
+      const climate = (plant.climate ?? "").toLowerCase();
+      if (climate.includes(cleaned.climate)) {
+        score += WEIGHTS.climate;
+      }
     }
 
     // --- Cahaya (ideal & tolerated) ---
     if (cleaned.light) {
-      const ideal = String((p as any).ideallight ?? "").toLowerCase();
-      const tolerated = String((p as any).toleratedlight ?? "").toLowerCase();
+      const ideal = (plant.ideallight ?? "").toLowerCase();
+      const tolerated = (plant.toleratedlight ?? "").toLowerCase();
 
       if (ideal.includes(cleaned.light)) {
-        s += WEIGHTS.lightIdeal;
+        score += WEIGHTS.lightIdeal;
       } else if (tolerated.includes(cleaned.light)) {
-        s += WEIGHTS.lightTolerated;
+        score += WEIGHTS.lightTolerated;
       }
     }
 
-    // --- Estetika / Kegunaan ---
+    // --- Estetika / Kegunaan (use) ---
     if (cleaned.aesthetic) {
-      const uses: string[] = Array.isArray((p as any).use)
-        ? (p as any).use.map((u: unknown) => String(u).toLowerCase())
-        : [];
+      const aestheticFilter = cleaned.aesthetic;
+      const uses: string[] = [];
 
-      if (uses.some((u: string) => u.includes(cleaned.aesthetic!))) {
-        s += WEIGHTS.aesthetic;
+      const value = plant.use;
+
+      // case: array of use
+      if (Array.isArray(value)) {
+        for (const u of value) {
+          if (u == null) continue;
+          uses.push(String(u).toLowerCase());
+        }
+      }
+      // case: single value (string / number / dll)
+      else if (value != null) {
+        uses.push(String(value).toLowerCase());
+      }
+
+      if (uses.some((u) => u.includes(aestheticFilter))) {
+        score += WEIGHTS.aesthetic;
       }
     }
 
     // --- Penyiraman ---
     if (cleaned.watering) {
-      const w = String((p as any).watering ?? "").toLowerCase();
+      const wateringText = (plant.watering ?? "").toLowerCase();
 
-      if (w.includes(cleaned.watering)) {
-        s += WEIGHTS.watering;
-      } else if (!w && (p as any).watering_frequency?.value) {
-        // fallback: kalau string watering kosong, pakai watering_frequency.value
-        const val = Number((p as any).watering_frequency.value);
-        // semakin sering disiram, semakin mirip "frequent"
-        const freqLabel: string =
-          val >= 3 ? "frequent" : val === 2 ? "moderate" : "light";
+      if (wateringText.includes(cleaned.watering)) {
+        score += WEIGHTS.watering;
+      } else if (!wateringText && plant.watering_frequency?.value != null) {
+        const val = Number(plant.watering_frequency.value);
+        let freqLabel = "light";
+
+        if (val >= 3) {
+          freqLabel = "frequent";
+        } else if (val === 2) {
+          freqLabel = "moderate";
+        }
 
         if (freqLabel.includes(cleaned.watering)) {
-          s += WEIGHTS.watering;
+          score += WEIGHTS.watering;
         }
       }
     }
 
     // --- MBTI (opsional, prioritas kuat) ---
     if (cleaned.mbti) {
-      const mbtiType = String((p as any).mbti?.type ?? "").toLowerCase();
+      const mbtiType = (plant.mbti?.type ?? "").toLowerCase();
       if (mbtiType === cleaned.mbti) {
-        s += WEIGHTS.mbti;
+        score += WEIGHTS.mbti;
         mbtiMatch = true;
       }
     }
 
     // 4️⃣ Normalisasi skor (0–1) terhadap FILTER YANG AKTIF
     const normalizedScore = noActiveFilter
-      ? 1 // kalau nggak ada filter, semua 100%
+      ? 1
       : activeMaxScore > 0
-      ? s / activeMaxScore
+      ? score / activeMaxScore
       : 0;
 
-    return {
-      ...(p as any),
-      score: s,
+    const scored: ScoredPlant = {
+      ...plant,
+      score,
       normalizedScore,
       mbtiMatch,
     };
+
+    return scored;
   });
 
   // 5️⃣ Sorting multilayer:
   //    a. Kalau user pilih MBTI → semua yg mbtiMatch=true SELALU di atas
-  //    b. Di dalam grup yang sama → urut berdasarkan normalizedScore
+  //    b. Di dalam grup yang sama → urutkan by normalizedScore desc
   //    c. Kalau sama persis → fallback skor mentah lalu nama latin
   return results.sort((a, b) => {
-    // a) Prioritas MBTI (hanya kalau user memang mengisi mbti)
     if (cleaned.mbti) {
-      const mbtiDiff =
-        Number(b.mbtiMatch === true) - Number(a.mbtiMatch === true);
-      if (mbtiDiff !== 0) return mbtiDiff;
+      const mbtiWeightA = a.mbtiMatch ? 1 : 0;
+      const mbtiWeightB = b.mbtiMatch ? 1 : 0;
+      if (mbtiWeightB !== mbtiWeightA) {
+        return mbtiWeightB - mbtiWeightA;
+      }
     }
 
-    // b) Urutkan berdasarkan normalizedScore (semakin tinggi semakin atas)
     if (b.normalizedScore !== a.normalizedScore) {
       return b.normalizedScore - a.normalizedScore;
     }
 
-    // c) fallback: skor mentah lalu nama latin
-    if (b.score !== a.score) return b.score - a.score;
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+
     return a.latin.localeCompare(b.latin);
   });
 }

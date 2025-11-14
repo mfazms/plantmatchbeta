@@ -9,6 +9,18 @@ type Props = {
   allPlants?: Plant[];
 };
 
+/**
+ * Tambahan tipe untuk field-field ekstra yang ada di data tanaman,
+ * supaya tidak perlu pakai "as any".
+ */
+type PlantWithDerivedFields = Plant & {
+  ideallight?: string;
+  toleratedlight?: string;
+  climate?: string;
+  use?: string[] | string;
+  mbti?: { type?: string };
+};
+
 /** Fallback kalau data belum kebaca */
 const LIGHT_FALLBACK = [
   "Bright light",
@@ -78,8 +90,9 @@ export default function FiltersPanel({
 
     const set = new Set<string>();
     allPlants.forEach((p) => {
-      const ideal = (p as any).ideallight;
-      const tol = (p as any).toleratedlight;
+      const plant = p as PlantWithDerivedFields;
+      const ideal = plant.ideallight;
+      const tol = plant.toleratedlight;
 
       if (ideal) set.add(ideal);
       if (tol && tol !== "/") set.add(tol);
@@ -94,7 +107,8 @@ export default function FiltersPanel({
 
     const set = new Set<string>();
     allPlants.forEach((p) => {
-      const c = (p as any).climate;
+      const plant = p as PlantWithDerivedFields;
+      const c = plant.climate;
       if (c) set.add(c);
     });
 
@@ -107,7 +121,8 @@ export default function FiltersPanel({
 
     const set = new Set<string>();
     allPlants.forEach((p) => {
-      const use = (p as any).use;
+      const plant = p as PlantWithDerivedFields;
+      const use = plant.use;
       if (Array.isArray(use)) {
         use.forEach((u) => u && set.add(u));
       } else if (typeof use === "string" && use) {
@@ -124,7 +139,8 @@ export default function FiltersPanel({
 
     const set = new Set<string>();
     allPlants.forEach((p) => {
-      const mbti = (p as any).mbti?.type;
+      const plant = p as PlantWithDerivedFields;
+      const mbti = plant.mbti?.type;
       if (mbti) set.add(mbti);
     });
 
