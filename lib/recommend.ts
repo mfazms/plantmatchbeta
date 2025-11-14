@@ -7,9 +7,9 @@ import type { Plant, UserFilter } from "./types";
 
 // Hasil rekomendasi: Plant + skor + info apakah cocok MBTI
 export type ScoredPlant = Plant & {
-  score: number;            // skor mentah
-  normalizedScore: number;  // 0–1, dipakai untuk "Kesesuaian: xx%"
-  mbtiMatch?: boolean;      // true kalau mbti tanaman = mbti user
+  score: number;           // skor mentah
+  normalizedScore: number; // 0–1, dipakai untuk "Kesesuaian: xx%"
+  mbtiMatch?: boolean;     // true kalau mbti tanaman = mbti user
 };
 
 // Fungsi bantu: bersihkan input teks user
@@ -17,17 +17,6 @@ const cleanInput = (input: string | null | undefined): string | undefined => {
   const trimmed = input?.trim();
   if (!trimmed) return undefined;
   return trimmed.toLowerCase();
-};
-
-// Plant dengan field tambahan yang ada di dataset asli.
-type PlantWithExtras = Plant & {
-  climate?: string;
-  ideallight?: string;
-  toleratedlight?: string;
-  use?: string[] | string;
-  watering?: string;
-  watering_frequency?: { value?: number | null };
-  mbti?: { type?: string };
 };
 
 // Bobot dasar tiap faktor (SUDAH TANPA CATEGORY)
@@ -66,7 +55,7 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
 
   // 3️⃣ Hitung skor untuk setiap tanaman
   const results: ScoredPlant[] = all.map((p) => {
-    const plant: PlantWithExtras = p;
+    const plant = p; // tipe = Plant
 
     let score = 0;
     let mbtiMatch = false;
@@ -139,7 +128,8 @@ export function recommend(all: Plant[], f: UserFilter): ScoredPlant[] {
 
     // --- MBTI (opsional, prioritas kuat) ---
     if (cleaned.mbti) {
-      const mbtiType = (plant.mbti?.type ?? "").toLowerCase();
+      // di types.ts: mbti?: string
+      const mbtiType = (plant.mbti ?? "").toLowerCase();
       if (mbtiType === cleaned.mbti) {
         score += WEIGHTS.mbti;
         mbtiMatch = true;

@@ -16,55 +16,57 @@ export type WateringFrequency = {
   notes?: string;         // catatan opsional
 };
 
-export type MBTIInfo = {
-  type: string;           // contoh: "ISFJ"
-  notes?: string;         // deskripsi singkat
-};
+// =======================
+// 🌱 PLANT TYPE UTAMA
+// =======================
 
-// ========================================
-//  PLANT TYPE — updated sesuai JSON terbaru
-// ========================================
 export type Plant = {
   id: number;
+
   latin: string;
   family: string;
-  common: string[];
 
-  category: string;
-  origin: string;
-  climate: string;
+  // Nama umum (common name)
+  common: string[]; // array 1–3 nama
 
-  tempmax: Temperature;
-  tempmin: Temperature;
+  // Habitat / iklim
+  climate?: string;
 
-  ideallight: string;
-  toleratedlight: string;
-  watering: string;
+  // Cahaya
+  ideallight?: string;
+  toleratedlight?: string;
 
-  insects?: string[];
-  diseases?: string[];
+  // Estetika / kegunaan
+  use?: string[] | string;
 
-  // array (Table top, Potted plant, dll)
-  use?: string[];
-
+  // Penyiraman
+  watering?: string;
   watering_frequency?: WateringFrequency;
-  care_tips?: string[];
 
-  // tipe MBTI & catatan
-  mbti?: MBTIInfo;
+  // MBTI cocokannya (di dataset kamu bentuknya string)
+  mbti?: string;
+
+  // Gambar (dipakai di loadData.ts → normalize)
+  image?: string;
+
+  // Kalau kamu sebelumnya punya field lain (category, height, dsb)
+  // boleh ditambahkan lagi di sini sebagai optional:
+  // category?: string;
 };
 
-// ===========================
-//  USER FILTER TYPE (UI panel)
-// ===========================
+// =======================
+// 🎛 USER FILTER TYPE
+// =======================
+//
+// Dipakai untuk state filter di halaman rekomendasi & FiltersPanel
+// (light, climate, aesthetic, watering, mbti, dll).
+//
 export type UserFilter = {
   light?: string;
   climate?: string;
   aesthetic?: string;
   category?: string;
   watering?: string;
-
-  // filter tambahan (database baru)
   mbti?: string;
 };
 
@@ -72,9 +74,9 @@ export type UserFilter = {
 // 🌸 Helper: displayName(Plant)
 // --------------------------------
 // Pilih nama yang paling "nyaman dibaca":
-// 1. Kalau ada common[1] → pakai itu (biasanya nama panggilan lebih catchy)
-// 2. Kalau nggak ada → pakai common[0]
-// 3. Kalau tetap nggak ada → fallback ke nama latin
+// 1. Kalau ada common[1] → pakai itu
+// 2. Kalau tidak ada → pakai common[0]
+// 3. Kalau tetap tidak ada → fallback latin
 export const displayName = (plant: Plant): string => {
   const common = Array.isArray(plant.common) ? plant.common : [];
   return common[1] ?? common[0] ?? plant.latin;
