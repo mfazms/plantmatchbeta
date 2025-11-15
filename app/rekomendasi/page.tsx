@@ -5,9 +5,11 @@ import Fuse from "fuse.js";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+
 import { Plant, UserFilter } from "@/lib/types";
 import { fetchPlants } from "@/lib/loadData";
-import { recommend } from "@/lib/recommend";
+import { recommend, type ScoredPlant } from "@/lib/recommend";
+
 import FiltersPanel from "@/components/FiltersPanel";
 import PlantCard from "@/components/PlantCard";
 import ExportPDFButton from "@/components/ExportPDFButton";
@@ -17,12 +19,21 @@ import ChatButton from "@/components/ChatButton";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
 
+// Garden summary (untuk notif belum disiram)
+import { getGardenSummary } from "@/lib/garden";
+
+type GardenSummary = {
+  total: number;
+  unwateredToday: number;
+  overdue: number;
+};
+
 export default function RekomendasiPage() {
   const [all, setAll] = useState<Plant[]>([]);
-  const [shown, setShown] = useState<
-    (Plant & { normalizedScore?: number })[]
-  >([]);
+  const [scored, setScored] = useState<ScoredPlant[]>([]);
   const [filter, setFilter] = useState<UserFilter>({});
+  const [appliedHasFilter, setAppliedHasFilter] = useState(false);
+
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<number[]>([]);
   const [scrolled, setScrolled] = useState(false);
@@ -31,6 +42,10 @@ export default function RekomendasiPage() {
   const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const [gardenSummary, setGardenSummary] = useState<GardenSummary | null>(
+    null
+  );
 
   // 🔹 Cek status login Firebase
   useEffect(() => {
@@ -45,11 +60,33 @@ export default function RekomendasiPage() {
     return () => unsub();
   }, [router]);
 
-  // 🔹 Ambil data tanaman
+  // 🔹 Kalau sudah tahu user → ambil ringkasan kebun (buat notif belum disiram)
+  useEffect(() => {
+    if (!user) return;
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const summary = await getGardenSummary(user.uid);
+        if (!cancelled) setGardenSummary(summary);
+      } catch (err) {
+        console.error("Gagal mengambil ringkasan kebun:", err);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
+  // 🔹 Ambil data tanaman & inisialisasi skor (tanpa filter)
   useEffect(() => {
     fetchPlants().then((data) => {
       setAll(data);
-      setShown(data);
+      const initial = recommend(data, {});
+      setScored(initial);
+      setAppliedHasFilter(false);
     });
   }, []);
 
@@ -60,33 +97,56 @@ export default function RekomendasiPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 🔹 Search engine (Fuse.js)
+  // ➕ Helper: apakah filter saat ini diisi?
+  const hasCurrentFilter = !!(
+    filter.light ||
+    filter.climate ||
+    filter.aesthetic ||
+    filter.watering ||
+    filter.mbti
+  );
+
+  // 🔹 Generate rekomendasi tanaman (apply filter sekarang)
+  const onGenerate = () => {
+    const next = recommend(all, filter);
+    setScored(next);
+    setAppliedHasFilter(hasCurrentFilter);
+    setSelected([]);
+  };
+
+  // 🔹 Search input
+  const onSearchChange = (val: string) => setQuery(val);
+
+  // 🔹 Basis list untuk ditampilkan:
+  //     - Kalau filter sudah diaplikasikan → hanya yang skor-nya > 0
+  //     - Kalau belum → semua hasil recommend
+  const baseList = useMemo(() => {
+    if (!appliedHasFilter) return scored;
+    return scored.filter((p) => (p.normalizedScore ?? 0) > 0);
+  }, [scored, appliedHasFilter]);
+
+  // 🔹 Search engine (Fuse.js) di atas baseList
   const fuse = useMemo(
     () =>
-      new Fuse(all, {
+      new Fuse<ScoredPlant>(baseList, {
         includeScore: false,
         threshold: 0.3,
         keys: ["latin", "common", "category", "climate", "use"],
       }),
-    [all]
+    [baseList]
   );
 
-  // 🔹 Generate rekomendasi tanaman
-  const onGenerate = () => {
-    const scored = recommend(all, filter);
-    setShown(scored);
-  };
+  // 🔹 Hasil akhir yang benar-benar ditampilkan (baseList + search)
+  const visiblePlants = useMemo(() => {
+    const trimmed = query.trim();
+    if (!trimmed) return baseList;
 
-  // 🔹 Pencarian manual
-  const onSearchChange = (val: string) => {
-    setQuery(val);
-    if (val.trim().length === 0) {
-      const scored = recommend(all, filter);
-      setShown(scored.length ? scored : all);
-      return;
-    }
-    setShown(fuse.search(val).map((r) => r.item));
-  };
+    const results = fuse.search(trimmed);
+    const ids = new Set(results.map((r) => r.item.id));
+
+    // Pertahankan urutan baseList, tapi hanya yg match search
+    return baseList.filter((p) => ids.has(p.id));
+  }, [baseList, fuse, query]);
 
   // 🔹 Pilih tanaman (checkbox)
   const toggleSelect = (id: number) =>
@@ -94,16 +154,41 @@ export default function RekomendasiPage() {
       cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]
     );
 
-  const selectedPlants = shown.filter((p) => selected.includes(p.id));
+  const selectedPlants = visiblePlants.filter((p) => selected.includes(p.id));
 
-  // 🔹 Tentukan Top 10 untuk badge & kesesuaian
-  const top10Ids = shown
-    .filter((p) => typeof p.normalizedScore === "number")
-    .sort((a, b) => (b.normalizedScore ?? 0) - (a.normalizedScore ?? 0))
-    .slice(0, 10)
-    .map((p) => p.id);
+  // 🔹 Top 10 hanya kalau filter sudah diaplikasikan
+  const top10Ids = useMemo(() => {
+    if (!appliedHasFilter) return [];
+    return visiblePlants
+      .filter((p) => typeof p.normalizedScore === "number")
+      .slice()
+      .sort((a, b) => (b.normalizedScore ?? 0) - (a.normalizedScore ?? 0))
+      .slice(0, 10)
+      .map((p) => p.id);
+  }, [visiblePlants, appliedHasFilter]);
 
   const getRank = (id: number) => top10Ids.indexOf(id);
+
+  // 🔹 Hitung jumlah alert siraman (overdue + belum disiram hari ini)
+  const alertCount =
+    (gardenSummary?.overdue ?? 0) + (gardenSummary?.unwateredToday ?? 0);
+
+  // 🔹 Dapatkan nama user dari Firebase Auth
+  const getUserName = () => {
+    if (!user) return "Tamu";
+    
+    // Prioritas: displayName > email username > "Pengguna"
+    if (user.displayName) {
+      return user.displayName;
+    }
+    
+    if (user.email) {
+      // Ambil bagian sebelum @ dari email
+      return user.email.split("@")[0];
+    }
+    
+    return "Pengguna";
+  };
 
   // 🔹 Loading state
   if (loading) {
@@ -126,7 +211,7 @@ export default function RekomendasiPage() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[340px_1fr]">
         {/* SIDEBAR */}
         <aside className="bg-emerald-800 text-white p-6 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-8 flex items-center justify-between">
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5
@@ -135,13 +220,13 @@ export default function RekomendasiPage() {
               ← Logout
             </Link>
 
-            <Image
-              src="/hero.png"
-              alt="PlantMatch logo"
-              width={100}
-              height={100}
-              className="w-20 h-20 object-contain drop-shadow-lg"
-            />
+            {/* Welcome Message dengan nama user */}
+            <div className="text-right">
+              <p className="text-sm text-white">Selamat datang,</p>
+              <p className="text-lg font-bold text-white truncate max-w-[160px]" title={getUserName()}>
+                {getUserName()}
+              </p>
+            </div>
           </div>
 
           <FiltersPanel
@@ -180,13 +265,21 @@ export default function RekomendasiPage() {
               >
                 All Plants
               </Link>
+
               <Link
                 href="/kebunku"
                 className={`px-4 py-2 rounded-full border-2 font-semibold ${
                   pathname === "/kebunku" ? activeClass : inactiveClass
                 }`}
               >
-                My Garden
+                <span className="inline-flex items-center gap-2">
+                  <span>My Garden</span>
+                  {alertCount > 0 && (
+                    <span className="inline-flex items-center justify-center rounded-full bg-red-500 text-white text-xs px-2 py-0.5">
+                      {alertCount}
+                    </span>
+                  )}
+                </span>
               </Link>
             </div>
 
@@ -202,15 +295,15 @@ export default function RekomendasiPage() {
           </div>
 
           {/* 🔹 HASIL REKOMENDASI */}
-          {shown.length === 0 ? (
+          {visiblePlants.length === 0 ? (
             <p className="text-gray-500 text-center mt-10">
               Tidak ada hasil rekomendasi.
             </p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {shown.map((plant) => {
+              {visiblePlants.map((plant) => {
                 const rank = getRank(plant.id);
-                const isTop10 = rank !== -1;
+                const isTop10 = appliedHasFilter && rank !== -1;
 
                 return (
                   <PlantCard
@@ -228,7 +321,7 @@ export default function RekomendasiPage() {
         </section>
       </div>
 
-      {/* 🔹 Floating Chat Button (Gemini) */}
+      {/* 🔹 Floating Chat Button */}
       <ChatButton
         context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
       />

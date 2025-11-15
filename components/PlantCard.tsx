@@ -9,6 +9,11 @@ const preferredCommon = (p: Plant) => {
   return commons[1] ?? commons[0] ?? p.latin;
 };
 
+type PlantWithScore = Plant & {
+  normalizedScore?: number;
+  hasActiveFilter?: boolean; // di-set di recommend.ts
+};
+
 export default function PlantCard({
   plant,
   selected = false,
@@ -16,7 +21,7 @@ export default function PlantCard({
   rank,
   showScore = false, // hanya true untuk Top 10
 }: {
-  plant: Plant & { normalizedScore?: number };
+  plant: PlantWithScore;
   selected?: boolean;
   onToggleSelect?: (id: number) => void;
   rank?: number;
@@ -25,11 +30,16 @@ export default function PlantCard({
   const title = preferredCommon(plant);
   const subtitle = plant.latin;
 
+  // hanya punya skor kalau ada filter aktif DAN normalizedScore > 0
+  const hasScore =
+    plant.hasActiveFilter &&
+    typeof plant.normalizedScore === "number" &&
+    plant.normalizedScore > 0;
+
   /** Format nilai kesesuaian ke persen, misal 0.92 → 92% */
-  const formattedScore =
-    typeof plant.normalizedScore === "number"
-      ? `${(plant.normalizedScore * 100).toFixed(0)}%`
-      : null;
+  const formattedScore = hasScore
+    ? `${(plant.normalizedScore! * 100).toFixed(0)}%`
+    : null;
 
   return (
     <div

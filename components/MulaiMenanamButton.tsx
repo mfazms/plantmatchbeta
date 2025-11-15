@@ -1,153 +1,126 @@
 "use client";
 
-import { auth, db } from "@/lib/firebaseConfig";
-import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore"; // Import getDoc dan deleteDoc
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react"; // Import useEffect
+import { onAuthStateChanged } from "firebase/auth";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { auth, db } from "@/lib/firebaseConfig";
+import { addPlantToGarden, stopPlanting } from "@/lib/garden";
+import type { Plant } from "@/lib/types";
 
-// Definisikan tipe Plant
-interface Plant {
-    id: number;
-    latin?: string;
-    watering_frequency?: { value: number; period: 'day' | 'week' | 'month' };
-    care_tips?: any[];
+interface Props {
+  plant: Plant;
 }
 
-// Fungsi bantu untuk menghitung nextReminder
-const calculateNextReminder = (plant: Plant) => {
-    const { value, period } = plant.watering_frequency || {};
-    if (!value || !period) return null;
+type PlantStatus = "idle" | "loading" | "planted";
 
-    let intervalDays = 0;
-    if (period === "week") intervalDays = Math.round(7 / value);
-    else if (period === "day") intervalDays = value;
-    else if (period === "month") intervalDays = Math.round(30 / value);
-
-    const now = new Date();
-    const nextReminder = new Date(now);
-    nextReminder.setDate(now.getDate() + intervalDays);
-    return nextReminder;
-};
-
-
-export default function MulaiMenanamButton({ plant }: { plant: Plant }) {
+export default function MulaiMenanamButton({ plant }: Props) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [isPlanted, setIsPlanted] = useState(false); // State baru untuk status tanaman
 
-  // 1. useEffect: Cek status tanaman saat komponen dimuat
+  const [status, setStatus] = useState<PlantStatus>("idle");
+  const [gardenEntryId, setGardenEntryId] = useState<string | null>(null);
+
+  // Cek apakah tanaman ini sudah ditanam user
   useEffect(() => {
-    const checkPlantStatus = async () => {
-      const user = auth.currentUser;
+    const unsub = onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        setIsPlanted(false);
+        setStatus("idle");
+        setGardenEntryId(null);
         return;
       }
 
-      const docId = `${user.uid}_${plant.id}`;
-      const userPlantRef = doc(db, "user_plants", docId);
-      
       try {
-        const docSnap = await getDoc(userPlantRef);
-        setIsPlanted(docSnap.exists());
-      } catch (error) {
-        console.error("Error checking plant status:", error);
-      }
-    };
+        // Query ke collection "garden" dengan userId dan plantId
+        const q = query(
+          collection(db, "garden"),
+          where("userId", "==", user.uid),
+          where("plantId", "==", plant.id)
+        );
 
-    // Gunakan onAuthStateChanged untuk memicu pengecekan setelah status auth dimuat
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        checkPlantStatus();
-      } else {
-        setIsPlanted(false); // Reset jika user logout
+        const snap = await getDocs(q);
+
+        if (!snap.empty) {
+          // Sudah ada entry untuk tanaman ini
+          setGardenEntryId(snap.docs[0].id);
+          setStatus("planted");
+        } else {
+          setStatus("idle");
+          setGardenEntryId(null);
+        }
+      } catch (err) {
+        console.error("Error checking garden:", err);
+        setStatus("idle");
       }
     });
 
-    return () => unsubscribe(); // Cleanup function
-  }, [plant.id]); // Re-run jika plant.id berubah
+    return () => unsub();
+  }, [plant.id]);
 
-  // Fungsi: Menambahkan Tanaman (Mulai Menanam)
-  const handleMulaiMenanam = async () => {
-    setLoading(true);
-    try {
-      const user = auth.currentUser;
-      if (!user) {
-        alert("Kamu harus login dulu!");
-        router.push("/login");
-        return;
-      }
-      
-      const plantNameForDb = plant.latin ?? `Tanaman ID ${plant.id}`;
-      const nextReminder = calculateNextReminder(plant);
-      
-      if (!plant.watering_frequency?.value || !plant.watering_frequency?.period || !nextReminder) {
-        alert("Data frekuensi penyiraman tidak tersedia untuk tanaman ini.");
-        return;
-      }
-
-      const userPlantRef = doc(db, "user_plants", `${user.uid}_${plant.id}`);
-      await setDoc(userPlantRef, {
-        userId: user.uid,
-        plantId: plant.id,
-        plantName: plantNameForDb,
-        startedAt: new Date(), 
-        nextReminder: nextReminder,
-        wateringFrequency: plant.watering_frequency,
-        careTips: plant.care_tips || [],
-      });
-
-      setIsPlanted(true); // Set status planted menjadi true
-      alert(`🌱 Tanaman ${plantNameForDb} berhasil ditambahkan ke daftarmu!`);
-    } catch (err) {
-      console.error("Error:", err);
-      let message = "Terjadi kesalahan saat menyimpan data.";
-      if (err instanceof Error) {
-        message = `Terjadi kesalahan saat menyimpan data. ${err.message}`;
-      }
-      alert(message);
-    } finally {
-      setLoading(false);
+  const handleClick = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      router.push("/login");
+      return;
     }
-  };
 
-  // Fungsi: Menghapus Tanaman (Berhenti Menanam)
-  const handleBerhentiMenanam = async () => {
-    setLoading(true);
+    if (status === "loading") return;
+
     try {
-        const user = auth.currentUser;
-        if (!user) return; // Seharusnya sudah dicek di useEffect, tapi jaga-jaga
+      setStatus("loading");
 
-        const docId = `${user.uid}_${plant.id}`;
-        const userPlantRef = doc(db, "user_plants", docId);
+      if (status === "idle") {
+        // Mulai menanam - tambah ke garden
+        const newEntryId = await addPlantToGarden({
+          userId: user.uid,
+          plantId: plant.id,
+          plantName: plant.common?.[0] || plant.latin,
+          image: `/api/plant-image?id=${plant.id}`, // Gunakan API route
+        });
 
-        await deleteDoc(userPlantRef);
+        setGardenEntryId(newEntryId);
+        setStatus("planted");
         
-        setIsPlanted(false); // Set status planted menjadi false
-        alert(`🗑️ Tanaman ${plant.latin ?? 'ini'} berhasil dihapus dari daftarmu.`);
+        // Redirect ke My Garden setelah berhasil
+        setTimeout(() => {
+          router.push("/kebunku");
+        }, 500);
+      } else if (status === "planted" && gardenEntryId) {
+        // Berhenti menanam - hapus dari garden
+        await stopPlanting(gardenEntryId);
+        setGardenEntryId(null);
+        setStatus("idle");
+      }
     } catch (err) {
-        console.error("Error deleting plant:", err);
-        alert("Gagal menghapus tanaman. Silakan coba lagi.");
-    } finally {
-        setLoading(false);
+      console.error("[MulaiMenanamButton] error:", err);
+      alert("Terjadi kesalahan. Coba lagi ya!");
+      setStatus(status === "planted" ? "planted" : "idle");
     }
   };
 
+  const label =
+    status === "loading"
+      ? "Memproses..."
+      : status === "planted"
+      ? "🛑 Berhenti Menanam"
+      : "🌱 Mulai Menanam";
+
+  const bgColor =
+    status === "planted"
+      ? "bg-red-600 hover:bg-red-700"
+      : "bg-emerald-600 hover:bg-emerald-700";
 
   return (
     <button
-      onClick={isPlanted ? handleBerhentiMenanam : handleMulaiMenanam} // Panggil fungsi yang berbeda
-      disabled={loading}
-      // Ganti warna dan teks berdasarkan state isPlanted
-      className={`mt-6 w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 
-                 text-white text-lg font-semibold transition shadow-md disabled:opacity-60 
-                 ${isPlanted ? 'bg-red-500 hover:bg-red-600' : 'bg-emerald-500 hover:bg-emerald-600'}`}
+      onClick={handleClick}
+      disabled={status === "loading"}
+      className={`mt-4 w-full rounded-full ${bgColor} px-5 py-3 text-sm font-semibold text-white shadow transition disabled:opacity-60 disabled:cursor-not-allowed`}
     >
-      {loading 
-        ? "⏳ Memproses..." 
-        : isPlanted 
-          ? "🗑️ Berhenti Menanam" 
-          : "🌱 Mulai Menanam"}
+      {label}
     </button>
   );
 }

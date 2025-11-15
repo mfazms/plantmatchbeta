@@ -58,7 +58,7 @@ export type Plant = {
   diseases?: any[];  // idem
 
   // Tips perawatan
-  care_tips?: any[]; // <— ini yang tadinya string | string[]
+  care_tips?: any[];
 
   // MBTI cocokannya (sudah dikonversi jadi string di loadData.ts / route.ts)
   mbti?: string;
@@ -81,6 +81,34 @@ export type UserFilter = {
   category?: string;
   watering?: string;
   mbti?: string;
+};
+
+// =======================
+// 🌿 GARDEN ENTRY TYPE (UNIFIED)
+// =======================
+
+export type GardenEntry = {
+  id: string;              // Firestore document id
+  userId: string;          // uid user
+  plantId: number;         // id dari PlantsData.json
+  plantName: string;       // nama tanaman untuk tampilan
+  image?: string | null;   // gambar tanaman
+
+  plantedAt?: string | any;       // ISO string atau Timestamp, misal "2025-11-15T10:23:00.000Z"
+  startedAt?: string | any;       // alias untuk plantedAt (kompatibilitas)
+  lastWateredAt?: string | any | null; // ISO string terakhir disiram (boleh null)
+
+  // Riwayat hari-hari penyiraman, format "YYYY-MM-DD", misal "2025-11-15"
+  wateringHistory?: string[];
+};
+
+// =======================
+// 🌸 GARDEN WITH PLANT TYPE
+// =======================
+// Untuk kebunku page yang butuh info plant lengkap
+
+export type GardenWithPlant = GardenEntry & {
+  plant?: Plant;
 };
 
 // --------------------------------

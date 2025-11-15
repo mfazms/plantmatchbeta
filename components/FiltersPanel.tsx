@@ -9,18 +9,6 @@ type Props = {
   allPlants?: Plant[];
 };
 
-/**
- * Tambahan tipe untuk field-field ekstra yang ada di data tanaman,
- * supaya tidak perlu pakai "as any".
- */
-type PlantWithDerivedFields = Plant & {
-  ideallight?: string;
-  toleratedlight?: string;
-  climate?: string;
-  use?: string[] | string;
-  mbti?: { type?: string };
-};
-
 /** Fallback kalau data belum kebaca */
 const LIGHT_FALLBACK = [
   "Bright light",
@@ -89,8 +77,7 @@ export default function FiltersPanel({
     if (!allPlants?.length) return ["-", ...LIGHT_FALLBACK];
 
     const set = new Set<string>();
-    allPlants.forEach((p) => {
-      const plant = p as PlantWithDerivedFields;
+    allPlants.forEach((plant) => {
       const ideal = plant.ideallight;
       const tol = plant.toleratedlight;
 
@@ -106,8 +93,7 @@ export default function FiltersPanel({
     if (!allPlants?.length) return ["-", ...CLIMATE_FALLBACK];
 
     const set = new Set<string>();
-    allPlants.forEach((p) => {
-      const plant = p as PlantWithDerivedFields;
+    allPlants.forEach((plant) => {
       const c = plant.climate;
       if (c) set.add(c);
     });
@@ -120,8 +106,7 @@ export default function FiltersPanel({
     if (!allPlants?.length) return ["-", ...AESTHETIC_FALLBACK];
 
     const set = new Set<string>();
-    allPlants.forEach((p) => {
-      const plant = p as PlantWithDerivedFields;
+    allPlants.forEach((plant) => {
       const use = plant.use;
       if (Array.isArray(use)) {
         use.forEach((u) => u && set.add(u));
@@ -133,16 +118,20 @@ export default function FiltersPanel({
     return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
   }, [allPlants]);
 
-  // MBTI: ambil dari mbti.type
+  // MBTI: sekarang di tipe Plant = string (bukan object { type })
   const MBTI_OPTIONS = useMemo(() => {
     if (!allPlants?.length) return ["-", ...MBTI_FALLBACK];
 
     const set = new Set<string>();
-    allPlants.forEach((p) => {
-      const plant = p as PlantWithDerivedFields;
-      const mbti = plant.mbti?.type;
+    allPlants.forEach((plant) => {
+      const mbti = typeof plant.mbti === "string" ? plant.mbti.trim() : "";
       if (mbti) set.add(mbti);
     });
+
+    // kalau ternyata tidak ada isi dari data, fallback ke default list
+    if (!set.size) {
+      return ["-", ...MBTI_FALLBACK];
+    }
 
     return ["-", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
   }, [allPlants]);

@@ -1,13 +1,14 @@
+// app/api/chat/route.ts
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
+import { fetchPlants } from "@/lib/loadData";
+import type { Plant } from "@/lib/types";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 // Inisialisasi client Gemini
 const ai = new GoogleGenAI(
-  GEMINI_API_KEY
-    ? { apiKey: GEMINI_API_KEY }
-    : { apiKey: "" } // nanti dicek lagi di handler
+  GEMINI_API_KEY ? { apiKey: GEMINI_API_KEY } : { apiKey: "" } // nanti dicek lagi di handler
 );
 
 export async function POST(req: NextRequest) {
@@ -33,7 +34,43 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // System instruction / persona bot
+    // ==== 1. BACA DATABASE TANAMAN LOKAL (PlantsData.json via fetchPlants) ====
+    let plantDbSummary = "";
+    try {
+      const plants: Plant[] = await fetchPlants();
+
+      // bikin ringkasan singkat per tanaman supaya Gemini bisa pakai
+      const lines = plants.map((p) => {
+        const common =
+          Array.isArray(p.common) && p.common.length > 0
+            ? p.common.join(" / ")
+            : "-";
+
+        return [
+          `ID: ${p.id}`,
+          `Nama: ${common !== "-" ? common : p.latin}`,
+          `Latin: ${p.latin ?? "-"}`,
+          `Kategori: ${p.category ?? "-"}`,
+          `Cahaya ideal: ${p.ideallight ?? "-"}`,
+          `Cahaya toleran: ${p.toleratedlight ?? "-"}`,
+          `Iklim: ${p.climate ?? "-"}`,
+          `Suhu: ${p.tempmin?.celsius ?? "-"}–${p.tempmax?.celsius ?? "-"} °C`,
+          `Penyiraman: ${
+            p.watering ||
+            (p.watering_frequency
+              ? `${p.watering_frequency.value}x per ${p.watering_frequency.period}`
+              : "-")
+          }`,
+        ].join(" | ");
+      });
+
+      plantDbSummary = lines.join("\n");
+    } catch (err) {
+      console.error("[/api/chat] Gagal load PlantsData untuk chatbot:", err);
+      // kalau gagal, biarkan kosong — bot tetap bisa jawab pakai knowledge umum
+    }
+
+    // ==== 2. System instruction / persona bot ====
     let systemContext = `Kamu adalah PlantMatch Assistant, asisten virtual yang ahli dalam tanaman hias dan perawatannya. 
     
 Tugasmu adalah:
@@ -45,8 +82,23 @@ Tugasmu adalah:
 
 Selalu jawab dalam bahasa Indonesia dengan gaya yang ramah dan conversational.`;
 
+    // tambahkan instruksi khusus soal database internal
+    if (plantDbSummary) {
+      systemContext += `
+
+Kamu memiliki *database internal tanaman* berikut (berasal dari sistem PlantMatch). Setiap baris mewakili satu tanaman:
+
+${plantDbSummary}
+
+ATURAN PENTING:
+- Jika user meminta rekomendasi tanaman, *SELALU* coba pilih tanaman dari daftar di atas terlebih dahulu.
+- Cocokkan dengan preferensi user (cahaya, suhu ruangan, iklim, tingkat perawatan, kesibukan, dsb).
+- Saat menjawab, sebutkan dengan jelas bahwa rekomendasi diambil dari database internal PlantMatch.
+- Hanya jika kamu benar-benar tidak menemukan tanaman yang cocok di daftar ini, barulah boleh menyebut tanaman lain di luar database. Jelaskan bahwa itu di luar database internal.`;
+    }
+
     if (context) {
-      systemContext += `\n\nKonteks saat ini:\n${context}`;
+      systemContext += `\n\nKonteks halaman saat ini (misalnya halaman detail/rekomendasi):\n${context}`;
     }
 
     const chatHistory: any[] = Array.isArray(history) ? history : [];
