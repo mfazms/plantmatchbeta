@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import type { Plant } from "@/lib/types";
 import { displayName } from "@/lib/types";
 
@@ -70,6 +71,141 @@ function fitImages(root: HTMLElement) {
   });
 }
 
+// ⭐ BULLETPROOF: Loading Modal with React Portal
+function PDFExportLoading({ progress }: { progress: number }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    // Lock body scroll
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
+  if (!mounted) return null;
+
+  const modalContent = (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 999999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          borderRadius: '16px',
+          padding: '32px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          maxWidth: '448px',
+          width: '90%',
+          margin: '0 16px',
+        }}
+      >
+        <div style={{ textAlign: 'center' }}>
+          {/* Icon */}
+          <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
+            <div
+              style={{
+                height: '80px',
+                width: '80px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #34d399 0%, #059669 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                animation: 'pulse 2s ease-in-out infinite',
+              }}
+            >
+              <svg
+                style={{ width: '40px', height: '40px', color: '#ffffff' }}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* Title */}
+          <h3
+            style={{
+              fontSize: '20px',
+              fontWeight: 700,
+              color: '#111827',
+              marginBottom: '8px',
+            }}
+          >
+            Membuat PDF
+          </h3>
+          <p style={{ color: '#6b7280', marginBottom: '24px' }}>
+            Mohon tunggu sebentar...
+          </p>
+
+          {/* Progress bar */}
+          <div
+            style={{
+              width: '100%',
+              height: '8px',
+              backgroundColor: '#e5e7eb',
+              borderRadius: '9999px',
+              overflow: 'hidden',
+              marginBottom: '8px',
+            }}
+          >
+            <div
+              style={{
+                height: '100%',
+                background: 'linear-gradient(90deg, #10b981 0%, #059669 100%)',
+                transition: 'width 300ms ease-out',
+                borderRadius: '9999px',
+                width: `${progress}%`,
+              }}
+            />
+          </div>
+          <p style={{ fontSize: '14px', color: '#6b7280' }}>{progress}%</p>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes pulse {
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.7;
+          }
+        }
+      `}</style>
+    </div>
+  );
+
+  // ✅ Render to document.body using Portal
+  return createPortal(modalContent, document.body);
+}
+
 export default function ExportPDFButton({
   plants,
   disabled,
@@ -84,6 +220,8 @@ export default function ExportPDFButton({
   icon?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isExporting, setIsExporting] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const preloadImages = async (root: HTMLElement) => {
     const imgs = Array.from(root.querySelectorAll("img"));
@@ -102,27 +240,57 @@ export default function ExportPDFButton({
   };
 
   const handleExport = async () => {
-    if (!ref.current) return;
-    const html2pdf = (await import("html2pdf.js")).default;
+    if (!ref.current || disabled || plants.length === 0) return;
 
-    await preloadImages(ref.current);
-    fitImages(ref.current);
+    setIsExporting(true);
+    setProgress(0);
 
-    const opt = {
-      margin: 10,
-      filename: "plantify-selection.pdf",
-      image: { type: "jpeg" as const, quality: 1 },
-      html2canvas: {
-        backgroundColor: "#ffffff",
-        scale: Math.min(3, (window.devicePixelRatio || 1) * 2),
-        useCORS: true,
-        allowTaint: true,
-      },
-      jsPDF: { unit: "mm" as const, format: "a4" as const, orientation: "portrait" as const },
-      pagebreak: { mode: ["avoid-all", "css", "legacy"] as const },
-    };
+    try {
+      // Progress simulation
+      const progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 200);
 
-    await html2pdf().from(ref.current).set(opt).save();
+      const html2pdf = (await import("html2pdf.js")).default;
+
+      await preloadImages(ref.current);
+      fitImages(ref.current);
+
+      setProgress(50);
+
+      const opt = {
+        margin: 10,
+        filename: "plantify-selection.pdf",
+        image: { type: "jpeg" as const, quality: 1 },
+        html2canvas: {
+          backgroundColor: "#ffffff",
+          scale: Math.min(3, (window.devicePixelRatio || 1) * 2),
+          useCORS: true,
+          allowTaint: true,
+        },
+        jsPDF: { unit: "mm" as const, format: "a4" as const, orientation: "portrait" as const },
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] as const },
+      };
+
+      await html2pdf().from(ref.current).set(opt).save();
+
+      clearInterval(progressInterval);
+      setProgress(100);
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch (error) {
+      console.error("Error exporting PDF:", error);
+      alert("Gagal membuat PDF. Silakan coba lagi.");
+    } finally {
+      setIsExporting(false);
+      setProgress(0);
+    }
   };
 
   return (
@@ -134,16 +302,41 @@ export default function ExportPDFButton({
            hover:bg-emerald-700 transition shadow-sm disabled:opacity-50`
         }
         onClick={handleExport}
-        disabled={disabled}
+        disabled={disabled || isExporting}
       >
-        {icon && (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        {icon && !isExporting && (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7z" />
             <path d="M5 18h14v2H5z" />
           </svg>
         )}
-        {label} {plants.length ? `(${plants.length})` : ""}
+        {isExporting && (
+          <svg
+            className="animate-spin"
+            style={{ width: '18px', height: '18px' }}
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              style={{ opacity: 0.25 }}
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              style={{ opacity: 0.75 }}
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
+          </svg>
+        )}
+        {isExporting ? "Membuat PDF..." : `${label} ${plants.length ? `(${plants.length})` : ""}`}
       </button>
+
+      {/* ✅ Portal Modal - Completely isolated from layout */}
+      {isExporting && <PDFExportLoading progress={progress} />}
 
       {/* Offscreen render target */}
       <div
@@ -173,51 +366,17 @@ export default function ExportPDFButton({
                   border: "1px solid #e5e7eb",
                   borderRadius: 12,
                   marginBottom: 16,
-                  boxShadow:
-                    "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)",
                 }}
               >
                 {/* Header brand */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    marginBottom: 12,
-                  }}
-                >
-                  <img
-                    src="/hero1.png"
-                    alt="PlantMatch"
-                    style={{
-                      width: 56,
-                      height: 56,
-                      objectFit: "contain",
-                    }}
-                  />
-                  <div
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 700,
-                      color: "#0b3d2e",
-                    }}
-                  >
-                    PlantMatch
-                  </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                  <img src="/hero1.png" alt="PlantMatch" style={{ width: 56, height: 56, objectFit: "contain" }} />
+                  <div style={{ fontSize: 18, fontWeight: 700, color: "#0b3d2e" }}>PlantMatch</div>
                 </div>
 
-                <h2 style={{ fontSize: 28, margin: 0, color: "#0b3d2e" }}>
-                  {displayName(p)}
-                </h2>
-                <p
-                  style={{
-                    margin: "6px 0 14px",
-                    fontStyle: "italic",
-                    color: "#374151",
-                  }}
-                >
-                  {p.latin}
-                </p>
+                <h2 style={{ fontSize: 28, margin: 0, color: "#0b3d2e" }}>{displayName(p)}</h2>
+                <p style={{ margin: "6px 0 14px", fontStyle: "italic", color: "#374151" }}>{p.latin}</p>
 
                 {/* Area gambar */}
                 <div
@@ -237,129 +396,62 @@ export default function ExportPDFButton({
                     alt={p.latin}
                     data-candidates={JSON.stringify(candidates)}
                     data-fit="pdf"
-                    style={{
-                      display: "block",
-                      borderRadius: 8,
-                      background: "#fafafa",
-                    }}
+                    style={{ display: "block", borderRadius: 8, background: "#fafafa" }}
                   />
                 </div>
 
-                <div
-                  style={{
-                    marginTop: 14,
-                    fontSize: 14.5,
-                    lineHeight: 1.75,
-                    color: "#111",
-                  }}
-                >
-                  <div>
-                    <b>Family:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.family ?? "-"}</span>
-                  </div>
-                  <div>
-                    <b>Kategori:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.category ?? "-"}</span>
-                  </div>
-                  <div>
-                    <b>Asal/Origin:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.origin ?? "-"}</span>
-                  </div>
-                  <div>
-                    <b>Iklim:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.climate ?? "-"}</span>
-                  </div>
+                <div style={{ marginTop: 14, fontSize: 14.5, lineHeight: 1.75, color: "#111" }}>
+                  <div><b>Family:</b> <span style={{ color: "#374151" }}>{p.family ?? "-"}</span></div>
+                  <div><b>Kategori:</b> <span style={{ color: "#374151" }}>{p.category ?? "-"}</span></div>
+                  <div><b>Asal/Origin:</b> <span style={{ color: "#374151" }}>{p.origin ?? "-"}</span></div>
+                  <div><b>Iklim:</b> <span style={{ color: "#374151" }}>{p.climate ?? "-"}</span></div>
                   <div>
                     <b>Suhu ideal:</b>{" "}
                     <span style={{ color: "#374151" }}>
-                      {p.tempmin?.celsius ?? "-"}°C — {p.tempmax?.celsius ?? "-"}°C (
-                      {p.tempmin?.fahrenheit ?? "-"}—{p.tempmax?.fahrenheit ?? "-"}°F)
+                      {p.tempmin?.celsius ?? "-"}°C – {p.tempmax?.celsius ?? "-"}°C (
+                      {p.tempmin?.fahrenheit ?? "-"}–{p.tempmax?.fahrenheit ?? "-"}°F)
                     </span>
                   </div>
-                  <div>
-                    <b>Cahaya ideal:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.ideallight ?? "-"}</span>
-                  </div>
-                  <div>
-                    <b>Cahaya toleran:</b>{" "}
-                    <span style={{ color: "#374151" }}>{p.toleratedlight ?? "-"}</span>
-                  </div>
+                  <div><b>Cahaya ideal:</b> <span style={{ color: "#374151" }}>{p.ideallight ?? "-"}</span></div>
+                  <div><b>Cahaya toleran:</b> <span style={{ color: "#374151" }}>{p.toleratedlight ?? "-"}</span></div>
                   <div>
                     <b>Penyiraman:</b>{" "}
                     <span style={{ color: "#374151" }}>
-                      {p.watering || 
-                        ((p as any).watering_frequency 
+                      {p.watering ||
+                        ((p as any).watering_frequency
                           ? `${(p as any).watering_frequency.value} kali per ${(p as any).watering_frequency.period}`
-                          : "-"
-                        )
-                      }
+                          : "-")}
                     </span>
                   </div>
 
-                  {/* Catatan Penyiraman */}
                   {(p as any).watering_frequency?.notes && (
                     <div>
-                      <b>Catatan Penyiraman:</b>{" "}
-                      <span style={{ color: "#374151" }}>
-                        {(p as any).watering_frequency.notes}
-                      </span>
+                      <b>Catatan Penyiraman:</b> <span style={{ color: "#374151" }}>{(p as any).watering_frequency.notes}</span>
                     </div>
                   )}
 
-                  <div>
-                    <b>Hama:</b>{" "}
-                    <span style={{ color: "#374151" }}>
-                      {toList(p.insects).join(", ") || "-"}
-                    </span>
-                  </div>
-                  <div>
-                    <b>Penyakit:</b>{" "}
-                    <span style={{ color: "#374151" }}>
-                      {toList(p.diseases).join(", ") || "-"}
-                    </span>
-                  </div>
-                  <div>
-                    <b>Penggunaan:</b>{" "}
-                    <span style={{ color: "#374151" }}>
-                      {toList(p.use).join(", ") || "-"}
-                    </span>
-                  </div>
+                  <div><b>Hama:</b> <span style={{ color: "#374151" }}>{toList(p.insects).join(", ") || "-"}</span></div>
+                  <div><b>Penyakit:</b> <span style={{ color: "#374151" }}>{toList(p.diseases).join(", ") || "-"}</span></div>
+                  <div><b>Penggunaan:</b> <span style={{ color: "#374151" }}>{toList(p.use).join(", ") || "-"}</span></div>
 
-                  {/* Tips Perawatan */}
                   {(p as any).care_tips && (p as any).care_tips.length > 0 && (
                     <div style={{ marginTop: 12 }}>
                       <b>Tips Perawatan:</b>
-                      <ul style={{ 
-                        margin: "4px 0 0 20px", 
-                        padding: 0,
-                        color: "#374151" 
-                      }}>
+                      <ul style={{ margin: "4px 0 0 20px", padding: 0, color: "#374151" }}>
                         {(p as any).care_tips.map((tip: string, i: number) => (
-                          <li key={i} style={{ marginBottom: 3 }}>{tip}</li>
+                          <li key={i} style={{ marginBottom: 3 }}>
+                            {tip}
+                          </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  {/* MBTI Personality */}
                   {(p as any).mbti && (
-                    <div style={{ 
-                      marginTop: 16, 
-                      paddingTop: 12, 
-                      borderTop: "1px solid #d1fae5" 
-                    }}>
+                    <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid #d1fae5" }}>
                       <b>Kepribadian MBTI:</b>{" "}
-                      <span style={{ 
-                        color: "#059669", 
-                        fontWeight: 700 
-                      }}>
-                        {(p as any).mbti.type}
-                      </span>
-                      {(p as any).mbti.notes && (
-                        <span style={{ color: "#374151" }}>
-                          {" "}— {(p as any).mbti.notes}
-                        </span>
-                      )}
+                      <span style={{ color: "#059669", fontWeight: 700 }}>{(p as any).mbti.type}</span>
+                      {(p as any).mbti.notes && <span style={{ color: "#374151" }}> – {(p as any).mbti.notes}</span>}
                     </div>
                   )}
                 </div>
@@ -375,7 +467,8 @@ export default function ExportPDFButton({
                     color: "#6b7280",
                   }}
                 >
-                  © 2025 <span style={{ color: "#059669", fontWeight: 600 }}>PlantMatch</span> — Find the Plant That Fits You
+                  © 2025 <span style={{ color: "#059669", fontWeight: 600 }}>PlantMatch</span> – Find the Plant That Fits
+                  You
                 </div>
               </div>
             );

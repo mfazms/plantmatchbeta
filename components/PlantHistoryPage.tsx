@@ -3,19 +3,44 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
-import { getPlantHistory, clearPlantHistory, PlantHistoryEntry } from "@/lib/garden";
+import { 
+  getPlantHistory, 
+  clearPlantHistory, 
+  PlantHistoryEntry,
+  getUserGarden
+} from "@/lib/garden";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { fetchPlants } from "@/lib/loadData";
 import type { Plant } from "@/lib/types";
 
+import NavigationTabs from "./NavigationTabs";
+import AnimatedCard, { AnimatedButton } from "./AnimatedCard";
+
+// ⭐ FIXED: Proper type that matches both active and history plants
+type CombinedPlantEntry = {
+  id: string;
+  plantId: number;
+  plantName: string;
+  plantLatin?: string;
+  image?: string;
+  plantedAt: any;
+  stoppedAt: any;
+  reason?: "active" | "died" | "notSuitable";
+  totalWateringDays?: number;
+  isActive: boolean;
+  userId?: string; // Optional since active plants might not have it
+};
+
 export default function PlantHistoryPage() {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [history, setHistory] = useState<PlantHistoryEntry[]>([]);
+  const [history, setHistory] = useState<CombinedPlantEntry[]>([]);
   const [plants, setPlants] = useState<Plant[]>([]);
   const [loading, setLoading] = useState(true);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [clearing, setClearing] = useState(false);
-  const [activeTab, setActiveTab] = useState<"all" | "died" | "notSuitable">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "active" | "died" | "notSuitable">("all");
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
@@ -33,12 +58,46 @@ export default function PlantHistoryPage() {
 
       try {
         setLoading(true);
-        const [historyData, plantsData] = await Promise.all([
+        
+        const [historyData, activePlantsData, plantsData] = await Promise.all([
           getPlantHistory(user.uid),
+          getUserGarden(user.uid),
           fetchPlants(),
         ]);
         
-        setHistory(historyData);
+        // ⭐ FIXED: Proper mapping with all required fields
+        const combinedHistory: CombinedPlantEntry[] = [
+          // Active plants
+          ...activePlantsData.map(plant => ({
+            id: plant.id,
+            plantId: plant.plantId,
+            plantName: plant.plantName,
+            plantLatin: (plant as any).plantLatin || undefined,
+            image: plant.image,
+            plantedAt: plant.plantedAt,
+            stoppedAt: null,
+            reason: "active" as const,
+            totalWateringDays: (plant as any).totalWateringDays || 0,
+            isActive: true,
+            userId: user.uid,
+          })),
+          // Historical plants
+          ...historyData.map(h => ({
+            id: h.id,
+            plantId: h.plantId,
+            plantName: h.plantName,
+            plantLatin: (h as any).plantLatin || undefined,
+            image: (h as any).image,
+            plantedAt: h.plantedAt,
+            stoppedAt: h.stoppedAt,
+            reason: h.reason,
+            totalWateringDays: h.totalWateringDays,
+            isActive: false,
+            userId: h.userId,
+          })),
+        ];
+        
+        setHistory(combinedHistory);
         setPlants(plantsData);
       } catch (error) {
         console.error("Error loading history:", error);
@@ -56,7 +115,7 @@ export default function PlantHistoryPage() {
     setClearing(true);
     try {
       await clearPlantHistory(user.uid);
-      setHistory([]);
+      setHistory(history.filter(h => h.isActive));
       setShowClearConfirm(false);
     } catch (error) {
       console.error("Error clearing history:", error);
@@ -68,6 +127,7 @@ export default function PlantHistoryPage() {
 
   const filteredHistory = history.filter((item) => {
     if (activeTab === "all") return true;
+    if (activeTab === "active") return item.isActive === true;
     return item.reason === activeTab;
   });
 
@@ -97,11 +157,31 @@ export default function PlantHistoryPage() {
   };
 
   const getDuration = (startDate: any, endDate: any) => {
-    if (!startDate || !endDate) return "0 hari";
+    if (!startDate) return "0 hari";
+    if (!endDate) {
+      const now = new Date();
+      let start: Date;
+      
+      if (startDate instanceof Date) {
+        start = startDate;
+      } else if (typeof startDate === "string") {
+        start = new Date(startDate);
+      } else if (startDate?.toDate) {
+        start = startDate.toDate();
+      } else {
+        return "0 hari";
+      }
+
+      const diff = now.getTime() - start.getTime();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      
+      if (days === 0) return "< 1 hari";
+      if (days === 1) return "1 hari";
+      return `${days} hari`;
+    }
     
     let start: Date, end: Date;
     
-    // Parse start date
     if (startDate instanceof Date) {
       start = startDate;
     } else if (typeof startDate === "string") {
@@ -112,7 +192,6 @@ export default function PlantHistoryPage() {
       return "0 hari";
     }
 
-    // Parse end date
     if (endDate instanceof Date) {
       end = endDate;
     } else if (typeof endDate === "string") {
@@ -131,7 +210,6 @@ export default function PlantHistoryPage() {
     return `${days} hari`;
   };
 
-  // ⭐ TAMBAHAN BARU: Fungsi untuk mendapatkan nama user
   const getUserName = () => {
     if (!user) return "Tamu";
     if (user.displayName) return user.displayName;
@@ -139,14 +217,21 @@ export default function PlantHistoryPage() {
     return "Pengguna";
   };
 
+  const stats = {
+    total: history.length,
+    active: history.filter(h => h.isActive).length,
+    died: history.filter(h => h.reason === "died").length,
+    notSuitable: history.filter(h => h.reason === "notSuitable").length,
+  };
+
   if (!user) {
     return (
       <main className="min-h-screen bg-emerald-900 text-white flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center animate-fadeIn">
           <p className="mb-4">Silakan login dulu untuk melihat history tanamanmu.</p>
           <Link
             href="/login"
-            className="inline-block px-6 py-2 bg-white text-emerald-900 rounded-full font-semibold hover:bg-emerald-50 transition"
+            className="inline-block px-6 py-2 bg-white text-emerald-900 rounded-full font-semibold hover:bg-emerald-50 transition hover:scale-105 active:scale-95"
           >
             Login
           </Link>
@@ -158,121 +243,144 @@ export default function PlantHistoryPage() {
   return (
     <main className="min-h-screen bg-emerald-900 text-white">
       <div className="max-w-5xl mx-auto px-4 py-10">
-        {/* Navigation Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-full bg-emerald-800/80 px-2 py-2 text-sm font-medium gap-2">
-            <Link
-              href="/rekomendasi"
-              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
-            >
-              All Plants
-            </Link>
-            <Link
-              href="/kebunku"
-              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
-            >
-              My Garden
-            </Link>
-            <button className="px-4 py-1 bg-white text-emerald-800 rounded-full">
-              History
-            </button>
-          </div>
+          <NavigationTabs 
+            tabs={[
+              { label: "All Plants", href: "/rekomendasi" },
+              { label: "My Garden", href: "/kebunku" },
+              { label: "History", href: "/riwayat-tanaman" }
+            ]}
+          />
         </div>
 
-        {/* ⭐ UBAH DISINI: Tambahkan nama user */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-2 animate-fadeIn">
           📚 Riwayat Tanaman {getUserName()}
         </h1>
-        <p className="text-center text-emerald-200 mb-8">
+        <p className="text-center text-emerald-200 mb-8 animate-fadeIn" style={{ animationDelay: '100ms' }}>
           Semua tanaman yang pernah kamu tanam
         </p>
 
-        {/* Stats */}
         {history.length > 0 && (
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="bg-emerald-800/50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold">{history.length}</div>
-              <div className="text-sm text-emerald-200">Total Tanaman</div>
-            </div>
-            <div className="bg-emerald-800/50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold">
-                {history.filter((h) => h.reason === "died").length}
-              </div>
-              <div className="text-sm text-emerald-200">Tanaman Mati</div>
-            </div>
-            <div className="bg-emerald-800/50 rounded-lg p-4 text-center">
-              <div className="text-2xl font-bold">
-                {history.filter((h) => h.reason === "notSuitable").length}
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <AnimatedCard 
+              delay={0}
+              className="bg-emerald-800/50 rounded-lg p-4 text-center hover:bg-emerald-800/60"
+            >
+              <div className="text-2xl font-bold">{stats.total}</div>
+              <div className="text-sm text-emerald-200">Total</div>
+            </AnimatedCard>
+            
+            <AnimatedCard 
+              delay={50}
+              className="bg-green-600/30 rounded-lg p-4 text-center hover:bg-green-600/40"
+            >
+              <div className="text-2xl font-bold text-green-300">{stats.active}</div>
+              <div className="text-sm text-emerald-200">Aktif</div>
+            </AnimatedCard>
+            
+            <AnimatedCard 
+              delay={100}
+              className="bg-red-600/30 rounded-lg p-4 text-center hover:bg-red-600/40"
+            >
+              <div className="text-2xl font-bold text-red-300">{stats.died}</div>
+              <div className="text-sm text-emerald-200">Mati</div>
+            </AnimatedCard>
+
+            <AnimatedCard 
+              delay={150}
+              className="bg-amber-600/30 rounded-lg p-4 text-center hover:bg-amber-600/40"
+            >
+              <div className="text-2xl font-bold text-amber-300">{stats.notSuitable}</div>
               <div className="text-sm text-emerald-200">Tidak Cocok</div>
-            </div>
+            </AnimatedCard>
           </div>
         )}
 
-        {/* Filter Tabs */}
         {history.length > 0 && (
-          <div className="flex gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6 animate-fadeIn" style={{ animationDelay: '150ms' }}>
             <button
               onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
                 activeTab === "all"
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-emerald-600 text-white shadow-lg"
                   : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
               }`}
             >
-              Semua ({history.length})
+              Semua ({stats.total})
             </button>
+            
+            <button
+              onClick={() => setActiveTab("active")}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
+                activeTab === "active"
+                  ? "bg-green-600 text-white shadow-lg"
+                  : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
+              }`}
+            >
+              🌱 Aktif ({stats.active})
+            </button>
+            
             <button
               onClick={() => setActiveTab("died")}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
                 activeTab === "died"
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-red-600 text-white shadow-lg"
                   : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
               }`}
             >
-              Mati ({history.filter((h) => h.reason === "died").length})
+              💀 Mati ({stats.died})
             </button>
+            
             <button
               onClick={() => setActiveTab("notSuitable")}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
                 activeTab === "notSuitable"
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-amber-600 text-white shadow-lg"
                   : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
               }`}
             >
-              Tidak Cocok ({history.filter((h) => h.reason === "notSuitable").length})
+              🤔 Tidak Cocok ({stats.notSuitable})
             </button>
           </div>
         )}
 
-        {/* Clear History Button */}
-        {history.length > 0 && (
-          <div className="flex justify-end mb-6">
-            <button
+        {history.some(h => !h.isActive) && (
+          <div className="flex justify-end mb-6 animate-fadeIn" style={{ animationDelay: '200ms' }}>
+            <AnimatedButton
               onClick={() => setShowClearConfirm(true)}
-              className="px-4 py-2 bg-red-500/80 hover:bg-red-600 text-white rounded-lg font-semibold transition"
+              variant="danger"
+              className="px-4 py-2"
             >
               🗑️ Hapus Semua History
-            </button>
+            </AnimatedButton>
           </div>
         )}
 
-        {/* History List */}
         {loading ? (
-          <p className="text-center text-emerald-200">Loading history...</p>
+          <div className="text-center text-emerald-200 py-12">
+            <div className="inline-flex flex-col items-center gap-4">
+              <svg className="animate-spin h-12 w-12 text-emerald-400" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              </svg>
+              <p>Loading history...</p>
+            </div>
+          </div>
         ) : filteredHistory.length === 0 ? (
-          <div className="text-center bg-emerald-800/30 rounded-lg p-8">
+          <div className="text-center bg-emerald-800/30 rounded-lg p-8 animate-fadeIn">
             <p className="text-emerald-200 mb-4">
               {activeTab === "all"
                 ? "Belum ada history tanaman. Mulai menanam tanaman pertamamu!"
+                : activeTab === "active"
+                ? "Tidak ada tanaman yang aktif saat ini. Mulai menanam yuk!"
                 : activeTab === "died"
                 ? "Tidak ada tanaman yang mati. Kamu hebat! 🌟"
                 : "Tidak ada tanaman yang tidak cocok. Good job! ✨"}
             </p>
-            {activeTab === "all" && (
+            {(activeTab === "all" || activeTab === "active") && (
               <Link
                 href="/rekomendasi"
-                className="inline-block px-6 py-2 bg-white text-emerald-900 rounded-full font-semibold hover:bg-emerald-50 transition"
+                className="inline-block px-6 py-2 bg-white text-emerald-900 rounded-full font-semibold hover:bg-emerald-50 transition hover:scale-105 active:scale-95"
               >
                 Lihat Rekomendasi Tanaman
               </Link>
@@ -280,45 +388,54 @@ export default function PlantHistoryPage() {
           </div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2">
-            {filteredHistory.map((item) => {
+            {filteredHistory.map((item, idx) => {
               const plant = getPlantDetails(item.plantId);
               
               return (
-                <div
+                <AnimatedCard
                   key={item.id}
-                  className="bg-emerald-800/50 rounded-xl p-4 hover:bg-emerald-800/60 transition group"
+                  delay={idx * 50}
+                  className={`rounded-xl p-4 transition-all duration-300 group ${
+                    item.isActive 
+                      ? "bg-green-600/20 hover:bg-green-600/30 border-2 border-green-500/30" 
+                      : "bg-emerald-800/50 hover:bg-emerald-800/60"
+                  }`}
                 >
                   <div className="flex gap-4">
-                    {/* Image - Clickable */}
                     <Link 
                       href={`/tanaman/${item.plantId}`}
-                      className="w-24 h-24 rounded-lg bg-white/10 overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-emerald-400 transition"
+                      className="w-24 h-24 rounded-lg bg-white/10 overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-emerald-400 transition-all duration-300"
                     >
                       {item.image || plant?.image ? (
                         <img
                           src={item.image || plant?.image || ""}
                           alt={item.plantName}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-emerald-300">
+                        <div className="w-full h-full flex items-center justify-center text-emerald-300 text-2xl">
                           🌿
                         </div>
                       )}
                     </Link>
 
-                    {/* Info */}
                     <div className="flex-1">
-                      {/* Plant Name - Clickable */}
                       <Link 
                         href={`/tanaman/${item.plantId}`}
                         className="block hover:text-emerald-200 transition"
                       >
-                        <h3 className="font-semibold text-lg">
-                          {item.plantName}
-                        </h3>
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-semibold text-lg">
+                            {item.plantName}
+                          </h3>
+                          {item.isActive && (
+                            <span className="px-2 py-0.5 bg-green-500 text-white text-xs rounded-full font-semibold animate-pulse">
+                              ✓ Aktif
+                            </span>
+                          )}
+                        </div>
                         <p className="text-sm text-emerald-200 italic">
-                          {plant?.latin || "Nama latin tidak diketahui"}
+                          {item.plantLatin || plant?.latin || "Nama latin tidak diketahui"}
                         </p>
                       </Link>
 
@@ -327,86 +444,93 @@ export default function PlantHistoryPage() {
                           <span className="font-semibold">Ditanam:</span>{" "}
                           {formatDate(item.plantedAt)}
                         </p>
-                        <p>
-                          <span className="font-semibold">Dihentikan:</span>{" "}
-                          {formatDate(item.stoppedAt)}
-                        </p>
+                        
+                        {!item.isActive && item.stoppedAt && (
+                          <p>
+                            <span className="font-semibold">Dihentikan:</span>{" "}
+                            {formatDate(item.stoppedAt)}
+                          </p>
+                        )}
+                        
                         <p>
                           <span className="font-semibold">Durasi:</span>{" "}
                           {getDuration(item.plantedAt, item.stoppedAt)}
+                          {item.isActive && " (berlangsung)"}
                         </p>
+                        
                         <p>
-                          <span className="font-semibold">Alasan:</span>{" "}
+                          <span className="font-semibold">Status:</span>{" "}
                           <span
                             className={`inline-block px-2 py-0.5 rounded-full text-xs ${
-                              item.reason === "died"
+                              item.isActive
+                                ? "bg-green-500/30 text-green-200"
+                                : item.reason === "died"
                                 ? "bg-red-500/30 text-red-200"
                                 : "bg-amber-500/30 text-amber-200"
                             }`}
                           >
-                            {item.reason === "died" ? "😢 Tanaman mati" : "🤔 Tidak cocok"}
+                            {item.isActive 
+                              ? "🌱 Masih dipelihara" 
+                              : item.reason === "died" 
+                              ? "😢 Tanaman mati" 
+                              : "🤔 Tidak cocok"}
                           </span>
                         </p>
-                        {/* PERBAIKAN: Tampilkan total penyiraman bahkan jika 0 */}
+                        
                         <p>
                           <span className="font-semibold">Total penyiraman:</span>{" "}
-                          {item.totalWateringDays !== undefined ? item.totalWateringDays : 0} hari
+                          {item.totalWateringDays || 0} hari
                         </p>
                       </div>
 
-                      {/* Link to Detail */}
                       <Link
                         href={`/tanaman/${item.plantId}`}
-                        className="inline-flex items-center gap-1 mt-3 text-xs text-emerald-300 hover:text-emerald-200 font-semibold transition"
+                        className="inline-flex items-center gap-1 mt-3 text-xs text-emerald-300 hover:text-emerald-200 font-semibold transition-all duration-200 hover:gap-2"
                       >
                         📖 Lihat Detail Tanaman
                         <svg 
-                          className="w-3 h-3 transition-transform group-hover:translate-x-1" 
+                          className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" 
                           fill="none" 
                           stroke="currentColor" 
                           viewBox="0 0 24 24"
                         >
-                          <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d="M9 5l7 7-7 7" 
-                          />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </Link>
                     </div>
                   </div>
-                </div>
+                </AnimatedCard>
               );
             })}
           </div>
         )}
 
-        {/* Clear Confirmation Dialog */}
         {showClearConfirm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-            <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 animate-fadeIn">
+            <div className="bg-white rounded-2xl p-6 max-w-sm w-full animate-slideUp">
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 Hapus Semua History? 🗑️
               </h3>
               <p className="text-gray-600 text-sm mb-4">
-                Semua riwayat tanaman akan dihapus permanen. Aksi ini tidak bisa dibatalkan.
+                Semua riwayat tanaman yang sudah selesai akan dihapus permanen. 
+                Tanaman yang masih aktif tidak akan terhapus.
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowClearConfirm(false)}
                   disabled={clearing}
-                  className="flex-1 px-4 py-2 border-2 border-gray-200 text-gray-600 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50"
+                  className="flex-1 px-4 py-2 border-2 border-gray-200 text-gray-600 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50 hover:scale-105 active:scale-95"
                 >
                   Batal
                 </button>
-                <button
+                <AnimatedButton
                   onClick={handleClearHistory}
-                  disabled={clearing}
-                  className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition disabled:opacity-50"
+                  loading={clearing}
+                  variant="danger"
+                  className="flex-1"
                 >
                   {clearing ? "Menghapus..." : "Ya, Hapus"}
-                </button>
+                </AnimatedButton>
               </div>
             </div>
           </div>

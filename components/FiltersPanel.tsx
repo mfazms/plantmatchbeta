@@ -239,18 +239,6 @@ export default function FiltersPanel({
             options={MBTI_OPTIONS}
           />
         </Field>
-
-        <button
-          onClick={onGenerate}
-          className="
-            mt-1 w-full rounded-full bg-emerald-700 px-5 py-3 font-semibold text-white
-            hover:bg-emerald-600 active:scale-[0.99] transition
-            dens:py-2 dens:text-[14px]
-            u:py-1.5 u:text-[13px] u:rounded-lg
-          "
-        >
-          Generate
-        </button>
       </div>
 
       {/* util CSS: bikin varian 'dens:' & 'u:' (ultra) tanpa config tailwind */}
