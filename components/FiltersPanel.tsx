@@ -145,13 +145,16 @@ export default function FiltersPanel({
 
   const Field = ({
     label,
+    icon,
     children,
   }: {
     label: string;
+    icon?: string;
     children: React.ReactNode;
   }) => (
-    <div className="space-y-2 dens:space-y-1 u:space-y-1">
-      <label className="block text-sm font-medium dens:text-[13px] u:text-xs">
+    <div className="space-y-2 dens:space-y-1 u:space-y-1 animate-fadeIn">
+      <label className="block text-sm font-semibold dens:text-[13px] u:text-xs text-white/90 flex items-center gap-2">
+        {icon && <span className="text-emerald-300">{icon}</span>}
         {label}
       </label>
       {children}
@@ -171,10 +174,15 @@ export default function FiltersPanel({
       value={value ?? "-"}
       onChange={(e) => onChange(e.target.value)}
       className="
-        w-full appearance-none rounded-xl border border-white/20 bg-white text-emerald-900
-        px-4 py-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-emerald-400
+        w-full appearance-none rounded-xl border-2 border-emerald-500/30 bg-white/95 text-emerald-900
+        px-4 py-3 text-sm shadow-lg outline-none 
+        focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+        hover:border-emerald-400/60 hover:shadow-xl
+        transition-all duration-300
+        backdrop-blur-sm
         dens:h-9 dens:py-1.5 dens:px-3 dens:text-[13px] dens:rounded-lg
         u:h-8 u:py-1 u:px-2.5 u:text-xs u:rounded-md
+        cursor-pointer
       "
     >
       {options.map((opt) => (
@@ -188,63 +196,114 @@ export default function FiltersPanel({
   const YEAR = new Date().getFullYear();
 
   return (
-    <div className={density === "ultra" ? "u" : density === "dense" ? "dens" : ""}>
-      {/* COPYRIGHT di atas */}
-      <div className="mb-3 pt-1">
-        <p className="text-[11.5px] u:text-[10.5px] leading-relaxed text-white/70 text-center">
-          &copy; {YEAR}{" "}
-          <span className="text-emerald-500 font-semibold">PlantMatch</span> — Find
-          the Plant That Fits You
-        </p>
+    <div className={`relative ${density === "ultra" ? "u" : density === "dense" ? "dens" : ""}`}>
+      {/* ⭐ Animated background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-teal-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      {/* fields */}
-      <div className="flex flex-col gap-6 dens:gap-3 u:gap-2.5">
-        <Field label="Light Intensity">
-          <Select
-            value={filter.light}
-            onChange={(v) => setFilter("light", v)}
-            options={LIGHT_OPTIONS}
-          />
-        </Field>
+      {/* Content */}
+      <div className="relative z-10">
+        {/* ⭐ COPYRIGHT dengan gradient */}
+        <div className="mb-4 pt-2 animate-fadeIn">
+          <p className="text-xs u:text-[10.5px] leading-relaxed text-center backdrop-blur-sm bg-emerald-900/20 py-2 px-3 rounded-lg border border-emerald-500/20">
+            <span className="text-white/60">© {YEAR} </span>
+            <span className="bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent font-bold">
+              PlantMatch
+            </span>
+            <span className="text-white/60"> — Find the Plant That Fits You</span>
+          </p>
+        </div>
 
-        <Field label="Local Climate">
-          <Select
-            value={filter.climate}
-            onChange={(v) => setFilter("climate", v)}
-            options={CLIMATE_OPTIONS}
-          />
-        </Field>
+        {/* ⭐ Fields dengan icons dan animations */}
+        <div className="flex flex-col gap-6 dens:gap-3 u:gap-2.5">
+          <Field label="Light Intensity" icon="☀️">
+            <Select
+              value={filter.light}
+              onChange={(v) => setFilter("light", v)}
+              options={LIGHT_OPTIONS}
+            />
+          </Field>
 
-        <Field label="Aesthetic Use / Placement">
-          <Select
-            value={filter.aesthetic}
-            onChange={(v) => setFilter("aesthetic", v)}
-            options={AESTHETIC_OPTIONS}
-          />
-        </Field>
+          <Field label="Local Climate" icon="🌍">
+            <Select
+              value={filter.climate}
+              onChange={(v) => setFilter("climate", v)}
+              options={CLIMATE_OPTIONS}
+            />
+          </Field>
 
-        <Field label="Watering Frequency">
-          <Select
-            value={filter.watering as string | undefined}
-            onChange={(v) => setFilter("watering", v)}
-            options={WATERING_OPTIONS}
-          />
-        </Field>
+          <Field label="Aesthetic Use / Placement" icon="🎨">
+            <Select
+              value={filter.aesthetic}
+              onChange={(v) => setFilter("aesthetic", v)}
+              options={AESTHETIC_OPTIONS}
+            />
+          </Field>
 
-        <Field label="Personality Type (MBTI)">
-          <Select
-            value={filter.mbti as string | undefined}
-            onChange={(v) => setFilter("mbti", v)}
-            options={MBTI_OPTIONS}
-          />
-        </Field>
+          <Field label="Watering Frequency" icon="💧">
+            <Select
+              value={filter.watering as string | undefined}
+              onChange={(v) => setFilter("watering", v)}
+              options={WATERING_OPTIONS}
+            />
+          </Field>
+
+          <Field label="Personality Type (MBTI)" icon="🧠">
+            <Select
+              value={filter.mbti as string | undefined}
+              onChange={(v) => setFilter("mbti", v)}
+              options={MBTI_OPTIONS}
+            />
+          </Field>
+        </div>
       </div>
 
       {/* util CSS: bikin varian 'dens:' & 'u:' (ultra) tanpa config tailwind */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
+          /* Fade in animation */
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+          }
+
+          .animate-fadeIn:nth-child(1) { animation-delay: 0s; }
+          .animate-fadeIn:nth-child(2) { animation-delay: 0.1s; }
+          .animate-fadeIn:nth-child(3) { animation-delay: 0.2s; }
+          .animate-fadeIn:nth-child(4) { animation-delay: 0.3s; }
+          .animate-fadeIn:nth-child(5) { animation-delay: 0.4s; }
+          .animate-fadeIn:nth-child(6) { animation-delay: 0.5s; }
+
+          /* Pulse animation */
+          @keyframes pulse {
+            0%, 100% {
+              opacity: 0.3;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.5;
+              transform: scale(1.1);
+            }
+          }
+
+          .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+          }
+
+          /* Dense mode utilities */
           .dens .dens\\:gap-3 { gap: .75rem !important; }
           .dens .dens\\:space-y-1 > * + * { margin-top: .25rem !important; }
           .dens .dens\\:h-9 { height: 2.25rem !important; }
@@ -252,8 +311,8 @@ export default function FiltersPanel({
           .dens .dens\\:px-3 { padding-left: .75rem !important; padding-right: .75rem !important; }
           .dens .dens\\:text-\\[13px\\] { font-size: 13px !important; }
           .dens .dens\\:rounded-lg { border-radius: .5rem !important; }
-          .dens .dens\\:text-\\[14px\\] { font-size: 14px !important; }
 
+          /* Ultra mode utilities */
           .u .u\\:gap-2\\.5 { gap: .625rem !important; }
           .u .u\\:space-y-1 > * + * { margin-top: .25rem !important; }
           .u .u\\:h-8 { height: 2rem !important; }
@@ -261,7 +320,7 @@ export default function FiltersPanel({
           .u .u\\:px-2\\.5 { padding-left: .625rem !important; padding-right: .625rem !important; }
           .u .u\\:text-xs { font-size: .75rem !important; }
           .u .u\\:rounded-md { border-radius: .375rem !important; }
-          .u .u\\:text-\\[13px\\] { font-size: 13px !important; }
+          .u .u\\:text-\\[10\\.5px\\] { font-size: 10.5px !important; }
         `,
         }}
       />

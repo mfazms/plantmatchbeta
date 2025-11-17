@@ -66,15 +66,13 @@ ${mbtiInfo ? `MBTI Personality: ${mbtiInfo}` : ""}`;
         {/* Konten */}
         <div className="mt-6 grid md:grid-cols-2 gap-8">
           <div className="w-full">
-            <div className="relative w-full rounded-xl border border-gray-200 shadow-sm overflow-hidden bg-white">
-              <div className="pt-[75%]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <PlantImage
-                  id={plant.id}
-                  alt={plant.latin}
-                  className="absolute inset-0 w-full h-full object-contain"
-                />
-              </div>
+            {/* ⭐ FIXED: Image container dengan flexible height */}
+            <div className="relative w-full rounded-xl border border-gray-200 shadow-sm overflow-hidden bg-white flex items-center justify-center min-h-[300px]">
+              <PlantImage
+                id={plant.id}
+                alt={plant.latin}
+                className="w-full h-auto max-h-[500px] object-contain"
+              />
             </div>
 
             {/* Tombol client */}
@@ -130,7 +128,7 @@ ${mbtiInfo ? `MBTI Personality: ${mbtiInfo}` : ""}`;
               <div>
                 <dt className="font-semibold text-emerald-900 inline">Suhu ideal:</dt>{" "}
                 <dd className="inline text-gray-800">
-                  {plant.tempmin?.celsius ?? "-"}°C — {plant.tempmax?.celsius ?? "-"}°C
+                  {plant.tempmin?.celsius ?? "-"}°C – {plant.tempmax?.celsius ?? "-"}°C
                 </dd>
               </div>
               <div>
@@ -205,7 +203,7 @@ ${mbtiInfo ? `MBTI Personality: ${mbtiInfo}` : ""}`;
                         : (plant.mbti as any).type || '-'}
                     </span>
                     {typeof plant.mbti === 'object' && (plant.mbti as any).notes && 
-                      ` — ${(plant.mbti as any).notes}`}
+                      ` – ${(plant.mbti as any).notes}`}
                   </dd>
                 </div>
               )}
@@ -214,7 +212,7 @@ ${mbtiInfo ? `MBTI Personality: ${mbtiInfo}` : ""}`;
         </div>
 
         <div className="mt-12 text-center text-gray-500 text-sm">
-          © 2025 <span className="text-emerald-700 font-semibold">PlantMatch</span> — Find the Plant That Fits You
+          © 2025 <span className="text-emerald-700 font-semibold">PlantMatch</span> – Find the Plant That Fits You
         </div>
       </div>
 

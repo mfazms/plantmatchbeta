@@ -184,17 +184,14 @@ export default function PlantCard({
       )}
 
       <div className="block p-4">
-        {/* Area gambar (aspect 4:3) */}
-        <div className="relative mb-4 rounded-xl overflow-hidden bg-white ring-1 ring-gray-100 flex items-center justify-center">
-          <div className="relative w-full">
-            <div className="pt-[75%]" />
-            <img
-              src={`/api/plant-image?id=${plant.id}`}
-              alt={title}
-              className="absolute inset-0 w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-[1.08]"
-              loading="lazy"
-            />
-          </div>
+        {/* ⭐ FIXED: Area gambar dengan aspect ratio flexible */}
+        <div className="relative mb-4 rounded-xl overflow-hidden bg-white ring-1 ring-gray-100 flex items-center justify-center min-h-[200px]">
+          <img
+            src={`/api/plant-image?id=${plant.id}`}
+            alt={title}
+            className="w-full h-auto max-h-[280px] object-contain transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
         </div>
 
         {/* Nama tanaman */}

@@ -13,11 +13,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { fetchPlants } from "@/lib/loadData";
 import type { Plant } from "@/lib/types";
+import ChatButton from "@/components/ChatButton";
 
 import NavigationTabs from "./NavigationTabs";
 import AnimatedCard, { AnimatedButton } from "./AnimatedCard";
 
-// ⭐ FIXED: Proper type that matches both active and history plants
 type CombinedPlantEntry = {
   id: string;
   plantId: number;
@@ -29,7 +29,7 @@ type CombinedPlantEntry = {
   reason?: "active" | "died" | "notSuitable";
   totalWateringDays?: number;
   isActive: boolean;
-  userId?: string; // Optional since active plants might not have it
+  userId?: string;
 };
 
 export default function PlantHistoryPage() {
@@ -65,9 +65,7 @@ export default function PlantHistoryPage() {
           fetchPlants(),
         ]);
         
-        // ⭐ FIXED: Proper mapping with all required fields
         const combinedHistory: CombinedPlantEntry[] = [
-          // Active plants
           ...activePlantsData.map(plant => ({
             id: plant.id,
             plantId: plant.plantId,
@@ -81,7 +79,6 @@ export default function PlantHistoryPage() {
             isActive: true,
             userId: user.uid,
           })),
-          // Historical plants
           ...historyData.map(h => ({
             id: h.id,
             plantId: h.plantId,
@@ -402,15 +399,16 @@ export default function PlantHistoryPage() {
                   }`}
                 >
                   <div className="flex gap-4">
+                    {/* ⭐ RESPONSIVE IMAGE FIX - Flexible container for different aspect ratios */}
                     <Link 
                       href={`/tanaman/${item.plantId}`}
-                      className="w-24 h-24 rounded-lg bg-white/10 overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-emerald-400 transition-all duration-300"
+                      className="w-32 min-h-[8rem] rounded-lg bg-white/10 flex-shrink-0 hover:ring-2 hover:ring-emerald-400 transition-all duration-300 p-3 flex items-center justify-center"
                     >
                       {item.image || plant?.image ? (
                         <img
                           src={item.image || plant?.image || ""}
                           alt={item.plantName}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-emerald-300 text-2xl">
@@ -536,6 +534,9 @@ export default function PlantHistoryPage() {
           </div>
         )}
       </div>
+      {/* ⭐ Floating Chat Button - PRESERVED FROM ORIGINAL */}
+      <ChatButton context="Halaman My Garden - bantu user merawat tanaman yang sudah ditanam, tracking penyiraman, dan tips perawatan tanaman hias." />
+      
     </main>
   );
 }
