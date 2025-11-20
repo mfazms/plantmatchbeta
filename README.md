@@ -10,7 +10,7 @@ It uses a curated dataset from **Kaggle**, combining plant characteristics such 
 
 ### 🌱 Core Features
 - **Personalized Plant Recommendation** – Smart matching based on your preferences
-- **Smart Search** – Fuzzy matching & TF-IDF for accurate results
+- **Smart Search** – Fuzzy matching with Rule-based scoring with content-based filtering for accurate results
 - **Contextual Filters** – Light, Watering, Climate, Placement, MBTI personality
 - **Detailed Plant Information** – Comprehensive care instructions
 
