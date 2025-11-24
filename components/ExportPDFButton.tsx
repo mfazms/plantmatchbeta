@@ -9,7 +9,7 @@ const INLINE_PLACEHOLDER =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800">
-       <rect width="100%" height="100%" fill="#ffffff"/>
+       <rect width="100%" height="100%" fill="#f9fafb"/>
        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
              font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#9ca3af">
          no image
@@ -54,7 +54,7 @@ function fitImages(root: HTMLElement) {
   imgs.forEach((img) => {
     const parent = img.parentElement as HTMLElement | null;
     const parentWidth = parent?.getBoundingClientRect()?.width || RENDER_WIDTH_PX - 48;
-    const maxH = 420;
+    const maxH = 500;
 
     const nw = img.naturalWidth || 1;
     const nh = img.naturalHeight || 1;
@@ -228,25 +228,19 @@ export default function ExportPDFButton({
     await Promise.all(
       imgs.map(async (img) => {
         if (img.complete && (img as HTMLImageElement).naturalWidth > 0) return;
-        const data = img.getAttribute("data-candidates");
-        if (!data) return;
-        try {
-          await tryLoadImage(img as HTMLImageElement, JSON.parse(data));
-        } catch {
-          (img as HTMLImageElement).src = INLINE_PLACEHOLDER;
-        }
+        const candidates = JSON.parse(img.getAttribute("data-candidates") || "[]");
+        if (!candidates.length) return;
+        await tryLoadImage(img, candidates);
       })
     );
   };
 
   const handleExport = async () => {
-    if (!ref.current || disabled || plants.length === 0) return;
-
+    if (!ref.current) return;
     setIsExporting(true);
     setProgress(0);
 
     try {
-      // Progress simulation
       const progressInterval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 90) {
@@ -266,7 +260,7 @@ export default function ExportPDFButton({
 
       const opt = {
         margin: 10,
-        filename: "plantify-selection.pdf",
+        filename: "plantmatch-selection.pdf",
         image: { type: "jpeg" as const, quality: 1 },
         html2canvas: {
           backgroundColor: "#ffffff",
@@ -355,67 +349,162 @@ export default function ExportPDFButton({
           {plants.map((p, idx) => {
             const candidates = getSrcCandidates(p);
             const isLast = idx === plants.length - 1;
+            
+            // ⭐ FIX: Handle MBTI properly (string OR object)
+            const mbtiValue = typeof p.mbti === 'string' 
+              ? p.mbti.trim() 
+              : (p.mbti as any)?.type || '';
+            
             return (
               <div
                 key={p.id}
                 style={{
                   breakInside: "avoid",
                   pageBreakInside: "avoid",
-                  pageBreakAfter: isLast ? "avoid" : "always",
-                  padding: 24,
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 12,
-                  marginBottom: 16,
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)",
+                  pageBreakBefore: idx === 0 ? "avoid" : "always",
+                  pageBreakAfter: "avoid",
+                  padding: 32,
+                  border: "2px solid #d1fae5",
+                  borderRadius: 16,
+                  marginBottom: isLast ? 0 : 20,
+                  background: "linear-gradient(to bottom, #ffffff, #f0fdf4)",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                 }}
               >
                 {/* Header brand */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                  <img src="/hero1.png" alt="PlantMatch" style={{ width: 56, height: 56, objectFit: "contain" }} />
-                  <div style={{ fontSize: 18, fontWeight: 700, color: "#0b3d2e" }}>PlantMatch</div>
+                <div style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 12, 
+                  marginBottom: 20,
+                  paddingBottom: 16,
+                  borderBottom: "2px solid #d1fae5"
+                }}>
+                  <img 
+                    src="/hero1.png" 
+                    alt="PlantMatch" 
+                    style={{ 
+                      width: 64, 
+                      height: 64, 
+                      objectFit: "contain",
+                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))"
+                    }} 
+                  />
+                  <div style={{ 
+                    fontSize: 24, 
+                    fontWeight: 800, 
+                    color: "#047857",
+                    letterSpacing: "-0.5px"
+                  }}>
+                    PlantMatch
+                  </div>
                 </div>
 
-                <h2 style={{ fontSize: 28, margin: 0, color: "#0b3d2e" }}>{displayName(p)}</h2>
-                <p style={{ margin: "6px 0 14px", fontStyle: "italic", color: "#374151" }}>{p.latin}</p>
+                {/* Plant name */}
+                <h2 style={{ 
+                  fontSize: 36, 
+                  margin: "0 0 8px 0", 
+                  color: "#065f46",
+                  fontWeight: 800,
+                  lineHeight: 1.2
+                }}>
+                  {displayName(p)}
+                </h2>
+                <p style={{ 
+                  margin: "0 0 24px 0", 
+                  fontStyle: "italic", 
+                  color: "#6b7280",
+                  fontSize: 18
+                }}>
+                  {p.latin}
+                </p>
 
-                {/* Area gambar */}
+                {/* Area gambar - BIGGER & CENTERED */}
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     width: "100%",
-                    background: "#fafafa",
-                    borderRadius: 10,
+                    background: "linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%)",
+                    borderRadius: 12,
                     overflow: "hidden",
-                    marginTop: 6,
-                    marginBottom: 12,
+                    marginTop: 12,
+                    marginBottom: 24,
+                    padding: 20,
+                    border: "2px solid #a7f3d0",
                   }}
                 >
                   <img
                     alt={p.latin}
                     data-candidates={JSON.stringify(candidates)}
                     data-fit="pdf"
-                    style={{ display: "block", borderRadius: 8, background: "#fafafa" }}
+                    style={{ 
+                      display: "block", 
+                      borderRadius: 10,
+                      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+                    }}
                   />
                 </div>
 
-                <div style={{ marginTop: 14, fontSize: 14.5, lineHeight: 1.75, color: "#111" }}>
-                  <div><b>Family:</b> <span style={{ color: "#374151" }}>{p.family ?? "-"}</span></div>
-                  <div><b>Kategori:</b> <span style={{ color: "#374151" }}>{p.category ?? "-"}</span></div>
-                  <div><b>Asal/Origin:</b> <span style={{ color: "#374151" }}>{p.origin ?? "-"}</span></div>
-                  <div><b>Iklim:</b> <span style={{ color: "#374151" }}>{p.climate ?? "-"}</span></div>
+                {/* Plant Details - 2 COLUMNS */}
+                <div style={{ 
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "20px 40px",
+                  marginTop: 24, 
+                  fontSize: 15, 
+                  lineHeight: 1.8, 
+                  color: "#111" 
+                }}>
                   <div>
-                    <b>Suhu ideal:</b>{" "}
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Family:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.family || "-"}</span>
+                  </div>
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Kategori:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.category || "-"}</span>
+                  </div>
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Asal/Origin:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.origin || "-"}</span>
+                  </div>
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Iklim:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.climate || "-"}</span>
+                  </div>
+                  
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Suhu ideal:</span>
+                    <br />
                     <span style={{ color: "#374151" }}>
-                      {p.tempmin?.celsius ?? "-"}°C – {p.tempmax?.celsius ?? "-"}°C (
-                      {p.tempmin?.fahrenheit ?? "-"}–{p.tempmax?.fahrenheit ?? "-"}°F)
+                      {p.tempmin?.celsius || "-"}°C – {p.tempmax?.celsius || "-"}°C 
+                      {" "}({p.tempmin?.fahrenheit || "-"}–{p.tempmax?.fahrenheit || "-"}°F)
                     </span>
                   </div>
-                  <div><b>Cahaya ideal:</b> <span style={{ color: "#374151" }}>{p.ideallight ?? "-"}</span></div>
-                  <div><b>Cahaya toleran:</b> <span style={{ color: "#374151" }}>{p.toleratedlight ?? "-"}</span></div>
+                  
                   <div>
-                    <b>Penyiraman:</b>{" "}
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Cahaya ideal:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.ideallight || "-"}</span>
+                  </div>
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Cahaya toleran:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{p.toleratedlight || "-"}</span>
+                  </div>
+                  
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Penyiraman:</span>
+                    <br />
                     <span style={{ color: "#374151" }}>
                       {p.watering ||
                         ((p as any).watering_frequency
@@ -425,50 +514,99 @@ export default function ExportPDFButton({
                   </div>
 
                   {(p as any).watering_frequency?.notes && (
-                    <div>
-                      <b>Catatan Penyiraman:</b> <span style={{ color: "#374151" }}>{(p as any).watering_frequency.notes}</span>
+                    <div style={{ gridColumn: "1 / -1" }}>
+                      <span style={{ fontWeight: 700, color: "#047857" }}>Catatan Penyiraman:</span>
+                      <br />
+                      <span style={{ color: "#374151" }}>{(p as any).watering_frequency.notes}</span>
                     </div>
                   )}
-
-                  <div><b>Hama:</b> <span style={{ color: "#374151" }}>{toList(p.insects).join(", ") || "-"}</span></div>
-                  <div><b>Penyakit:</b> <span style={{ color: "#374151" }}>{toList(p.diseases).join(", ") || "-"}</span></div>
-                  <div><b>Penggunaan:</b> <span style={{ color: "#374151" }}>{toList(p.use).join(", ") || "-"}</span></div>
-
-                  {(p as any).care_tips && (p as any).care_tips.length > 0 && (
-                    <div style={{ marginTop: 12 }}>
-                      <b>Tips Perawatan:</b>
-                      <ul style={{ margin: "4px 0 0 20px", padding: 0, color: "#374151" }}>
-                        {(p as any).care_tips.map((tip: string, i: number) => (
-                          <li key={i} style={{ marginBottom: 3 }}>
-                            {tip}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {(p as any).mbti && (
-                    <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid #d1fae5" }}>
-                      <b>Kepribadian MBTI:</b>{" "}
-                      <span style={{ color: "#059669", fontWeight: 700 }}>{(p as any).mbti.type}</span>
-                      {(p as any).mbti.notes && <span style={{ color: "#374151" }}> – {(p as any).mbti.notes}</span>}
-                    </div>
-                  )}
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Hama:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{toList(p.insects).join(", ") || "-"}</span>
+                  </div>
+                  
+                  <div>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Penyakit:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{toList(p.diseases).join(", ") || "-"}</span>
+                  </div>
+                  
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <span style={{ fontWeight: 700, color: "#047857" }}>Penggunaan:</span>
+                    <br />
+                    <span style={{ color: "#374151" }}>{toList(p.use).join(", ") || "-"}</span>
+                  </div>
                 </div>
+
+                {/* Care Tips */}
+                {(p as any).care_tips && (p as any).care_tips.length > 0 && (
+                  <div style={{ 
+                    marginTop: 24, 
+                    padding: 16,
+                    background: "#ecfdf5",
+                    borderRadius: 8,
+                    border: "1px solid #a7f3d0"
+                  }}>
+                    <div style={{ fontWeight: 700, color: "#047857", marginBottom: 8 }}>
+                      Tips Perawatan:
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: 20, color: "#374151" }}>
+                      {(p as any).care_tips.map((tip: string, i: number) => (
+                        <li key={i} style={{ marginBottom: 6 }}>
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* ⭐ FIXED: MBTI Section - Now shows correctly */}
+                {mbtiValue && (
+                  <div style={{ 
+                    marginTop: 24, 
+                    padding: 20,
+                    background: "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+                    borderRadius: 12,
+                    border: "2px solid #6ee7b7",
+                    boxShadow: "0 4px 6px -1px rgba(5, 150, 105, 0.1)"
+                  }}>
+                    <div style={{ 
+                      fontSize: 18,
+                      fontWeight: 700, 
+                      color: "#065f46",
+                      marginBottom: 6,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8
+                    }}>
+                      <span>🧠</span>
+                      Kepribadian MBTI:
+                    </div>
+                    <div style={{ 
+                      fontSize: 24,
+                      fontWeight: 800, 
+                      color: "#047857",
+                      letterSpacing: "1px"
+                    }}>
+                      {mbtiValue}
+                    </div>
+                  </div>
+                )}
 
                 {/* Branding footer */}
                 <div
                   style={{
-                    marginTop: 24,
-                    borderTop: "1px solid #e5e7eb",
-                    paddingTop: 8,
+                    marginTop: 32,
+                    borderTop: "2px solid #d1fae5",
+                    paddingTop: 16,
                     textAlign: "center",
-                    fontSize: 12,
+                    fontSize: 13,
                     color: "#6b7280",
                   }}
                 >
-                  © 2025 <span style={{ color: "#059669", fontWeight: 600 }}>PlantMatch</span> – Find the Plant That Fits
-                  You
+                  © 2025 <span style={{ color: "#047857", fontWeight: 700 }}>PlantMatch</span> – Find the Plant That Fits You
                 </div>
               </div>
             );
