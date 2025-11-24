@@ -4,9 +4,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+// 🔹 Helper function untuk generate particle data
+const generateParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    width: Math.random() * 8 + 2,
+    height: Math.random() * 8 + 2,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    r: 100 + Math.random() * 155,
+    g: 200 + Math.random() * 55,
+    b: 150 + Math.random() * 105,
+    opacity: 0.3 + Math.random() * 0.4,
+    delay: Math.random() * 5,
+    duration: 5 + Math.random() * 5,
+  }));
+};
+
+// 🔹 Helper function untuk generate shooting stars
+const generateStars = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 50,
+    delay: i * 3 + Math.random() * 2,
+  }));
+};
+
 export default function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  
+  // 🔹 ⭐ NEW: State untuk particles (hanya di client)
+  const [particles, setParticles] = useState<ReturnType<typeof generateParticles>>([]);
+  const [stars, setStars] = useState<ReturnType<typeof generateStars>>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // 🔹 ⭐ Generate particles hanya di client-side
+  useEffect(() => {
+    setParticles(generateParticles(15));
+    setStars(generateStars(3));
+    setIsMounted(true);
+  }, []);
 
   // Track mouse for parallax effect
   useEffect(() => {
@@ -59,32 +98,32 @@ export default function HomePage() {
           }}></div>
         </div>
 
-        {/* Multiple floating particles with different sizes */}
-        {[...Array(15)].map((_, i) => (
+        {/* 🔹 ⭐ FIXED: Multiple floating particles - only render after mount */}
+        {isMounted && particles.map((particle) => (
           <div
-            key={i}
+            key={particle.id}
             className="absolute rounded-full animate-float"
             style={{
-              width: `${Math.random() * 8 + 2}px`,
-              height: `${Math.random() * 8 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              background: `rgba(${100 + Math.random() * 155}, ${200 + Math.random() * 55}, ${150 + Math.random() * 105}, ${0.3 + Math.random() * 0.4})`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 5}s`,
+              width: `${particle.width}px`,
+              height: `${particle.height}px`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              background: `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${particle.opacity})`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${particle.duration}s`,
             }}
           ></div>
         ))}
 
-        {/* Shooting stars effect */}
-        {[...Array(3)].map((_, i) => (
+        {/* 🔹 ⭐ FIXED: Shooting stars effect - only render after mount */}
+        {isMounted && stars.map((star) => (
           <div
-            key={`star-${i}`}
+            key={`star-${star.id}`}
             className="absolute w-1 h-1 bg-white rounded-full animate-shooting-star"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 50}%`,
-              animationDelay: `${i * 3 + Math.random() * 2}s`,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              animationDelay: `${star.delay}s`,
             }}
           ></div>
         ))}

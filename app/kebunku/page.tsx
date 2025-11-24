@@ -247,12 +247,18 @@ export default function KebunkuPage() {
             >
               History
             </Link>
+            <Link
+              href="/wishlist"
+              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
+            >
+              Wishlist
+            </Link>
           </div>
         </div>
 
         {/* ⭐ UBAH: Tambahkan nama user */}
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">
-          🌱 {getUserName()}'s Little Garden
+          {getUserName()}'s Garden
         </h1>
 
         {unwateredTodayCount > 0 && (
@@ -385,7 +391,7 @@ export default function KebunkuPage() {
                         href={`/tanaman/${entry.plantId}`}
                         className="inline-flex items-center justify-center rounded-md bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-500 transition"
                       >
-                        📖 Lihat Detail
+                      Lihat Detail
                       </Link>
 
                       <button
@@ -401,14 +407,14 @@ export default function KebunkuPage() {
                           ? "Menyimpan..."
                           : wateredToday
                           ? "✓ Sudah disiram hari ini"
-                          : "💧 Tandai sudah disiram"}
+                          : "Tandai sudah disiram"}
                       </button>
 
                       <button
                         onClick={() => handleStop(entry.id, plantName)}
                         className="inline-flex items-center justify-center rounded-md bg-red-500/90 px-3 py-2 text-xs font-semibold text-white hover:bg-red-600 transition"
                       >
-                        🛑 Berhenti menanam
+                        Berhenti menanam
                       </button>
                     </div>
                   </div>

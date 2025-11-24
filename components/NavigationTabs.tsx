@@ -1,25 +1,57 @@
 // components/NavigationTabs.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { getWishlistCount } from "@/lib/wishlist";
 
 type NavTab = {
   label: string;
   href: string;
   badge?: number;
+  emoji?: string;
 };
 
 export default function NavigationTabs({ 
-  tabs, 
   alertCount = 0 
 }: { 
-  tabs: NavTab[];
   alertCount?: number;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const [navigatingTo, setNavigatingTo] = useState<string | null>(null);
+  const [wishlistCount, setWishlistCount] = useState(0);
+
+  // Load wishlist count
+  useEffect(() => {
+    const loadWishlistCount = async () => {
+      const count = await getWishlistCount();
+      setWishlistCount(count);
+    };
+
+    loadWishlistCount();
+
+    // Refresh count setiap 5 detik
+    const interval = setInterval(loadWishlistCount, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const tabs: NavTab[] = [
+    {
+      label: "All Plants",
+      href: "/rekomendasi",
+    },
+    {
+      label: "My Garden",
+      href: "/kebunku",
+      badge: alertCount,
+    },
+    {
+      label: "Wishlist",
+      href: "/wishlist",
+      badge: wishlistCount,
+    }
+  ];
 
   const handleNavigation = (href: string) => {
     if (pathname === href) return; // Already on this page
@@ -37,7 +69,7 @@ export default function NavigationTabs({
 
   return (
     <>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-3 flex-wrap">
         {tabs.map((tab) => {
           const active = isActive(tab.href);
           const loading = isNavigating(tab.href);
@@ -86,12 +118,21 @@ export default function NavigationTabs({
                     />
                   </svg>
                 )}
+                
+                {tab.emoji && <span>{tab.emoji}</span>}
                 <span>{tab.label}</span>
                 
-                {/* Badge untuk My Garden */}
-                {tab.label === "My Garden" && alertCount > 0 && (
-                  <span className="inline-flex items-center justify-center rounded-full bg-red-500 text-white text-xs px-2 py-0.5 animate-pulse">
-                    {alertCount}
+                {/* Badge untuk count */}
+                {tab.badge && tab.badge > 0 && (
+                  <span className={`
+                    inline-flex items-center justify-center rounded-full 
+                    text-white text-xs px-2 py-0.5 font-bold
+                    ${tab.label === "My Garden" 
+                      ? "bg-red-500 animate-pulse" 
+                      : "bg-pink-500"
+                    }
+                  `}>
+                    {tab.badge}
                   </span>
                 )}
               </span>

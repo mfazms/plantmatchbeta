@@ -249,14 +249,6 @@ export default function FiltersPanel({
               options={WATERING_OPTIONS}
             />
           </Field>
-
-          <Field label="Personality Type (MBTI)" icon="🧠">
-            <Select
-              value={filter.mbti as string | undefined}
-              onChange={(v) => setFilter("mbti", v)}
-              options={MBTI_OPTIONS}
-            />
-          </Field>
         </div>
       </div>
 

@@ -20,6 +20,7 @@ import FiltersPanel from "@/components/FiltersPanel";
 import PlantCard from "@/components/PlantCard";
 import ExportPDFButton from "@/components/ExportPDFButton";
 import ChatButton from "@/components/ChatButton";
+import NavigationTabs from "@/components/NavigationTabs";
 
 // ⭐ NEW: Import loading components
 import { 
@@ -30,7 +31,7 @@ import {
 } from "@/components/LoadingAnimations";
 
 // Firebase
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
 
 // Garden summary (untuk notif belum disiram)
@@ -62,6 +63,7 @@ export default function RekomendasiPage() {
   // ⭐ NEW: Loading states
   const [isGenerating, setIsGenerating] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // 🔹 Cek status login Firebase
   useEffect(() => {
@@ -215,6 +217,19 @@ export default function RekomendasiPage() {
     }, 300);
   };
 
+  // 🔹 ⭐ NEW: Handle Logout dengan Firebase signOut
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await signOut(auth);
+      router.push("/");
+    } catch (error) {
+      console.error("Error saat logout:", error);
+      alert("Gagal logout. Silakan coba lagi.");
+      setIsLoggingOut(false);
+    }
+  };
+
   // 🔹 Loading state
   if (loading) {
     return (
@@ -284,19 +299,21 @@ export default function RekomendasiPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* ⭐ Page transition overlay */}
-      <PageTransition show={isNavigating} />
+      <PageTransition show={isNavigating || isLoggingOut} />
 
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[340px_1fr]">
         {/* SIDEBAR */}
         <aside className="bg-emerald-800 text-white p-6 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
           <div className="mb-8 flex items-center justify-between">
-            <Link
-              href="/"
+            <button
+              onClick={handleLogout}
+              disabled={isLoggingOut}
               className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5
-                         bg-white/10 hover:bg-white/20 transition text-sm font-medium"
+                         bg-white/10 hover:bg-white/20 transition text-sm font-medium
+                         disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              ← Logout
-            </Link>
+              {isLoggingOut ? "Logging out..." : "← Logout"}
+            </button>
 
             {/* Welcome Message */}
             <div className="text-right">
@@ -345,37 +362,11 @@ export default function RekomendasiPage() {
               scrolled ? "shadow-md" : "shadow-sm"
             }`}
           >
-            {/* NAVIGATION TABS */}
-            <div className="flex justify-center gap-4 mb-4">
-              <Link
-                href="/rekomendasi"
-                className={`px-4 py-2 rounded-full border-2 font-semibold transition-all duration-300 ${
-                  pathname === "/rekomendasi" ? activeClass : inactiveClass
-                }`}
-              >
-                All Plants
-              </Link>
-
-              {/* ⭐ My Garden button dengan loading */}
-              <button
-                onClick={() => handleNavigation("/kebunku")}
-                className={`px-4 py-2 rounded-full border-2 font-semibold transition-all duration-300 ${
-                  pathname === "/kebunku" ? activeClass : inactiveClass
-                }`}
-              >
-                <span className="inline-flex items-center gap-2">
-                  <span>My Garden</span>
-                  {alertCount > 0 && (
-                    <span className="inline-flex items-center justify-center rounded-full bg-red-500 text-white text-xs px-2 py-0.5 animate-pulse">
-                      {alertCount}
-                    </span>
-                  )}
-                </span>
-              </button>
-            </div>
+            {/* ⭐ NAVIGATION TABS - Menggunakan Component Baru */}
+            <NavigationTabs alertCount={alertCount} />
 
             {/* SEARCH BAR */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mt-4">
               <input
                 value={query}
                 onChange={(e) => onSearchChange(e.target.value)}
@@ -389,7 +380,7 @@ export default function RekomendasiPage() {
           {appliedHasFilter && !isGenerating && (
             <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl animate-fadeIn">
               <p className="text-sm text-emerald-800">
-                🎯 Menampilkan <span className="font-bold">{visiblePlants.length}</span> tanaman 
+                Menampilkan <span className="font-bold">{visiblePlants.length}</span> tanaman 
                 yang cocok dengan filter kamu.
                 {visiblePlants.length === 0 && (
                   <span className="block mt-2 text-amber-700">

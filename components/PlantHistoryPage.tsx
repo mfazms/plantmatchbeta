@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
-import { 
-  getPlantHistory, 
-  clearPlantHistory, 
+import {
+  getPlantHistory,
+  clearPlantHistory,
   PlantHistoryEntry,
   getUserGarden
 } from "@/lib/garden";
@@ -58,13 +58,13 @@ export default function PlantHistoryPage() {
 
       try {
         setLoading(true);
-        
+
         const [historyData, activePlantsData, plantsData] = await Promise.all([
           getPlantHistory(user.uid),
           getUserGarden(user.uid),
           fetchPlants(),
         ]);
-        
+
         const combinedHistory: CombinedPlantEntry[] = [
           ...activePlantsData.map(plant => ({
             id: plant.id,
@@ -93,7 +93,7 @@ export default function PlantHistoryPage() {
             userId: h.userId,
           })),
         ];
-        
+
         setHistory(combinedHistory);
         setPlants(plantsData);
       } catch (error) {
@@ -134,7 +134,7 @@ export default function PlantHistoryPage() {
 
   const formatDate = (date: any) => {
     if (!date) return "-";
-    
+
     let d: Date;
     if (date instanceof Date) {
       d = date;
@@ -158,7 +158,7 @@ export default function PlantHistoryPage() {
     if (!endDate) {
       const now = new Date();
       let start: Date;
-      
+
       if (startDate instanceof Date) {
         start = startDate;
       } else if (typeof startDate === "string") {
@@ -171,14 +171,14 @@ export default function PlantHistoryPage() {
 
       const diff = now.getTime() - start.getTime();
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      
+
       if (days === 0) return "< 1 hari";
       if (days === 1) return "1 hari";
       return `${days} hari`;
     }
-    
+
     let start: Date, end: Date;
-    
+
     if (startDate instanceof Date) {
       start = startDate;
     } else if (typeof startDate === "string") {
@@ -201,7 +201,7 @@ export default function PlantHistoryPage() {
 
     const diff = end.getTime() - start.getTime();
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    
+
     if (days === 0) return "< 1 hari";
     if (days === 1) return "1 hari";
     return `${days} hari`;
@@ -241,13 +241,29 @@ export default function PlantHistoryPage() {
     <main className="min-h-screen bg-emerald-900 text-white">
       <div className="max-w-5xl mx-auto px-4 py-10">
         <div className="flex justify-center mb-8">
-          <NavigationTabs 
-            tabs={[
-              { label: "All Plants", href: "/rekomendasi" },
-              { label: "My Garden", href: "/kebunku" },
-              { label: "History", href: "/riwayat-tanaman" }
-            ]}
-          />
+          <div className="inline-flex rounded-full bg-emerald-800/80 px-2 py-2 text-sm font-medium gap-2">
+            <Link
+              href="/rekomendasi"
+              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
+            >
+              All Plants
+            </Link>
+            <Link
+              href="/kebunku"
+              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
+            >
+              My Garden
+            </Link>
+            <button className="px-4 py-1 bg-white text-emerald-800 rounded-full">
+              History
+            </button>
+            <Link
+              href="/wishlist"
+              className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
+            >
+              Wishlist
+            </Link>
+          </div>
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-2 animate-fadeIn">
@@ -259,23 +275,23 @@ export default function PlantHistoryPage() {
 
         {history.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <AnimatedCard 
+            <AnimatedCard
               delay={0}
               className="bg-emerald-800/50 rounded-lg p-4 text-center hover:bg-emerald-800/60"
             >
               <div className="text-2xl font-bold">{stats.total}</div>
               <div className="text-sm text-emerald-200">Total</div>
             </AnimatedCard>
-            
-            <AnimatedCard 
+
+            <AnimatedCard
               delay={50}
               className="bg-green-600/30 rounded-lg p-4 text-center hover:bg-green-600/40"
             >
               <div className="text-2xl font-bold text-green-300">{stats.active}</div>
               <div className="text-sm text-emerald-200">Aktif</div>
             </AnimatedCard>
-            
-            <AnimatedCard 
+
+            <AnimatedCard
               delay={100}
               className="bg-red-600/30 rounded-lg p-4 text-center hover:bg-red-600/40"
             >
@@ -283,7 +299,7 @@ export default function PlantHistoryPage() {
               <div className="text-sm text-emerald-200">Mati</div>
             </AnimatedCard>
 
-            <AnimatedCard 
+            <AnimatedCard
               delay={150}
               className="bg-amber-600/30 rounded-lg p-4 text-center hover:bg-amber-600/40"
             >
@@ -297,46 +313,42 @@ export default function PlantHistoryPage() {
           <div className="flex flex-wrap gap-2 mb-6 animate-fadeIn" style={{ animationDelay: '150ms' }}>
             <button
               onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
-                activeTab === "all"
-                  ? "bg-emerald-600 text-white shadow-lg"
-                  : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
-              }`}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${activeTab === "all"
+                ? "bg-emerald-600 text-white shadow-lg"
+                : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
+                }`}
             >
               Semua ({stats.total})
             </button>
-            
+
             <button
               onClick={() => setActiveTab("active")}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
-                activeTab === "active"
-                  ? "bg-green-600 text-white shadow-lg"
-                  : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
-              }`}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${activeTab === "active"
+                ? "bg-green-600 text-white shadow-lg"
+                : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
+                }`}
             >
-              🌱 Aktif ({stats.active})
+              Aktif ({stats.active})
             </button>
-            
+
             <button
               onClick={() => setActiveTab("died")}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
-                activeTab === "died"
-                  ? "bg-red-600 text-white shadow-lg"
-                  : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
-              }`}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${activeTab === "died"
+                ? "bg-red-600 text-white shadow-lg"
+                : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
+                }`}
             >
-              💀 Mati ({stats.died})
+              Mati ({stats.died})
             </button>
-            
+
             <button
               onClick={() => setActiveTab("notSuitable")}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
-                activeTab === "notSuitable"
-                  ? "bg-amber-600 text-white shadow-lg"
-                  : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
-              }`}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${activeTab === "notSuitable"
+                ? "bg-amber-600 text-white shadow-lg"
+                : "bg-emerald-800/50 text-emerald-200 hover:bg-emerald-700"
+                }`}
             >
-              🤔 Tidak Cocok ({stats.notSuitable})
+              Tidak Cocok ({stats.notSuitable})
             </button>
           </div>
         )}
@@ -369,10 +381,10 @@ export default function PlantHistoryPage() {
               {activeTab === "all"
                 ? "Belum ada history tanaman. Mulai menanam tanaman pertamamu!"
                 : activeTab === "active"
-                ? "Tidak ada tanaman yang aktif saat ini. Mulai menanam yuk!"
-                : activeTab === "died"
-                ? "Tidak ada tanaman yang mati. Kamu hebat! 🌟"
-                : "Tidak ada tanaman yang tidak cocok. Good job! ✨"}
+                  ? "Tidak ada tanaman yang aktif saat ini. Mulai menanam yuk!"
+                  : activeTab === "died"
+                    ? "Tidak ada tanaman yang mati. Kamu hebat! 🌟"
+                    : "Tidak ada tanaman yang tidak cocok. Good job! ✨"}
             </p>
             {(activeTab === "all" || activeTab === "active") && (
               <Link
@@ -387,20 +399,19 @@ export default function PlantHistoryPage() {
           <div className="grid gap-4 md:grid-cols-2">
             {filteredHistory.map((item, idx) => {
               const plant = getPlantDetails(item.plantId);
-              
+
               return (
                 <AnimatedCard
                   key={item.id}
                   delay={idx * 50}
-                  className={`rounded-xl p-4 transition-all duration-300 group ${
-                    item.isActive 
-                      ? "bg-green-600/20 hover:bg-green-600/30 border-2 border-green-500/30" 
-                      : "bg-emerald-800/50 hover:bg-emerald-800/60"
-                  }`}
+                  className={`rounded-xl p-4 transition-all duration-300 group ${item.isActive
+                    ? "bg-green-600/20 hover:bg-green-600/30 border-2 border-green-500/30"
+                    : "bg-emerald-800/50 hover:bg-emerald-800/60"
+                    }`}
                 >
                   <div className="flex gap-4">
                     {/* ⭐ RESPONSIVE IMAGE FIX - Flexible container for different aspect ratios */}
-                    <Link 
+                    <Link
                       href={`/tanaman/${item.plantId}`}
                       className="w-32 min-h-[8rem] rounded-lg bg-white/10 flex-shrink-0 hover:ring-2 hover:ring-emerald-400 transition-all duration-300 p-3 flex items-center justify-center"
                     >
@@ -418,7 +429,7 @@ export default function PlantHistoryPage() {
                     </Link>
 
                     <div className="flex-1">
-                      <Link 
+                      <Link
                         href={`/tanaman/${item.plantId}`}
                         className="block hover:text-emerald-200 transition"
                       >
@@ -442,39 +453,38 @@ export default function PlantHistoryPage() {
                           <span className="font-semibold">Ditanam:</span>{" "}
                           {formatDate(item.plantedAt)}
                         </p>
-                        
+
                         {!item.isActive && item.stoppedAt && (
                           <p>
                             <span className="font-semibold">Dihentikan:</span>{" "}
                             {formatDate(item.stoppedAt)}
                           </p>
                         )}
-                        
+
                         <p>
                           <span className="font-semibold">Durasi:</span>{" "}
                           {getDuration(item.plantedAt, item.stoppedAt)}
                           {item.isActive && " (berlangsung)"}
                         </p>
-                        
+
                         <p>
                           <span className="font-semibold">Status:</span>{" "}
                           <span
-                            className={`inline-block px-2 py-0.5 rounded-full text-xs ${
-                              item.isActive
-                                ? "bg-green-500/30 text-green-200"
-                                : item.reason === "died"
+                            className={`inline-block px-2 py-0.5 rounded-full text-xs ${item.isActive
+                              ? "bg-green-500/30 text-green-200"
+                              : item.reason === "died"
                                 ? "bg-red-500/30 text-red-200"
                                 : "bg-amber-500/30 text-amber-200"
-                            }`}
+                              }`}
                           >
-                            {item.isActive 
-                              ? "🌱 Masih dipelihara" 
-                              : item.reason === "died" 
-                              ? "😢 Tanaman mati" 
-                              : "🤔 Tidak cocok"}
+                            {item.isActive
+                              ? "🌱 Masih dipelihara"
+                              : item.reason === "died"
+                                ? "😢 Tanaman mati"
+                                : "🤔 Tidak cocok"}
                           </span>
                         </p>
-                        
+
                         <p>
                           <span className="font-semibold">Total penyiraman:</span>{" "}
                           {item.totalWateringDays || 0} hari
@@ -486,10 +496,10 @@ export default function PlantHistoryPage() {
                         className="inline-flex items-center gap-1 mt-3 text-xs text-emerald-300 hover:text-emerald-200 font-semibold transition-all duration-200 hover:gap-2"
                       >
                         📖 Lihat Detail Tanaman
-                        <svg 
-                          className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" 
-                          fill="none" 
-                          stroke="currentColor" 
+                        <svg
+                          className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -510,7 +520,7 @@ export default function PlantHistoryPage() {
                 Hapus Semua History? 🗑️
               </h3>
               <p className="text-gray-600 text-sm mb-4">
-                Semua riwayat tanaman yang sudah selesai akan dihapus permanen. 
+                Semua riwayat tanaman yang sudah selesai akan dihapus permanen.
                 Tanaman yang masih aktif tidak akan terhapus.
               </p>
               <div className="flex gap-3">
@@ -536,7 +546,7 @@ export default function PlantHistoryPage() {
       </div>
       {/* ⭐ Floating Chat Button - PRESERVED FROM ORIGINAL */}
       <ChatButton context="Halaman My Garden - bantu user merawat tanaman yang sudah ditanam, tracking penyiraman, dan tips perawatan tanaman hias." />
-      
+
     </main>
   );
 }
