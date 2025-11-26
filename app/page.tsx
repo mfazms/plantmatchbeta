@@ -186,16 +186,15 @@ export default function HomePage() {
             </p>
 
             {/* ⭐ SUPER INTERACTIVE BUTTON */}
-            <div className="animate-fadeIn" style={{ animationDelay: '0.4s' }}>
+            <div className="animate-fadeIn flex flex-col gap-3 items-start" style={{ animationDelay: '0.4s' }}>
               <Link
                 href="/login"
-                className="relative inline-flex items-center gap-3 rounded-full bg-white text-emerald-800 px-10 py-4 
-                         font-bold text-lg overflow-hidden group
-                         shadow-[0_0_30px_rgba(52,211,153,0.3)]
-                         hover:shadow-[0_0_50px_rgba(52,211,153,0.8)]
-                         hover:scale-110 active:scale-95
-                         transition-all duration-300
-                         border-2 border-emerald-200"
+                className="relative inline-flex items-center gap-3 rounded-full 
+                            bg-white text-emerald-800 px-10 py-4 font-bold text-lg
+                            overflow-hidden group shadow-[0_0_30px_rgba(52,211,153,0.3)]
+                            hover:shadow-[0_0_50px_rgba(52,211,153,0.8)]
+                            hover:scale-110 active:scale-95 transition-all duration-300
+                            border-2 border-emerald-200"
               >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 opacity-0 
@@ -213,7 +212,47 @@ export default function HomePage() {
                               group-hover:animate-ping opacity-0 group-hover:opacity-100"></div>
                 
                 <span className="relative z-10 flex items-center gap-3">
-                  <span>Explore plants</span>
+                  <span>Explore Planting</span>
+                  <svg 
+                    className="w-6 h-6 transform group-hover:translate-x-2 group-hover:rotate-12 transition-all duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+
+                {/* Sparkles on hover */}
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></span>
+                <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-teal-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: '0.2s' }}></span>
+              </Link>
+              <Link
+                href="/rekomendasi"
+                className="relative inline-flex items-center gap-3 rounded-full 
+                            bg-emerald-600 text-white px-10 py-4 font-bold text-lg
+                            overflow-hidden group shadow-[0_0_30px_rgba(52,211,153,0.3)]
+                            hover:bg-emerald-700 hover:shadow-[0_0_50px_rgba(52,211,153,0.8)]
+                            hover:scale-110 active:scale-95 transition-all duration-300
+                            border-2 border-emerald-700"
+              >
+                {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 opacity-0 
+                              group-hover:opacity-20 transition-opacity duration-300"></div>
+                
+                {/* Multi-layer shimmer */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent 
+                              translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-200/40 to-transparent 
+                              translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" 
+                     style={{ transitionDelay: '0.1s' }}></div>
+                
+                {/* Pulsing glow on hover */}
+                <div className="absolute inset-0 rounded-full bg-emerald-400/0 group-hover:bg-emerald-400/20 
+                              group-hover:animate-ping opacity-0 group-hover:opacity-100"></div>
+                
+                <span className="relative z-10 flex items-center gap-3">
+                  <span>See All Plants</span>
                   <svg 
                     className="w-6 h-6 transform group-hover:translate-x-2 group-hover:rotate-12 transition-all duration-300" 
                     fill="none" 
@@ -232,29 +271,6 @@ export default function HomePage() {
 
             {/* ⭐ ANIMATED FEATURE BADGES */}
             <div className="flex flex-wrap gap-3 pt-4 animate-fadeIn" style={{ animationDelay: '0.6s' }}>
-              {[
-                { icon: "✨", text: "Smart Recommendations", color: "emerald" },
-                { icon: "🎯", text: "Personalized Care Tips", color: "teal" }
-              ].map((badge, idx) => (
-                <div 
-                  key={idx}
-                  className={`group flex items-center gap-2 px-4 py-2 rounded-full 
-                            bg-gradient-to-r from-emerald-800/50 to-teal-800/50 
-                            border border-${badge.color}-400/30
-                            backdrop-blur-sm
-                            hover:border-${badge.color}-400/60
-                            hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]
-                            transition-all duration-300
-                            cursor-pointer hover:scale-105`}
-                >
-                  <span className="text-lg group-hover:scale-125 transition-transform duration-300">
-                    {badge.icon}
-                  </span>
-                  <span className="text-sm font-medium text-emerald-100">
-                    {badge.text}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </div>

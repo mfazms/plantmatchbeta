@@ -144,11 +144,11 @@ export default function WishlistPage() {
       return;
     }
 
-    if (!confirm(`Hapus ${selectedItems.size} tanaman dari wishlist?`)) return;
+    if (!confirm(`Hapus ${selectedItems.size} tanaman dari favorite?`)) return;
 
     const ok = await removeMultipleFromWishlist(Array.from(selectedItems));
     if (ok) {
-      alert("Berhasil menghapus dari wishlist");
+      alert("Berhasil menghapus dari favorite");
       setSelectedItems(new Set());
       setSelectMode(false);
       loadWishlist();
@@ -157,11 +157,11 @@ export default function WishlistPage() {
 
   // 🗑️ Remove single
   const removeSingle = async (plantId: number) => {
-    if (!confirm("Hapus tanaman ini dari wishlist?")) return;
+    if (!confirm("Hapus tanaman ini dari favorite?")) return;
 
     const ok = await removeFromWishlist(plantId);
     if (ok) {
-      alert("Dihapus dari wishlist");
+      alert("Dihapus dari favorite");
       loadWishlist();
     }
   };
@@ -173,7 +173,7 @@ export default function WishlistPage() {
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-emerald-700 font-semibold">
-            Memuat wishlist...
+            Memuat favorite...
           </p>
         </div>
       </main>
@@ -193,10 +193,10 @@ export default function WishlistPage() {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <h1 className="text-2xl md:text-3xl font-extrabold text-emerald-800 flex items-center gap-2">
-                    <span>{getUserName()}'s Wishlist</span>
+                    <span>{getUserName()}'s Favorite</span>
                   </h1>
                   <p className="text-sm text-gray-600">
-                    {wishlist.length} tanaman dalam wishlist
+                    {wishlist.length} tanaman ditandai favorit
                   </p>
                 </div>
               </div>
@@ -209,7 +209,7 @@ export default function WishlistPage() {
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Cari tanaman di wishlist..."
+                  placeholder="Cari tanaman di favorite..."
                   className="flex-1 h-11 px-5 rounded-full bg-white text-gray-900 ring-1 ring-emerald-200 focus:ring-2 focus:ring-emerald-400 outline-none placeholder:text-gray-400 text-sm"
                 />
               </div>

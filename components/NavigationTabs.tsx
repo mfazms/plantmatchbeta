@@ -47,7 +47,7 @@ export default function NavigationTabs({
       badge: alertCount,
     },
     {
-      label: "Wishlist",
+      label: "Favorite",
       href: "/wishlist",
       badge: wishlistCount,
     }

@@ -261,7 +261,7 @@ export default function PlantHistoryPage() {
               href="/wishlist"
               className="px-4 py-1 rounded-full hover:bg-emerald-700 transition"
             >
-              Wishlist
+              Favorite
             </Link>
           </div>
         </div>

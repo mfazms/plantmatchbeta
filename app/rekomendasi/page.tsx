@@ -20,7 +20,6 @@ import FiltersPanel from "@/components/FiltersPanel";
 import PlantCard from "@/components/PlantCard";
 import ExportPDFButton from "@/components/ExportPDFButton";
 import ChatButton from "@/components/ChatButton";
-import NavigationTabs from "@/components/NavigationTabs";
 
 // ⭐ NEW: Import loading components
 import { 
@@ -36,6 +35,9 @@ import { auth } from "@/lib/firebaseConfig";
 
 // Garden summary (untuk notif belum disiram)
 import { getGardenSummary } from "@/lib/garden";
+
+// ⭐ Import wishlist helper
+import { getWishlistCount } from "@/lib/wishlist";
 
 type GardenSummary = {
   total: number;
@@ -59,37 +61,62 @@ export default function RekomendasiPage() {
   const [loading, setLoading] = useState(true);
 
   const [gardenSummary, setGardenSummary] = useState<GardenSummary | null>(null);
+  const [wishlistCount, setWishlistCount] = useState<number>(0);
 
   // ⭐ NEW: Loading states
   const [isGenerating, setIsGenerating] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  // 🔹 Cek status login Firebase
+  // ⭐ NEW: Confirmation dialog state
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [pendingAction, setPendingAction] = useState<string>("");
+
+  // 🔹 Cek status login Firebase - TIDAK redirect ke login
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser) {
-        router.push("/login");
-      } else {
-        setUser(currentUser);
-      }
+      setUser(currentUser);
       setLoading(false);
     });
     return () => unsub();
-  }, [router]);
+  }, []);
 
-  // 🔹 Ambil ringkasan kebun
+  // 🔹 Ambil ringkasan kebun DAN wishlist count
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      // Set default nilai 0 jika tidak ada user login
+      setGardenSummary({
+        total: 0,
+        unwateredToday: 0,
+        overdue: 0
+      });
+      setWishlistCount(0);
+      return;
+    }
 
     let cancelled = false;
 
     (async () => {
       try {
+        // ✅ Ambil garden summary menggunakan helper function
         const summary = await getGardenSummary(user.uid);
+        
+        // 🔍 DEBUG: Log untuk check nilai
+        console.log("🪴 Garden Summary:", summary);
+        console.log("🪴 Total tanaman di garden:", summary.total);
+        
         if (!cancelled) setGardenSummary(summary);
+
+        // ✅ Ambil wishlist count menggunakan helper function
+        const count = await getWishlistCount();
+        
+        // 🔍 DEBUG: Log untuk check nilai
+        console.log("💖 Wishlist Count:", count);
+        
+        if (!cancelled) setWishlistCount(count);
+        
       } catch (err) {
-        console.error("Gagal mengambil ringkasan kebun:", err);
+        console.error("Gagal mengambil data:", err);
       }
     })();
 
@@ -217,16 +244,45 @@ export default function RekomendasiPage() {
     }, 300);
   };
 
-  // 🔹 ⭐ NEW: Handle Logout dengan Firebase signOut
-  const handleLogout = async () => {
-    try {
-      setIsLoggingOut(true);
-      await signOut(auth);
+  // 🔹 ⭐ Handle Tab Click - Show dialog jika belum login
+  const handleTabClick = (href: string, requireAuth: boolean = false, actionName: string = "") => {
+    if (requireAuth && !user) {
+      // Jika butuh auth tapi user belum login, show dialog
+      setPendingAction(actionName);
+      setShowLoginDialog(true);
+    } else {
+      // Jika sudah login atau tidak butuh auth, langsung ke halaman
+      handleNavigation(href);
+    }
+  };
+
+  // 🔹 ⭐ Handle confirmation dari dialog
+  const handleConfirmLogin = () => {
+    setShowLoginDialog(false);
+    router.push("/login");
+  };
+
+  const handleCancelLogin = () => {
+    setShowLoginDialog(false);
+    setPendingAction("");
+  };
+
+  // 🔹 ⭐ Handle Logout/Kembali
+  const handleLogoutOrBack = async () => {
+    if (user) {
+      // Jika sudah login, lakukan logout
+      try {
+        setIsLoggingOut(true);
+        await signOut(auth);
+        router.push("/");
+      } catch (error) {
+        console.error("Error saat logout:", error);
+        alert("Gagal logout. Silakan coba lagi.");
+        setIsLoggingOut(false);
+      }
+    } else {
+      // Jika belum login, kembali ke home
       router.push("/");
-    } catch (error) {
-      console.error("Error saat logout:", error);
-      alert("Gagal logout. Silakan coba lagi.");
-      setIsLoggingOut(false);
     }
   };
 
@@ -238,8 +294,6 @@ export default function RekomendasiPage() {
       </main>
     );
   }
-
-  if (!user) return null;
 
   // Style aktif untuk tab
   const activeClass = "bg-emerald-600 text-white border-emerald-600";
@@ -265,7 +319,7 @@ export default function RekomendasiPage() {
               {info.label} ({info.range})
             </h2>
             <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
-              {plants.length} tanaman
+              {plants.length} plants
             </span>
           </div>
           <p className="text-gray-600 text-sm">{info.description}</p>
@@ -301,23 +355,59 @@ export default function RekomendasiPage() {
       {/* ⭐ Page transition overlay */}
       <PageTransition show={isNavigating || isLoggingOut} />
 
+      {/* ⭐ Login Confirmation Dialog */}
+      {showLoginDialog && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 animate-scaleIn">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Login Required
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Please login first to {pendingAction || "access this feature"}.
+              </p>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={handleCancelLogin}
+                className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition-all"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleConfirmLogin}
+                className="flex-1 px-4 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                Login Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[340px_1fr]">
         {/* SIDEBAR */}
         <aside className="bg-emerald-800 text-white p-6 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
           <div className="mb-8 flex items-center justify-between">
             <button
-              onClick={handleLogout}
+              onClick={handleLogoutOrBack}
               disabled={isLoggingOut}
               className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5
                          bg-white/10 hover:bg-white/20 transition text-sm font-medium
                          disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoggingOut ? "Logging out..." : "← Logout"}
+              {isLoggingOut ? "Logging out..." : user ? "← Logout" : "← Back"}
             </button>
 
             {/* Welcome Message */}
             <div className="text-right">
-              <p className="text-sm text-white">Selamat datang,</p>
+              <p className="text-sm text-white">Welcome,</p>
               <p className="text-lg font-bold text-white truncate max-w-[160px]" title={getUserName()}>
                 {getUserName()}
               </p>
@@ -362,15 +452,54 @@ export default function RekomendasiPage() {
               scrolled ? "shadow-md" : "shadow-sm"
             }`}
           >
-            {/* ⭐ NAVIGATION TABS - Menggunakan Component Baru */}
-            <NavigationTabs alertCount={alertCount} />
+            {/* ⭐ NAVIGATION TABS - CENTER ALIGNED dengan badge konsisten */}
+            <nav className="flex flex-wrap items-center justify-center gap-3 mb-4">
+              {/* All Plants - Selalu aktif di halaman ini */}
+              <button
+                onClick={() => handleTabClick("/rekomendasi", false)}
+                className={`rounded-full border-2 px-5 py-2 font-semibold text-sm transition-all
+                           shadow-sm hover:shadow-md ${activeClass}`}
+              >
+                All Plants
+              </button>
+
+              {/* My Garden - Fix path ke /riwayat-tanaman */}
+              <button
+                onClick={() => handleTabClick("/kebunku", true, "mengakses My Garden")}
+                className={`rounded-full border-2 px-5 py-2 font-semibold text-sm transition-all
+                           shadow-sm hover:shadow-md ${inactiveClass} inline-flex items-center gap-2`}
+              >
+                <span>My Garden</span>
+                {user && (gardenSummary?.total ?? 0) > 0 && (
+                  <span className="inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full 
+                                   bg-pink-500 text-white text-xs font-bold">
+                    {gardenSummary?.total}
+                  </span>
+                )}
+              </button>
+
+              {/* Wishlist - Redirect ke login jika belum login */}
+              <button
+                onClick={() => handleTabClick("/wishlist", true, "mengakses Wishlist")}
+                className={`rounded-full border-2 px-5 py-2 font-semibold text-sm transition-all
+                           shadow-sm hover:shadow-md ${inactiveClass} inline-flex items-center gap-2`}
+              >
+                <span>Favorite</span>
+                {user && wishlistCount > 0 && (
+                  <span className="inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full 
+                                   bg-pink-500 text-white text-xs font-bold">
+                    {wishlistCount}
+                  </span>
+                )}
+              </button>
+            </nav>
 
             {/* SEARCH BAR */}
             <div className="flex items-center gap-2 mt-4">
               <input
                 value={query}
                 onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="Cari tanaman..."
+                placeholder="Looking for Plants Here..."
                 className="flex-1 h-12 px-5 rounded-full bg-white text-gray-900 ring-1 ring-emerald-200 focus:ring-2 focus:ring-emerald-400 outline-none placeholder:text-gray-400 transition-all duration-300"
               />
             </div>
@@ -380,11 +509,11 @@ export default function RekomendasiPage() {
           {appliedHasFilter && !isGenerating && (
             <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl animate-fadeIn">
               <p className="text-sm text-emerald-800">
-                Menampilkan <span className="font-bold">{visiblePlants.length}</span> tanaman 
-                yang cocok dengan filter kamu.
+                Showing <span className="font-bold">{visiblePlants.length}</span> plants 
+                that match your filter.
                 {visiblePlants.length === 0 && (
                   <span className="block mt-2 text-amber-700">
-                    ⚠️ Tidak ada tanaman yang cocok. Coba ubah filter!
+                    ⚠️ No Plant match with your preferences. Try changing the filter!
                   </span>
                 )}
               </p>
@@ -398,13 +527,13 @@ export default function RekomendasiPage() {
             <div className="text-center py-16 animate-fadeIn">
               <p className="text-gray-500 text-lg mb-2">
                 {appliedHasFilter 
-                  ? "Tidak ada tanaman yang cocok dengan filter kamu 😅"
-                  : "Tidak ada hasil rekomendasi."
+                  ? "No Plant match with your preferences 😅"
+                  : "No recommendations found."
                 }
               </p>
               {appliedHasFilter && (
                 <p className="text-gray-400 text-sm">
-                  Coba ubah filter atau reset untuk melihat semua tanaman.
+                  Try changing the filter or reset to see all plants.
                 </p>
               )}
             </div>
@@ -466,7 +595,7 @@ export default function RekomendasiPage() {
 
       {/* Floating Chat Button */}
       <ChatButton
-        context="Halaman rekomendasi PlantMatch - bantu user memilih dan merawat tanaman hias."
+        context="PlantMatch recommendation page - helping users choose and care for ornamental plants."
       />
     </main>
   );
