@@ -1,6 +1,6 @@
 # 🌿 PlantMatch – Recommender System for Living Decorative Plants
 
-Check Here 👉www.PlantMatch.Web.Id
+**Check Here 👉 [www.PlantMatch.Web.Id](https://www.plantmatch.web.id)**
 
 PlantMatch is a modern web-based application that helps users choose **living decorative plants** suitable for their room conditions, aesthetic preferences, and maintenance levels.  
 The app is built with **Next.js** and leverages a **content-based recommendation algorithm** using custom filtering rules and similarity scoring.  
@@ -54,7 +54,7 @@ It uses a curated dataset from **Kaggle**, combining plant characteristics such 
 
 ## 📁 Repository
 
-- 🔗 [Project Repository](https://github.com/YOUR_USERNAME/plantmatch)
+- 🔗 **[GitHub Repository](https://github.com/mfazms/plantmatch)** *(Update with your actual repo URL)*
 
 ---
 
@@ -62,13 +62,13 @@ It uses a curated dataset from **Kaggle**, combining plant characteristics such 
 
 Make sure the following tools are installed on your system:
 
-- Node.js (LTS)
-- Git & GitHub Desktop
-- Visual Studio Code
-- Firebase Account (for authentication & database)
-- (Optional) Docker Desktop
-- (Optional) SonarCloud account
-- (Optional) Google Cloud Platform or Vercel account for deployment
+- **Node.js** (LTS version recommended)
+- **Git** & GitHub Desktop
+- **Visual Studio Code**
+- **Firebase Account** (for authentication & database)
+- *(Optional)* Docker Desktop
+- *(Optional)* SonarCloud account
+- *(Optional)* Google Cloud Platform or Vercel account for deployment
 
 ---
 
@@ -76,7 +76,7 @@ Make sure the following tools are installed on your system:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/plantmatch.git
+git clone https://github.com/mfazms/plantmatch.git
 cd plantmatch
 
 # 2. Install dependencies
@@ -91,6 +91,15 @@ npm install --legacy-peer-deps
 ```bash
 # 3. Configure Firebase
 # Create .env.local file with your Firebase credentials
+# Copy from .env.example or add these variables:
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
 
 # 4. Start the development server
 npm run dev
@@ -126,6 +135,8 @@ CAPSTONEBETA02/
 │   ├── tanaman/
 │   │   └── [id]/
 │   │       └── page.tsx          # Plant Detail page
+│   ├── wishlist/
+│   │   └── page.tsx              # Wishlist page
 │   │
 │   ├── globals.css               # Global styles & animations
 │   ├── icon.png.png              # App icon
@@ -153,42 +164,29 @@ CAPSTONEBETA02/
 │   ├── garden.ts                 # Garden management functions
 │   ├── loadData.ts               # Data loading utilities
 │   ├── recommend.ts              # Recommendation algorithm
-│   ├── Tailwind.config.ts        # Tailwind configuration
-│   └── types.ts                  # TypeScript type definitions
+│   ├── types.ts                  # TypeScript type definitions
+│   └── wishlist.ts               # Wishlist management functions
 │
 ├── public/                       # Static Assets
 │   ├── data/
 │   │   └── PlantsData.json       # Plants database
-│   ├── images/                   # Plant images
+│   ├── images/                   # Plant images (300+ images)
 │   ├── android-chrome-192x192.png
 │   ├── android-chrome-512x512.png
 │   ├── apple-touch-icon.png
 │   ├── favicon-16x16.png
 │   ├── favicon-32x32.png
 │   ├── favicon.ico
-│   ├── file.svg
-│   ├── globe.svg
 │   ├── hero.png                  # Hero image/logo
-│   ├── hero1.png                 # Alternative hero
-│   ├── next.svg
-│   ├── site.webmanifest
-│   ├── vercel.svg
-│   └── window.svg
+│   └── site.webmanifest
 │
-├── firebase-seeder/              # Database seeder
-├── node_modules/                 # Dependencies
-├── plant-seeder/                 # Plant data seeder
-│
-├── .env.local                    # Environment variables
+├── .env.local                    # Environment variables (gitignored)
 ├── .gitignore
-├── eslint.config.mjs
-├── next-env.d.ts
 ├── next.config.ts
-├── package-lock.json
 ├── package.json
-├── postcss.config.mjs
-├── README.md
-└── tsconfig.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
 ```
 
 ---
@@ -217,45 +215,62 @@ git push -u origin main
 
 ## 🔄 DevOps Pipeline Flow (Example)
 
-* **CI Workflow**:
-  `Lint → Test → Build (Next.js) → Static Analysis`
+**CI Workflow:**
+```
+Lint → Test → Build (Next.js) → Static Analysis
+```
 
-* **CD Workflow**:
-  `Authenticate → Build Docker Image → Deploy to Vercel / GCP Cloud Run`
+**CD Workflow:**
+```
+Authenticate → Build Docker Image → Deploy to Vercel / GCP Cloud Run
+```
 
-* **Monitoring (Optional)**:
-  Integrate **Google Cloud Monitoring** or **Vercel Analytics** for real-time performance insights.
+**Monitoring (Optional):**
+Integrate **Google Cloud Monitoring** or **Vercel Analytics** for real-time performance insights.
 
 ---
 
 ## 🧠 Recommendation Logic Overview
 
-* **Prefiltering:**
-  Filters plants based on light, temperature, climate, watering frequency, and MBTI personality compatibility.
+### Content-Based Filtering Algorithm
 
-* **Scoring:**
-  Computes similarity between user preferences and dataset attributes using content-based matching with weighted scoring.
+1. **Prefiltering:**
+   - Filters plants based on light requirements
+   - Temperature and climate compatibility
+   - Watering frequency preferences
+   - MBTI personality matching (optional)
 
-* **Ranking:**
-  Displays results sorted by relevance score with detailed reason explanations.
+2. **Scoring System:**
+   - Computes similarity between user preferences and plant attributes
+   - Weighted scoring based on multiple factors
+   - Normalized scores (0-100%)
 
-* **AI Enhancement:**
-  Optional AI-powered explanations using Gemini AI for why specific plants match user preferences.
+3. **Ranking:**
+   - Displays results sorted by relevance score
+   - Groups by match quality (Perfect, Great, Good, Acceptable)
+   - Detailed explanations for each recommendation
+
+4. **AI Enhancement:**
+   - Optional AI-powered explanations using Gemini AI
+   - Contextual care tips and suggestions
+   - Interactive chat for plant care questions
 
 ---
 
 ## 📦 Dataset
 
-🔗 [Indoor House Plants Dataset with Care Instructions](https://www.kaggle.com/datasets/prakash27x/indoor-house-plants-dataset-with-care-instructions)
+🔗 **[Indoor House Plants Dataset with Care Instructions](https://www.kaggle.com/datasets/prakash27x/indoor-house-plants-dataset-with-care-instructions)**
 
-Includes attributes such as:
+The dataset includes **300+ plants** with attributes such as:
 
-* Common & botanical names
-* Light & watering needs
-* Climate & origin
-* Decorative use, toxicity, and description
-* MBTI personality matching
-* Image URL
+- Common & botanical names
+- Light & watering requirements
+- Climate & origin information
+- Decorative use & placement recommendations
+- Toxicity warnings for pets/children
+- Detailed care descriptions
+- MBTI personality compatibility
+- High-quality image URLs
 
 ---
 
@@ -263,28 +278,67 @@ Includes attributes such as:
 
 You can implement component testing using:
 
-* **Jest** + **React Testing Library**
-* Store test files under: `components/__tests__/*.test.tsx`
+- **Jest** + **React Testing Library**
+- Store test files under: `components/__tests__/*.test.tsx`
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage
+```
 
 ---
 
 ## 📊 Nonfunctional Highlights
 
-* **Performance**: Recommendations appear ≤ 2 seconds
-* **Security**: Firebase authentication with secure data storage
-* **Usability**: Responsive and mobile-friendly interface with smooth animations
-* **Transparency**: Displays reasoning for each recommendation
-* **Accessibility**: Proper focus states and reduced motion support
+- **⚡ Performance**: Recommendations appear ≤ 2 seconds
+- **🔒 Security**: Firebase authentication with secure data storage
+- **📱 Usability**: Responsive and mobile-friendly interface with smooth animations
+- **🔍 Transparency**: Displays reasoning for each recommendation
+- **♿ Accessibility**: Proper focus states and reduced motion support
+- **🌐 SEO**: Optimized meta tags and Open Graph support
 
 ---
 
 ## 🎨 Design Features
 
-* **Glass Morphism** – Modern transparent UI elements
-* **Gradient Backgrounds** – Emerald to teal color scheme
-* **Smooth Animations** – Fade-in, slide, pulse, float effects
-* **Interactive Elements** – Hover effects, parallax, glowing effects
-* **Responsive Layout** – Adapts to all screen sizes
+- **Glass Morphism** – Modern transparent UI elements with backdrop blur
+- **Gradient Backgrounds** – Emerald to teal color scheme
+- **Smooth Animations** – Fade-in, slide, pulse, float effects
+- **Interactive Elements** – Hover effects, parallax, glowing card effects
+- **Responsive Layout** – Adapts seamlessly to all screen sizes
+- **Loading States** – Beautiful skeleton loaders and transitions
+- **Dark Mode Ready** – Prepared for dark theme implementation
+
+---
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Visit [vercel.com](https://vercel.com)
+3. Import your repository
+4. Add environment variables
+5. Deploy!
+
+### Firebase Hosting
+
+```bash
+# Install Firebase CLI
+npm install -g firebase-tools
+
+# Login to Firebase
+firebase login
+
+# Initialize Firebase
+firebase init
+
+# Deploy
+firebase deploy
+```
 
 ---
 
@@ -297,12 +351,35 @@ See the `LICENSE` file for more details.
 
 ## 📬 Need Help?
 
-If you encounter bugs or have questions, feel free to open an issue via:
+If you encounter bugs or have questions, feel free to:
 
-➡️ [GitHub Issues](https://github.com/YOUR_USERNAME/plantmatch/issues)
+- 🐛 **[Open an Issue](https://github.com/mfazms/plantmatch/issues)**
+- 📖 **[Check Documentation](https://www.notion.so/Plantmatch-296197af6217807ea0faf433e602683e)**
+- 📧 **Email**: [fazlesidiki@gmail.com](mailto:fazlesidiki@gmail.com)
 
-➡️ [Notion](https://www.notion.so/Plantmatch-296197af6217807ea0faf433e602683e?source=copy_link)
+---
 
-Or contact the main developer:
+## 🌟 Acknowledgments
 
-📧 **[fazlesidiki@gmail.com](mailto:fazlesidiki@gmail.com)**
+- **Dataset**: [Kaggle - Indoor House Plants Dataset](https://www.kaggle.com/datasets/prakash27x/indoor-house-plants-dataset-with-care-instructions)
+- **AI**: Google Gemini AI for chatbot functionality
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS
+- **Database**: Firebase Firestore
+- **Authentication**: Firebase Auth
+
+---
+
+## 📸 Screenshots
+
+*Coming soon...*
+
+---
+
+<div align="center">
+
+**Made with 💚 by PlantMatch Team**
+
+⭐ Star this repo if you find it helpful!
+
+</div>
